@@ -12,15 +12,16 @@ A self-hosted recipe management system built with JSON files stored in a Git rep
 
 ### Storage Layer
 - **Repository**: GitHub repo containing recipe JSON files
-- **Structure**: `recipes/[recipe_id]/[language].json`
-  - Example: `recipes/pancakes/en.json`, `recipes/pancakes/de.json`
-  - One recipe ID per dish, one JSON file per language variant
+- **Structure**: `recipes/[recipe_id].json`
+  - Example: `recipes/pancakes.json`
+  - One JSON file per recipe (English base, optional translations inline)
+  - `recipes/index.json` lists all recipe IDs
   - No PDFs in the repo — generated on-demand by Actions
 
 ### Frontend Layer
-- **Hosting**: GitHub Pages (static site)
-- **Technology**: Vanilla HTML, CSS, JavaScript
-- **Deployment**: Built from `/docs` folder or `gh-pages` branch
+- **Hosting**: GitHub Pages (static site, served from repo root)
+- **Technology**: Vanilla HTML, CSS, JavaScript (no build step, no npm dependencies)
+- **Entry point**: `index.html` in project root
 - **Responsive**: Mobile-first design, works on all devices
 
 ### CI/CD Layer
@@ -49,15 +50,28 @@ Each recipe is a single JSON object with:
   "version": "integer (incremented on any change)",
   "ingredients": [
     {
-      "id": "string",
       "name": "string",
       "amount": "number",
       "unit": "string (cups | tbsp | grams | ml | etc)"
     }
   ],
-  "instructions": "string | array | array of objects (flexible)"
+  "instructions": "string | array | array of objects (flexible)",
+  "translations": {
+    "<lang_code>": {
+      "title": "string",
+      "serving_unit": "string",
+      "ingredients": ["translated name by index", "..."],
+      "instructions": "same format as base instructions"
+    }
+  }
 }
 ```
+
+### Translation Model
+- Recipes are authored in **English** (single source of truth for structure and amounts)
+- Optional `translations` object provides per-language overrides for text content
+- Translation `ingredients` is an **index-based array** matching the base ingredients order
+- Tags, meal types, and units are always stored in English and translated by the frontend via `i18n.json`
 
 ### Instructions Format (Flexible)
 Support all three:
@@ -66,20 +80,23 @@ Support all three:
 3. **Sectioned**: `[{"section": "Prep", "steps": [...]}, ...]`
 
 ### Measurement Syntax
-Use `{{amount unit ingredient}}` in instructions:
-- `{{2 cups flour}}` scales with portion slider
-- `{{0.5 tsp salt}}` converts between unit systems
+Use `{{amount unit}}` or `{{amount}}` in instructions:
+- `{{200 g}}` — amount + unit, scales with portion slider and converts between unit systems
+- `{{4}}` — unitless amount, scales only
+- Examples: `"Add {{200 g}} flour, then {{4}} eggs."`
 - Frontend parses and replaces these dynamically
 
 ---
 
 ## 3. JSON Schema Validation
 
-Create `schema.json` in repo root with AJV. Pre-commit hook validates:
+Create `schema.json` in repo root. `validate.py` (Python stdlib only) validates:
 - All required fields present
-- Recipe ID format valid
+- Recipe ID format valid and matches filename
 - Units in approved list
 - `version` incremented on changes
+- Translation ingredient arrays match ingredient count
+- All recipes listed in `recipes/index.json`
 
 ---
 
@@ -87,15 +104,18 @@ Create `schema.json` in repo root with AJV. Pre-commit hook validates:
 
 ### Structure
 ```
-docs/
+/
 ├── index.html
+├── i18n.json
 ├── css/main.css
 ├── js/
 │   ├── app.js
 │   ├── parser.js
 │   ├── scaler.js
 │   └── converter.js
-└── recipes/  (copy of /recipes folder)
+└── recipes/
+    ├── index.json
+    └── pancakes.json
 ```
 
 ### Core Features
@@ -114,7 +134,7 @@ docs/
 
 **Unit Conversion**
 - Toggle button: Imperial ↔ Metric
-- Use `convert-units` npm library
+- Hand-rolled lookup table for cooking units (no npm dependencies)
 - Convert cups → ml, oz → grams, etc.
 - Update all displayed amounts
 
@@ -146,20 +166,9 @@ On release tag:
 
 ## 6. Pre-commit Hook (`.githooks/pre-commit`)
 
-```bash
-#!/bin/bash
-set -e
-
-# Validate all JSON against schema
-for file in recipes/*/*.json; do
-  npx ajv validate -s schema.json -d "$file" || exit 1
-done
-
-# Verify version numbers incremented
-# (check git diff for each modified file)
-
-echo "✅ All recipes valid"
-```
+- Validates all `recipes/*.json` against `schema.json` via `validate.py`
+- Verifies version numbers are incremented on modified recipes
+- Checks `recipes/index.json` contains all recipes (no missing, no stale entries)
 
 Configure with: `git config core.hooksPath .githooks`
 
@@ -168,10 +177,12 @@ Configure with: `git config core.hooksPath .githooks`
 ## 7. Development Workflow
 
 **Add a recipe**:
-1. Create `recipes/[id]/en.json` and `recipes/[id]/de.json`
-2. Set `version: 1`
-3. Commit — pre-commit validates schema
-4. Push → GitHub Pages auto-rebuilds
+1. Create `recipes/[id].json` (English base)
+2. Add optional `translations` object for other languages
+3. Add ID to `recipes/index.json`
+4. Set `version: 1`
+5. Commit — pre-commit validates schema and index
+6. Push → GitHub Pages auto-rebuilds
 
 **Edit a recipe**:
 1. Modify JSON
@@ -193,8 +204,8 @@ Configure with: `git config core.hooksPath .githooks`
 | Frontend | HTML5, CSS3, Vanilla JS |
 | Hosting | GitHub Pages |
 | Data | JSON in Git |
-| Validation | AJV |
-| Units | `convert-units` npm |
+| Validation | Python stdlib (validate.py) |
+| Units | Vanilla JS lookup table |
 | PDF | Puppeteer |
 | CI/CD | GitHub Actions |
 
@@ -202,7 +213,7 @@ Configure with: `git config core.hooksPath .githooks`
 
 ## 9. Example Recipe
 
-`recipes/pancakes/en.json`:
+`recipes/pancakes.json`:
 ```json
 {
   "id": "pancakes",
@@ -216,19 +227,19 @@ Configure with: `git config core.hooksPath .githooks`
   "related_recipes": [],
   "version": 1,
   "ingredients": [
-    {"id": "flour", "name": "flour", "amount": 2, "unit": "cups"},
-    {"id": "eggs", "name": "eggs", "amount": 2, "unit": "whole"},
-    {"id": "milk", "name": "milk", "amount": 1.5, "unit": "cups"},
-    {"id": "sugar", "name": "sugar", "amount": 2, "unit": "tbsp"},
-    {"id": "baking_powder", "name": "baking powder", "amount": 2, "unit": "tsp"},
-    {"id": "salt", "name": "salt", "amount": 0.5, "unit": "tsp"}
+    {"name": "flour", "amount": 2, "unit": "cups"},
+    {"name": "eggs", "amount": 2, "unit": "whole"},
+    {"name": "milk", "amount": 1.5, "unit": "cups"},
+    {"name": "sugar", "amount": 2, "unit": "tbsp"},
+    {"name": "baking powder", "amount": 2, "unit": "tsp"},
+    {"name": "salt", "amount": 0.5, "unit": "tsp"}
   ],
   "instructions": [
     {
       "section": "Prepare",
       "steps": [
-        "Mix {{2 cups flour}}, {{2 tsp baking powder}}, {{0.5 tsp salt}}.",
-        "Whisk {{2 eggs}}, {{1.5 cups milk}}, {{2 tbsp sugar}}.",
+        "Mix {{2 cups}} flour, {{2 tsp}} baking powder, {{0.5 tsp}} salt.",
+        "Whisk {{2}} eggs, {{1.5 cups}} milk, {{2 tbsp}} sugar.",
         "Combine wet and dry until just mixed."
       ]
     },
@@ -236,12 +247,38 @@ Configure with: `git config core.hooksPath .githooks`
       "section": "Cook",
       "steps": [
         "Heat skillet, lightly butter.",
-        "Pour {{0.25 cups batter}} per pancake.",
+        "Pour {{0.25 cups}} batter per pancake.",
         "Cook until bubbles form (~2min), flip.",
         "Cook golden on other side (1-2min)."
       ]
     }
-  ]
+  ],
+  "translations": {
+    "de": {
+      "title": "Fluffige Pfannkuchen",
+      "serving_unit": "Portionen",
+      "ingredients": ["Mehl", "Eier", "Milch", "Zucker", "Backpulver", "Salz"],
+      "instructions": [
+        {
+          "section": "Vorbereitung",
+          "steps": [
+            "{{2 cups}} Mehl, {{2 tsp}} Backpulver, {{0.5 tsp}} Salz mischen.",
+            "{{2}} Eier, {{1.5 cups}} Milch, {{2 tbsp}} Zucker verquirlen.",
+            "Nasse und trockene Zutaten vorsichtig vermengen."
+          ]
+        },
+        {
+          "section": "Braten",
+          "steps": [
+            "Pfanne erhitzen, leicht buttern.",
+            "{{0.25 cups}} Teig pro Pfannkuchen eingießen.",
+            "Braten bis Blasen entstehen (~2 Min), wenden.",
+            "Goldbraun auf der anderen Seite braten (1-2 Min)."
+          ]
+        }
+      ]
+    }
+  }
 }
 ```
 

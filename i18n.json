@@ -1,0 +1,68 @@
+{
+  "de": {
+    "meal_types": {
+      "breakfast": "Frühstück",
+      "main": "Hauptgericht",
+      "snack": "Snack",
+      "dessert": "Dessert",
+      "basic": "Grundrezept"
+    },
+    "tags": {
+      "vegetarian": "vegetarisch",
+      "vegan": "vegan",
+      "quick": "schnell",
+      "gluten-free": "glutenfrei",
+      "dairy-free": "milchfrei",
+      "spicy": "scharf",
+      "comfort-food": "Hausmannskost",
+      "healthy": "gesund",
+      "low-carb": "kohlenhydratarm",
+      "high-protein": "proteinreich"
+    },
+    "units": {
+      "cups": "Tassen",
+      "cup": "Tasse",
+      "tbsp": "EL",
+      "tsp": "TL",
+      "ml": "ml",
+      "l": "l",
+      "g": "g",
+      "kg": "kg",
+      "oz": "oz",
+      "lb": "lb",
+      "floz": "floz",
+      "qt": "qt",
+      "gal": "gal",
+      "pint": "pint",
+      "whole": "",
+      "piece": "Stück",
+      "pieces": "Stück",
+      "pinch": "Prise",
+      "bunch": "Bund",
+      "clove": "Zehe",
+      "cloves": "Zehen",
+      "slice": "Scheibe",
+      "slices": "Scheiben",
+      "can": "Dose",
+      "cans": "Dosen",
+      "package": "Packung",
+      "packages": "Packungen",
+      "stick": "Stange",
+      "sticks": "Stangen",
+      "head": "Kopf",
+      "heads": "Köpfe",
+      "sprig": "Zweig",
+      "sprigs": "Zweige"
+    },
+    "ui": {
+      "servings": "Portionen",
+      "ingredients": "Zutaten",
+      "instructions": "Zubereitung",
+      "related": "Verwandte Rezepte",
+      "search_placeholder": "Rezepte suchen...",
+      "no_recipes": "Keine Rezepte gefunden.",
+      "prep": "Vorbereitung",
+      "cook": "Kochen"
+    }
+  }
+}
