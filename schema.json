@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Recipe",
+  "type": "object",
+  "required": [
+    "id", "title", "default_servings", "serving_unit",
+    "prep_time_minutes", "cook_time_minutes", "meal_type",
+    "tags", "version", "ingredients", "instructions"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "description": "Unique recipe identifier (lowercase, hyphens, underscores)"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "default_servings": {
+      "type": "number",
+      "minimum": 1
+    },
+    "serving_unit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prep_time_minutes": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cook_time_minutes": {
+      "type": "number",
+      "minimum": 0
+    },
+    "meal_type": {
+      "type": "string",
+      "enum": ["breakfast", "main", "snack", "dessert", "basic"]
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "related_recipes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "ingredients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "amount", "unit"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "amount": {
+            "type": "number",
+            "minimum": 0
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "cups", "cup", "tbsp", "tsp", "ml", "l",
+              "g", "kg", "oz", "lb", "floz", "qt", "gal", "pint",
+              "whole", "piece", "pieces", "pinch",
+              "bunch", "clove", "cloves",
+              "slice", "slices", "can", "cans",
+              "package", "packages", "stick", "sticks",
+              "head", "heads", "sprig", "sprigs"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "instructions": {
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["section", "steps"],
+            "properties": {
+              "section": { "type": "string" },
+              "steps": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      ]
+    },
+    "translations": {
+      "type": "object",
+      "description": "Optional translations keyed by language code (e.g. 'de'). Each must include title, serving_unit, ingredients (index-based array of translated names), and instructions.",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["title", "serving_unit", "ingredients", "instructions"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "serving_unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ingredients": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Translated ingredient names, same order as the ingredients array"
+          },
+          "instructions": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["section", "steps"],
+                  "properties": {
+                    "section": { "type": "string" },
+                    "steps": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

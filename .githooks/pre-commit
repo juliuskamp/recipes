@@ -1,0 +1,67 @@
+#!/bin/bash
+set -e
+
+# Validate all recipe JSON files against the schema
+ERRORS=0
+
+for file in recipes/*.json; do
+  [ -f "$file" ] || continue
+  [ "$(basename "$file")" = "index.json" ] && continue
+
+  if ! python3 validate.py "$file"; then
+    ERRORS=1
+  fi
+done
+
+if [ "$ERRORS" -ne 0 ]; then
+  echo "Recipe validation failed."
+  exit 1
+fi
+
+# Check version increment for modified recipe files
+MODIFIED=$(git diff --cached --name-only --diff-filter=M | grep '^recipes/.*\.json$' | grep -v 'index.json' || true)
+
+for file in $MODIFIED; do
+  OLD_VERSION=$(git show HEAD:"$file" 2>/dev/null | python3 -c "import sys,json; print(json.load(sys.stdin).get('version',0))" 2>/dev/null || echo "0")
+  NEW_VERSION=$(python3 -c "import sys,json; print(json.load(open('$file')).get('version',0))" 2>/dev/null || echo "0")
+
+  if [ "$NEW_VERSION" -le "$OLD_VERSION" ]; then
+    echo "ERROR: Version not incremented in $file (was $OLD_VERSION, is $NEW_VERSION)"
+    ERRORS=1
+  fi
+done
+
+if [ "$ERRORS" -ne 0 ]; then
+  exit 1
+fi
+
+# Check that recipes/index.json contains all recipe IDs (and no extras)
+INDEX_FILE="recipes/index.json"
+if [ -f "$INDEX_FILE" ]; then
+  # Get recipe IDs from files (strip .json extension, exclude index.json)
+  FILES=$(find recipes -maxdepth 1 -name '*.json' ! -name 'index.json' -exec basename {} .json \; | sort)
+  # Get IDs listed in index.json
+  INDEX_IDS=$(python3 -c "import json; [print(x) for x in sorted(json.load(open('$INDEX_FILE')))]" 2>/dev/null)
+
+  # Check for recipes missing from index
+  for name in $FILES; do
+    if ! echo "$INDEX_IDS" | grep -qx "$name"; then
+      echo "ERROR: Recipe '$name' exists but is not in $INDEX_FILE"
+      ERRORS=1
+    fi
+  done
+
+  # Check for index entries with no matching file
+  for id in $INDEX_IDS; do
+    if [ ! -f "recipes/$id.json" ]; then
+      echo "ERROR: '$id' is in $INDEX_FILE but recipes/$id.json does not exist"
+      ERRORS=1
+    fi
+  done
+fi
+
+if [ "$ERRORS" -ne 0 ]; then
+  exit 1
+fi
+
+echo "All recipes valid."

@@ -1,0 +1,65 @@
+{
+  "id": "pancakes",
+  "title": "Fluffy Pancakes",
+  "default_servings": 4,
+  "serving_unit": "servings",
+  "prep_time_minutes": 10,
+  "cook_time_minutes": 15,
+  "meal_type": "breakfast",
+  "tags": ["vegetarian", "quick"],
+  "related_recipes": [],
+  "version": 1,
+  "ingredients": [
+    { "name": "flour", "amount": 2, "unit": "cups" },
+    { "name": "eggs", "amount": 2, "unit": "whole" },
+    { "name": "milk", "amount": 1.5, "unit": "cups" },
+    { "name": "sugar", "amount": 2, "unit": "tbsp" },
+    { "name": "baking powder", "amount": 2, "unit": "tsp" },
+    { "name": "salt", "amount": 0.5, "unit": "tsp" }
+  ],
+  "instructions": [
+    {
+      "section": "Prepare",
+      "steps": [
+        "Mix {{2 cups}} flour, {{2 tsp}} baking powder, {{0.5 tsp}} salt.",
+        "Whisk {{2}} eggs, {{1.5 cups}} milk, {{2 tbsp}} sugar.",
+        "Combine wet and dry until just mixed."
+      ]
+    },
+    {
+      "section": "Cook",
+      "steps": [
+        "Heat skillet, lightly butter.",
+        "Pour {{0.25 cups}} batter per pancake.",
+        "Cook until bubbles form (~2min), flip.",
+        "Cook golden on other side (1-2min)."
+      ]
+    }
+  ],
+  "translations": {
+    "de": {
+      "title": "Fluffige Pfannkuchen",
+      "serving_unit": "Portionen",
+      "ingredients": ["Mehl", "Eier", "Milch", "Zucker", "Backpulver", "Salz"],
+      "instructions": [
+        {
+          "section": "Vorbereitung",
+          "steps": [
+            "{{2 cups}} Mehl, {{2 tsp}} Backpulver, {{0.5 tsp}} Salz mischen.",
+            "{{2}} Eier, {{1.5 cups}} Milch, {{2 tbsp}} Zucker verquirlen.",
+            "Nasse und trockene Zutaten vorsichtig vermengen."
+          ]
+        },
+        {
+          "section": "Braten",
+          "steps": [
+            "Pfanne erhitzen, leicht buttern.",
+            "{{0.25 cups}} Teig pro Pfannkuchen eingießen.",
+            "Braten bis Blasen entstehen (~2 Min), wenden.",
+            "Goldbraun auf der anderen Seite braten (1-2 Min)."
+          ]
+        }
+      ]
+    }
+  }
+}

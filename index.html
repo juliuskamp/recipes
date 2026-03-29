@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header>
+    <div class="header-top">
+      <h1><a href="#" id="home-link">Recipes</a></h1>
+      <div class="header-controls">
+        <div class="lang-toggle">
+          <button id="lang-en" class="lang-btn active">EN</button>
+          <button id="lang-de" class="lang-btn">DE</button>
+        </div>
+        <button id="unit-toggle" class="unit-btn">Metric</button>
+      </div>
+    </div>
+    <div id="search-bar" class="search-bar">
+      <input type="text" id="search-input" placeholder="Search recipes...">
+      <div id="filter-tags" class="filter-tags"></div>
+    </div>
+  </header>
+
+  <main>
+    <div id="recipe-list" class="recipe-list"></div>
+    <div id="recipe-view" class="recipe-view hidden"></div>
+  </main>
+
+  <script src="js/converter.js"></script>
+  <script src="js/scaler.js"></script>
+  <script src="js/parser.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
