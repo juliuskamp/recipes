@@ -23,7 +23,7 @@ const Scaler = (() => {
   function scaleIngredients(ingredients, ratio) {
     return ingredients.map(ing => ({
       ...ing,
-      amount: scaleAmount(ing.amount, ratio),
+      amount: ing.amount != null ? scaleAmount(ing.amount, ratio) : null,
     }));
   }
 

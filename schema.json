@@ -3,15 +3,14 @@
   "title": "Recipe",
   "type": "object",
   "required": [
-    "id", "title", "default_servings", "serving_unit",
-    "prep_time_minutes", "cook_time_minutes", "meal_type",
-    "tags", "version", "ingredients", "instructions"
+    "language", "title", "default_servings", "serving_unit",
+    "meal_type", "tags", "version", "ingredients", "instructions"
   ],
   "properties": {
-    "id": {
+    "language": {
       "type": "string",
-      "pattern": "^[a-z0-9_-]+$",
-      "description": "Unique recipe identifier (lowercase, hyphens, underscores)"
+      "enum": ["en", "de"],
+      "description": "Base language of the recipe"
     },
     "title": {
       "type": "string",
@@ -45,6 +44,11 @@
       "type": "array",
       "items": { "type": "string" }
     },
+    "serve_with": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Recipe IDs of basic components to serve this with (e.g. pasta, rice)"
+    },
     "version": {
       "type": "integer",
       "minimum": 1
@@ -53,7 +57,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "amount", "unit"],
+        "required": ["name"],
         "properties": {
           "name": {
             "type": "string",
@@ -70,6 +74,7 @@
               "g", "kg", "oz", "lb", "floz", "qt", "gal", "pint",
               "whole", "piece", "pieces", "pinch",
               "bunch", "clove", "cloves",
+              "cube", "cubes",
               "slice", "slices", "can", "cans",
               "package", "packages", "stick", "sticks",
               "head", "heads", "sprig", "sprigs"
@@ -122,6 +127,106 @@
             "type": "array",
             "items": { "type": "string" },
             "description": "Translated ingredient names, same order as the ingredients array"
+          },
+          "instructions": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["section", "steps"],
+                  "properties": {
+                    "section": { "type": "string" },
+                    "steps": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            ]
+          },
+          "variants": {
+            "type": "array",
+            "description": "Translations for each variant, same order as the base variants array",
+            "items": {
+              "type": "object",
+              "required": ["variant_name", "name"],
+              "properties": {
+                "variant_name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "ingredients": {
+                  "type": "object",
+                  "description": "Sparse map of string-integer indices to translated ingredient names"
+                },
+                "instructions": {
+                  "oneOf": [
+                    { "type": "string" },
+                    {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": ["section", "steps"],
+                        "properties": {
+                          "section": { "type": "string" },
+                          "steps": {
+                            "type": "array",
+                            "items": { "type": "string" }
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "variants": {
+      "type": "array",
+      "description": "Alternative variants of the recipe. The base recipe is always the default; entries here are additional variants.",
+      "items": {
+        "type": "object",
+        "required": ["variant_name", "name"],
+        "properties": {
+          "variant_name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Short label shown on the variant selector button"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Recipe title when this variant is active"
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "ingredients": {
+            "type": "object",
+            "description": "Sparse map of string-integer indices to ingredient override objects"
           },
           "instructions": {
             "oneOf": [

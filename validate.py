@@ -110,12 +110,6 @@ def validate(path, schema):
 
     errors = validate_schema(data, schema)
 
-    # Extra check: recipe id must match filename (without .json)
-    if isinstance(data, dict) and "id" in data:
-        filename = os.path.splitext(os.path.basename(path))[0]
-        if data["id"] != filename:
-            errors.append(f"/id: value '{data['id']}' does not match filename '{filename}.json'")
-
     # Extra check: translation ingredient count must match ingredients count
     if isinstance(data, dict) and "translations" in data and "ingredients" in data:
         n = len(data["ingredients"])
@@ -125,6 +119,82 @@ def validate(path, schema):
                     f"/translations/{lang}/ingredients: has {len(tr['ingredients'])} "
                     f"entries but recipe has {n} ingredients"
                 )
+
+    # Variant-specific checks
+    if isinstance(data, dict) and "variants" in data and isinstance(data["variants"], list):
+        base_ingredients = data.get("ingredients", [])
+        n_ingredients = len(base_ingredients)
+        base_title = data.get("title", "")
+        seen_variant_names = set()
+
+        for i, variant in enumerate(data["variants"]):
+            if not isinstance(variant, dict):
+                continue
+
+            # Unique variant_name within this recipe
+            vname = variant.get("variant_name")
+            if vname is not None:
+                if vname in seen_variant_names:
+                    errors.append(f"/variants[{i}]/variant_name: duplicate variant_name {vname!r}")
+                seen_variant_names.add(vname)
+
+            # Variant ingredient override keys must be valid indices
+            if "ingredients" in variant and isinstance(variant["ingredients"], dict):
+                for key, override in variant["ingredients"].items():
+                    try:
+                        idx = int(key)
+                    except (TypeError, ValueError):
+                        errors.append(
+                            f"/variants[{i}]/ingredients/{key}: key must be a string integer"
+                        )
+                        continue
+                    if idx < 0 or idx >= n_ingredients:
+                        errors.append(
+                            f"/variants[{i}]/ingredients/{key}: index out of range "
+                            f"(recipe has {n_ingredients} ingredients)"
+                        )
+                    # Validate the override as an ingredient object
+                    ingredient_schema = (
+                        schema.get("properties", {}).get("ingredients", {}).get("items", {})
+                    )
+                    if ingredient_schema:
+                        errors.extend(
+                            validate_schema(
+                                override, ingredient_schema, f"/variants[{i}]/ingredients/{key}"
+                            )
+                        )
+
+        # Translation variant arrays must have same length as base variants
+        if "translations" in data and isinstance(data["translations"], dict):
+            n_variants = len(data["variants"])
+            for lang, tr in data["translations"].items():
+                if "variants" in tr:
+                    if not isinstance(tr["variants"], list):
+                        continue
+                    if len(tr["variants"]) != n_variants:
+                        errors.append(
+                            f"/translations/{lang}/variants: has {len(tr['variants'])} "
+                            f"entries but recipe has {n_variants} variants"
+                        )
+                    # Validate sparse ingredient translation keys
+                    for j, tv in enumerate(tr["variants"]):
+                        if not isinstance(tv, dict):
+                            continue
+                        if "ingredients" in tv and isinstance(tv["ingredients"], dict):
+                            for key in tv["ingredients"]:
+                                try:
+                                    idx = int(key)
+                                except (TypeError, ValueError):
+                                    errors.append(
+                                        f"/translations/{lang}/variants[{j}]/ingredients/{key}: "
+                                        "key must be a string integer"
+                                    )
+                                    continue
+                                if idx < 0 or idx >= n_ingredients:
+                                    errors.append(
+                                        f"/translations/{lang}/variants[{j}]/ingredients/{key}: "
+                                        f"index out of range (recipe has {n_ingredients} ingredients)"
+                                    )
 
     if errors:
         print(f"ERRORS in {path}:")
