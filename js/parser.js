@@ -6,21 +6,37 @@ const Parser = (() => {
   const MEASUREMENT_RE = /\{\{([^}]+)\}\}/g;
 
   /**
-   * Parse a single {{...}} token into { amount, unit } or { amount }.
+   * Parse a single {{...}} token into { amount, unit, fixed, round }.
+   * A leading ! means the amount is fixed (not scaled with servings).
+   * A trailing "round <step>" means round the scaled amount to the nearest step.
    * Examples:
-   *   "2 cups"  -> { amount: 2, unit: "cups" }
-   *   "0.5 tsp" -> { amount: 0.5, unit: "tsp" }
-   *   "4"       -> { amount: 4, unit: null }
+   *   "2 cups"         -> { amount: 2, unit: "cups" }
+   *   "!2 tbsp"        -> { amount: 2, unit: "tbsp", fixed: true }
+   *   "6 round 1"      -> { amount: 6, unit: null, round: 1 }
+   *   "5 g round 0.5"  -> { amount: 5, unit: "g", round: 0.5 }
    */
   function parseToken(token) {
-    const trimmed = token.trim();
-    const parts = trimmed.split(/\s+/);
+    let trimmed = token.trim();
+    let fixed = false;
+    if (trimmed.startsWith("!")) {
+      fixed = true;
+      trimmed = trimmed.slice(1).trim();
+    }
 
+    // Extract optional "round <step>" suffix
+    let round = null;
+    const roundMatch = trimmed.match(/\s+round\s+([0-9.]+)\s*$/);
+    if (roundMatch) {
+      round = parseFloat(roundMatch[1]);
+      trimmed = trimmed.slice(0, roundMatch.index);
+    }
+
+    const parts = trimmed.split(/\s+/);
     const amount = parseFloat(parts[0]);
     if (isNaN(amount)) return null;
 
     const unit = parts.length > 1 ? parts.slice(1).join(" ") : null;
-    return { amount, unit };
+    return { amount, unit, fixed, round };
   }
 
   /**
@@ -36,8 +52,8 @@ const Parser = (() => {
 
       let { amount, unit } = parsed;
 
-      // Scale
-      amount = Scaler.scaleAmount(amount, ratio);
+      // Scale (unless fixed)
+      if (!parsed.fixed) amount = Scaler.scaleAmount(amount, ratio);
 
       // Convert units if requested
       if (unit && unitSystem) {
@@ -46,6 +62,11 @@ const Parser = (() => {
           amount = converted.amount;
           unit = converted.unit;
         }
+      }
+
+      // Apply explicit rounding step if provided
+      if (parsed.round) {
+        amount = Math.round(amount / parsed.round) * parsed.round;
       }
 
       const formatted = Converter.formatAmount(amount);

@@ -1,4 +1,42 @@
 {
+  "en": {
+    "meal_types": {
+      "breakfast": "Breakfast",
+      "main": "Main Dish",
+      "snack": "Snack",
+      "dessert": "Dessert",
+      "basic": "Basic"
+    },
+    "tags": {
+      "vegetarian": "Vegetarian",
+      "vegan": "Vegan",
+      "quick": "Quick",
+      "gluten-free": "Gluten-Free",
+      "dairy-free": "Dairy-Free",
+      "spicy": "Spicy",
+      "comfort-food": "Comfort Food",
+      "healthy": "Healthy",
+      "low-carb": "Low Carb",
+      "high-protein": "High Protein"
+    },
+    "ui": {
+      "ingredients": "Ingredients",
+      "instructions": "Instructions",
+      "related": "Related",
+      "search_placeholder": "Search recipes...",
+      "no_recipes": "No recipes found.",
+      "prep": "Prep Time",
+      "cook": "Cook Time",
+      "no_translation_de": "Only available in German",
+      "no_translation_en": "Only available in English",
+      "cook_mode": "Cook",
+      "metric": "Metric",
+      "imperial": "Imperial",
+      "serve_with": "Serve with",
+      "tag_variant_suffix": "(variant)",
+      "variant_default": "Default"
+    }
+  },
   "de": {
     "meal_types": {
       "breakfast": "Frühstück",
@@ -41,6 +79,8 @@
       "bunch": "Bund",
       "clove": "Zehe",
       "cloves": "Zehen",
+      "cube": "Würfel",
+      "cubes": "Würfel",
       "slice": "Scheibe",
       "slices": "Scheiben",
       "can": "Dose",
@@ -61,8 +101,16 @@
       "related": "Verwandte Rezepte",
       "search_placeholder": "Rezepte suchen...",
       "no_recipes": "Keine Rezepte gefunden.",
-      "prep": "Vorbereitung",
-      "cook": "Kochen"
+      "prep": "Vorbereitungszeit",
+      "cook": "Kochzeit",
+      "no_translation_en": "Nur auf Englisch verfügbar",
+      "no_translation_de": "Nur auf Deutsch verfügbar",
+      "cook_mode": "Kochen",
+      "metric": "Metrisch",
+      "imperial": "Imperial",
+      "serve_with": "Dazu passt",
+      "tag_variant_suffix": "(Variante)",
+      "variant_default": "Standard"
     }
   }
 }

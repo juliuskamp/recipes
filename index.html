@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recipes</title>
+  <meta name="color-scheme" content="light dark">
   <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
   <header>
     <div class="header-top">
       <h1><a href="#" id="home-link">Recipes</a></h1>
       <div class="header-controls">
-        <div class="lang-toggle">
-          <button id="lang-en" class="lang-btn active">EN</button>
-          <button id="lang-de" class="lang-btn">DE</button>
+        <button id="cook-toggle" class="cook-btn hidden">Cook</button>
+        <div class="btn-group">
+          <button id="theme-light" class="group-btn active" aria-label="Light mode">☀</button>
+          <button id="theme-dark" class="group-btn" aria-label="Dark mode">☽</button>
         </div>
-        <button id="unit-toggle" class="unit-btn">Metric</button>
+        <div class="btn-group">
+          <button id="unit-metric" class="group-btn active">Metric</button>
+          <button id="unit-imperial" class="group-btn">Imperial</button>
+        </div>
+        <div class="btn-group">
+          <button id="lang-en" class="group-btn active">EN</button>
+          <button id="lang-de" class="group-btn">DE</button>
+        </div>
       </div>
     </div>
-    <div id="search-bar" class="search-bar">
+    <div class="search-bar">
       <input type="text" id="search-input" placeholder="Search recipes...">
-      <div id="filter-tags" class="filter-tags"></div>
+    </div>
+    <div id="filter-bar" class="filter-bar">
+      <div id="meal-type-filters" class="filter-group"></div>
+      <div class="filter-divider"></div>
+      <div id="tag-filters" class="filter-group"></div>
     </div>
   </header>
 
   <main>
-    <div id="recipe-list" class="recipe-list"></div>
+    <div id="index-view" class="index-view"></div>
+    <div id="search-view" class="search-view hidden"></div>
     <div id="recipe-view" class="recipe-view hidden"></div>
   </main>
 
@@ -34,4 +50,5 @@
   <script src="js/parser.js"></script>
   <script src="js/app.js"></script>
 </body>
+
 </html>
