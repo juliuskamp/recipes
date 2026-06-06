@@ -1,0 +1,75 @@
+{
+    "language": "de",
+    "title": "Sahnelinsen",
+    "default_servings": 4,
+    "serving_unit": "Portionen",
+    "meal_type": "main",
+    "tags": [
+        "vegetarian"
+    ],
+    "version": 1,
+    "ingredients": [
+        {
+            "name": "rote Linsen",
+            "amount": 200,
+            "unit": "g"
+        },
+        {
+            "name": "Sahne",
+            "amount": 100,
+            "unit": "ml"
+        },
+        {
+            "name": "Schmand",
+            "amount": 100,
+            "unit": "g"
+        },
+        {
+            "name": "Zwiebel",
+            "amount": 1,
+            "unit": "whole"
+        },
+        {
+            "name": "Gemüsebrühe",
+            "amount": 0.5,
+            "unit": "cubes"
+        },
+        {
+            "name": "Cumin"
+        },
+        {
+            "name": "Süße Paprikagewürz"
+        }
+    ],
+    "instructions": [
+        "Linsen nach Packungsanleitung mit {{1 tbsp}} Cumin kochen.",
+        "Zwiebel schälen und hacken.",
+        "In einer Pfanne Zwiebel anbraten, bis sie glasig ist.",
+        "Linsen abgießen und zu den Zwiebeln geben.",
+        "Sahne, Schmand und Gemüsebrühe hinzugeben, und eventuell etwas Milch.",
+        "Mit Süßem Paprikagewürz, Salz und Pfeffer abschmecken."
+    ],
+    "translations": {
+        "en": {
+            "title": "Lentils in Cream Sauce",
+            "serving_unit": "servings",
+            "ingredients": [
+                "red lentils",
+                "cream",
+                "sour cream",
+                "onion",
+                "vegetable broth cube",
+                "cumin",
+                "sweet paprika spice"
+            ],
+            "instructions": [
+                "Cook lentils according to package instructions with {{1 tbsp}} cumin.",
+                "Peel and chop onion.",
+                "In a pan, sauté onion until translucent.",
+                "Drain lentils and add to the pan.",
+                "Add cream, sour cream and vegetable broth cube, and some milk if needed.",
+                "Season with sweet paprika spice, salt and pepper."
+            ]
+        }
+    }
+}

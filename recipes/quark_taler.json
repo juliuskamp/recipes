@@ -1,0 +1,69 @@
+{
+  "language": "de",
+  "title": "Quark-Taler",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "prep_time_minutes": 15,
+  "cook_time_minutes": 5,
+  "meal_type": "main",
+  "tags": [
+    "vegetarian",
+    "quick"
+  ],
+  "related_recipes": [],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Magerquark",
+      "amount": 250,
+      "unit": "g"
+    },
+    {
+      "name": "Haferflocken",
+      "amount": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Ei",
+      "amount": 1,
+      "unit": "whole"
+    },
+    {
+      "name": "geriebener Käse",
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Kräuter",
+      "amount": 1,
+      "unit": "tbsp"
+    }
+  ],
+  "instructions": [
+    "Alle Zutaten in eine Schüssel geben und gut mischen.",
+    "Den Teig 5 Stunden stehen lassen.",
+    "Aus dem Teig mit 2 feuchten Löffeln {{6 round 1}} bis {{7 round 1}} Taler formen.",
+    "In Öl in einer Pfanne von jeder Seite ca. 2 Minuten braun braten.",
+    "Dazu passen Erbsen, Tomatensoße, Salat oder Kräutersoße."
+  ],
+  "translations": {
+    "en": {
+      "title": "Quark Patties",
+      "serving_unit": "servings",
+      "ingredients": [
+        "low-fat quark",
+        "rolled oats",
+        "egg",
+        "grated cheese",
+        "herbs"
+      ],
+      "instructions": [
+        "Combine all ingredients in a bowl and mix well.",
+        "Let the dough rest for 5 hours.",
+        "Using 2 wet spoons, shape the dough into {{6 round 1}} to {{7 round 1}} patties.",
+        "Fry in oil in a pan for about 2 minutes on each side until golden brown.",
+        "Serve with peas, tomato sauce, salad, or herb sauce."
+      ]
+    }
+  }
+}
