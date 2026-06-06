@@ -1,0 +1,67 @@
+{
+    "language": "en",
+    "title": "Spinach Noodles",
+    "default_servings": 4,
+    "serving_unit": "servings",
+    "meal_type": "main",
+    "tags": [
+        "vegetarian",
+        "quick",
+        "comfort-food"
+    ],
+    "version": 1,
+    "ingredients": [
+        {
+            "name": "frozen creamed spinach",
+            "amount": 500,
+            "unit": "g"
+        },
+        {
+            "name": "cream cheese",
+            "amount": 200,
+            "unit": "g"
+        },
+        {
+            "name": "onion",
+            "amount": 1,
+            "unit": "whole"
+        },
+        {
+            "name": "noodles",
+            "amount": 400,
+            "unit": "g"
+        },
+        {
+            "name": "grated cheese"
+        }
+    ],
+    "instructions": [
+        "Cook noodles according to package instructions while preparing sauce.",
+        "Peel and chop onion.",
+        "In a pan, sauté onion until translucent.",
+        "Add frozen creamed spinach and cream cheese to the pan, stirring until cheese is melted and sauce is smooth.",
+        "Season with salt, pepper and sugar.",
+        "Serve with grated cheese."
+    ],
+    "translations": {
+        "de": {
+            "title": "Spinatnudeln",
+            "serving_unit": "Portionen",
+            "ingredients": [
+                "gefrorener Rahmspinat",
+                "Frischkäse",
+                "Zwiebel",
+                "Nudeln",
+                "geriebener Käse"
+            ],
+            "instructions": [
+                "Nudeln nach Packungsanleitung kochen, während die Sauce zubereitet wird.",
+                "Zwiebel schälen und hacken.",
+                "In einer Pfanne Zwiebel anbraten, bis sie glasig ist.",
+                "Gefrorenen Rahmspinat und Frischkäse in die Pfanne geben und rühren bis die Sauce glatt ist.",
+                "Mit Salz, Pfeffer und Zucker abschmecken.",
+                "Mit geriebenem Käse servieren."
+            ]
+        }
+    }
+}

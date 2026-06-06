@@ -1,21 +1,48 @@
 {
-  "id": "pancakes",
+  "language": "en",
   "title": "Fluffy Pancakes",
   "default_servings": 4,
   "serving_unit": "servings",
   "prep_time_minutes": 10,
   "cook_time_minutes": 15,
   "meal_type": "breakfast",
-  "tags": ["vegetarian", "quick"],
+  "tags": [
+    "vegetarian",
+    "quick"
+  ],
   "related_recipes": [],
   "version": 1,
   "ingredients": [
-    { "name": "flour", "amount": 2, "unit": "cups" },
-    { "name": "eggs", "amount": 2, "unit": "whole" },
-    { "name": "milk", "amount": 1.5, "unit": "cups" },
-    { "name": "sugar", "amount": 2, "unit": "tbsp" },
-    { "name": "baking powder", "amount": 2, "unit": "tsp" },
-    { "name": "salt", "amount": 0.5, "unit": "tsp" }
+    {
+      "name": "flour",
+      "amount": 2,
+      "unit": "cups"
+    },
+    {
+      "name": "eggs",
+      "amount": 2,
+      "unit": "whole"
+    },
+    {
+      "name": "milk",
+      "amount": 1.5,
+      "unit": "cups"
+    },
+    {
+      "name": "sugar",
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "name": "baking powder",
+      "amount": 2,
+      "unit": "tsp"
+    },
+    {
+      "name": "salt",
+      "amount": 0.5,
+      "unit": "tsp"
+    }
   ],
   "instructions": [
     {
@@ -40,7 +67,14 @@
     "de": {
       "title": "Fluffige Pfannkuchen",
       "serving_unit": "Portionen",
-      "ingredients": ["Mehl", "Eier", "Milch", "Zucker", "Backpulver", "Salz"],
+      "ingredients": [
+        "Mehl",
+        "Eier",
+        "Milch",
+        "Zucker",
+        "Backpulver",
+        "Salz"
+      ],
       "instructions": [
         {
           "section": "Vorbereitung",

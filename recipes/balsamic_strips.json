@@ -1,0 +1,53 @@
+{
+  "language": "de",
+  "title": "Geschnetzeltes mit Balsamicosoße",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "prep_time_minutes": 10,
+  "cook_time_minutes": 20,
+  "meal_type": "main",
+  "tags": [],
+  "related_recipes": [],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Geschnetzeltes",
+      "amount": 200,
+      "unit": "g"
+    },
+    {
+      "name": "Zwiebeln",
+      "amount": 1,
+      "unit": "whole"
+    },
+    {
+      "name": "Sahne",
+      "amount": 100,
+      "unit": "ml"
+    },
+    {
+      "name": "Milch",
+      "amount": 100,
+      "unit": "ml"
+    },
+    {
+      "name": "Balsamico-Essig (dunkel)"
+    },
+    {
+      "name": "Kartoffelmehl zum Binden der Soße"
+    },
+    {
+      "name": "Gemüsebrühwürfel",
+      "amount": 0.5,
+      "unit": "cube"
+    }
+  ],
+  "instructions": [
+    "Zwiebel fein hacken",
+    "Geschnetzeltes und Zwiebel anbraten und würzen.",
+    "Wenn das Fleisch fertig ist, mit {{3 tbsp}} Balsamico-Essig ablöschen.",
+    "Sahne und Milch zugeben und den Gemüsebrühwürfel zerbröseln und zugeben. Für 5 Minuten köcheln lassen.",
+    "Eventuell {{!1 tbsp}} Kartoffelmehl mit etwas Wasser anrühren und zugeben, um die Soße zu anzudicken.",
+    "Mit Zucker, Salz und Pfeffer abschmecken."
+  ]
+}
