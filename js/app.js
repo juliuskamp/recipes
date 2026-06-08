@@ -292,6 +292,12 @@ const App = (() => {
       if (currentView === "index") navigateTo("search");
     });
     searchInput.addEventListener("input", onSearchInput);
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && currentView === "recipe") {
+        searchQuery = searchInput.value.trim().toLowerCase();
+        navigateTo(buildSearchHash());
+      }
+    });
     homeLink.addEventListener("click", (e) => { e.preventDefault(); navigateTo(""); });
     window.addEventListener("hashchange", handleRoute);
   }
