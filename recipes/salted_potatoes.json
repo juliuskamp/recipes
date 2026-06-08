@@ -23,5 +23,22 @@
     "Das Wasser bei starker Hitze zum Kochen bringen, dann die Hitze reduzieren, sodass es bei geschlossenem Deckel leicht weiterkocht.",
     "Die Kartoffeln 30 Minuten kochen.",
     "Garprobe: Mit einem Küchenmesser in eine Kartoffel stechen – wenn sie gar ist, geht das ganz leicht."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Salted Potatoes",
+      "serving_unit": "servings",
+      "ingredients": [
+        "potatoes"
+      ],
+      "instructions": [
+        "Peel the potatoes and cut off any dark spots.",
+        "Halve the potatoes.",
+        "Fill a pot with about 3 cm of water, add {{0.5 tsp}} salt and the potatoes.",
+        "Bring the water to a boil over high heat, then reduce the heat so that it keeps simmering gently with the lid closed.",
+        "Cook the potatoes for 30 minutes.",
+        "Doneness test: pierce a potato with a kitchen knife – if it is done, it goes in very easily."
+      ]
+    }
+  }
 }

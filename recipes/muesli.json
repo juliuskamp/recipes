@@ -39,5 +39,22 @@
   "instructions": [
     "Die Nüsse klein brechen.",
     "Alles vermischen."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Muesli",
+      "serving_unit": "servings",
+      "ingredients": [
+        "rolled oats",
+        "pecans",
+        "sultanas",
+        "cashews",
+        "walnuts"
+      ],
+      "instructions": [
+        "Break the nuts into small pieces.",
+        "Mix everything together."
+      ]
+    }
+  }
 }

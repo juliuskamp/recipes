@@ -54,5 +54,30 @@
     "Die Eiermasse darüber geben und die Hitze stark reduzieren.",
     "Einen Deckel auflegen und die Eiermasse langsam stocken lassen (ca. 10 Minuten).",
     "Nach Belieben Käse darauf geben und schmelzen lassen."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Tortilla",
+      "serving_unit": "servings",
+      "ingredients": [
+        "cooked potatoes",
+        "onion",
+        "eggs",
+        "milk",
+        "corn",
+        "kidney beans",
+        "cheese",
+        "paprika seasoning"
+      ],
+      "instructions": [
+        "Slice the cooked potatoes. Slice the onion.",
+        "Whisk the eggs with a little milk and season with salt, pepper and paprika.",
+        "Heat oil in a pan and sauté the potatoes and onions in it.",
+        "Add corn, kidney beans or other vegetables and heat through.",
+        "Pour the egg mixture over the top and reduce the heat sharply.",
+        "Put on a lid and let the egg mixture set slowly (about 10 minutes).",
+        "If desired, add cheese on top and let it melt."
+      ]
+    }
+  }
 }

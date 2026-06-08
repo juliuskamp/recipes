@@ -46,5 +46,26 @@
     "Zwiebel und Veggiehack zusammen in Öl anbraten.",
     "Das Tomatenmark zugeben und 1 Minute mitbraten.",
     "Die passierten Tomaten und Gewürze nach Geschmack zugeben und die Soße 5 Minuten köcheln lassen."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Bolognese Sauce",
+      "serving_unit": "servings",
+      "ingredients": [
+        "onion",
+        "veggie mince",
+        "tomato paste",
+        "strained tomatoes",
+        "vegetable broth",
+        "paprika seasoning",
+        "chili powder"
+      ],
+      "instructions": [
+        "Peel and finely chop the onion.",
+        "Sauté the onion and veggie mince together in oil.",
+        "Add the tomato paste and fry for 1 minute.",
+        "Add the strained tomatoes and spices to taste and let the sauce simmer for 5 minutes."
+      ]
+    }
+  }
 }

@@ -35,5 +35,26 @@
     "Zu einer engen Rolle aufrollen, dann aus der Rolle eine Spirale formen (wie eine Zimtschnecke). Die Spirale flach drücken und zu einer ca. 20 cm großen Scheibe ausrollen.",
     "Einen Fladen in einer Pfanne mit etwas Öl goldbraun anbraten (ein paar dunkle Stellen sind ok), dann wenden und die andere Seite braten. Nicht zu viel Öl verwenden.",
     "Mit z.B. Sojasoße servieren. Der Teig kann auch über Nacht im Kühlschrank gelagert werden."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Scallion Flatbread",
+      "serving_unit": "flatbreads",
+      "ingredients": [
+        "flour",
+        "spring onions",
+        "sesame oil",
+        "soy sauce"
+      ],
+      "instructions": [
+        "Slowly stir the {{100 ml}} boiling water into the flour, adding a little more if needed. Add a pinch of salt.",
+        "Knead the dough by hand or with a mixer and let it rest in plastic wrap at room temperature for at least 30 minutes.",
+        "Divide the dough into 4 pieces and roll each one out as thinly as possible.",
+        "Brush with a little sesame oil and spread finely chopped spring onions on top.",
+        "Roll up tightly, then form the roll into a spiral (like a cinnamon bun). Press the spiral flat and roll it out into a disc about 20 cm wide.",
+        "Fry one flatbread in a pan with a little oil until golden brown (a few dark spots are ok), then flip and fry the other side. Do not use too much oil.",
+        "Serve with e.g. soy sauce. The dough can also be stored overnight in the fridge."
+      ]
+    }
+  }
 }

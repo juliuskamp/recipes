@@ -8,7 +8,7 @@
     "vegetarian"
   ],
   "serve_with": [
-    "reis"
+    "rice"
   ],
   "version": 1,
   "ingredients": [
@@ -71,5 +71,34 @@
     "Mit der Gemüsebrühe ablöschen. Sellerie- und Möhrenscheiben sowie die Sahne hinzugeben und 10 Minuten köcheln lassen.",
     "Den Mais und die Zucchini zugeben und weitere 10 Minuten köcheln lassen.",
     "Mit Salz, Pfeffer und Zitronensaft abschmecken, nach Belieben noch etwas Sahne, Milch oder Zucker zugeben."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Curry Vegetables",
+      "serving_unit": "servings",
+      "ingredients": [
+        "leek",
+        "zucchini",
+        "corn",
+        "celery",
+        "carrots",
+        "flour",
+        "cream",
+        "vegetable broth",
+        "curry",
+        "lemon juice",
+        "Worcester sauce for seasoning"
+      ],
+      "instructions": [
+        "Cut off the green of the leek, wash the stalk and cut into slices.",
+        "Wash zucchini and celery and also cut into slices.",
+        "Peel the carrots and cut into slices.",
+        "Heat oil in a pan and sauté the leek.",
+        "Add curry and flour and fry briefly.",
+        "Deglaze with the vegetable broth. Add the celery and carrot slices as well as the cream and let simmer for 10 minutes.",
+        "Add the corn and zucchini and simmer for another 10 minutes.",
+        "Season with salt, pepper and lemon juice; if desired, add a little more cream, milk or sugar."
+      ]
+    }
+  }
 }

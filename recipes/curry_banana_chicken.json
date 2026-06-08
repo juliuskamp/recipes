@@ -8,7 +8,7 @@
     "vegetarian"
   ],
   "serve_with": [
-    "reis"
+    "rice"
   ],
   "version": 1,
   "ingredients": [
@@ -61,5 +61,30 @@
     "Die Bananen in Scheiben schneiden und dazugeben.",
     "Den Gemüsebrühwürfel sowie die Milch hinzugeben und 5 Minuten köcheln lassen.",
     "Mit Salz, Pfeffer, Zucker und dem Saft vor der Zitrone abschmecken."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Curry Banana \"Chicken\"",
+      "serving_unit": "servings",
+      "ingredients": [
+        "veggie strips",
+        "milk",
+        "cream",
+        "bananas",
+        "onion",
+        "vegetable broth cube",
+        "curry powder",
+        "lemon"
+      ],
+      "instructions": [
+        "Peel and finely chop the onion.",
+        "Heat oil in a pan and sauté the onion together with the veggie strips.",
+        "Add the curry powder and fry briefly.",
+        "Deglaze with the cream.",
+        "Slice the bananas and add them.",
+        "Add the vegetable broth cube and the milk and let simmer for 5 minutes.",
+        "Season with salt, pepper, sugar and the juice of the lemon."
+      ]
+    }
+  }
 }

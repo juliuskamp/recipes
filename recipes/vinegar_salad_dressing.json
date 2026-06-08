@@ -17,5 +17,23 @@
   "instructions": [
     "Alle Zutaten im angegebenen Verhältnis vermischen und gut schütteln.",
     "Mit Agavendicksaft und Salz abschmecken."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Vinegar Salad Dressing",
+      "serving_unit": "servings",
+      "ingredients": [
+        "milk (3 parts)",
+        "light balsamic vinegar (1 part)",
+        "oil (2 parts)",
+        "juice or smoothie (2 parts)",
+        "agave syrup",
+        "salt"
+      ],
+      "instructions": [
+        "Mix all ingredients in the given ratio and shake well.",
+        "Season with agave syrup and salt."
+      ]
+    }
+  }
 }

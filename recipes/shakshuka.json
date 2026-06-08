@@ -52,5 +52,30 @@
     "Die Hitze reduzieren, kleine Mulden in die Tomaten formen und die Eier hineinschlagen.",
     "Den Deckel aufsetzen und ca. 3 Minuten köcheln lassen – idealerweise bleibt das Eigelb flüssig.",
     "Feta und Kräuter darüber verteilen und direkt aus der Pfanne essen."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Shakshuka",
+      "serving_unit": "servings",
+      "ingredients": [
+        "chopped tomatoes",
+        "bell pepper",
+        "leek",
+        "onions",
+        "chickpeas",
+        "other vegetables",
+        "eggs",
+        "feta",
+        "herbs"
+      ],
+      "instructions": [
+        "Purée the chopped tomatoes.",
+        "Roughly chop the vegetables and sauté them.",
+        "Add the puréed tomatoes and let simmer for a few minutes.",
+        "Reduce the heat, form small wells in the tomatoes and crack the eggs into them.",
+        "Put on the lid and let simmer for about 3 minutes – ideally the yolk stays runny.",
+        "Spread feta and herbs over the top and eat straight from the pan."
+      ]
+    }
+  }
 }

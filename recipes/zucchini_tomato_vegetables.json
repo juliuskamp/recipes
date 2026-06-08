@@ -8,7 +8,7 @@
     "vegetarian"
   ],
   "serve_with": [
-    "reis"
+    "rice"
   ],
   "version": 1,
   "ingredients": [
@@ -60,5 +60,31 @@
     "Die Gemüsebrühe, Sahne und Milch zugeben und mit einem Schneebesen glatt rühren.",
     "Mit Salz, Pfeffer, Paprika und Agavensirup abschmecken.",
     "Nach Belieben noch Sahne und Milch zugeben, bis die Soße die gewünschte Konsistenz hat."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Zucchini Tomato Vegetables",
+      "serving_unit": "servings",
+      "ingredients": [
+        "zucchini",
+        "tomato paste",
+        "cream",
+        "milk",
+        "onion",
+        "vegetable broth",
+        "grated cheese",
+        "paprika seasoning",
+        "agave syrup"
+      ],
+      "instructions": [
+        "Wash the zucchini and grate it coarsely.",
+        "Peel the onion, chop it and sauté it.",
+        "Add the grated zucchini and sauté for 5 minutes.",
+        "Add the tomato paste and fry for 1-2 minutes.",
+        "Add the vegetable broth, cream and milk and stir smooth with a whisk.",
+        "Season with salt, pepper, paprika and agave syrup.",
+        "If desired, add more cream and milk until the sauce has the desired consistency."
+      ]
+    }
+  }
 }

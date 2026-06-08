@@ -23,5 +23,22 @@
     "Den Reis nach Packungsangabe kochen (meist 30-40 Minuten).",
     "Den Reis probieren – das Wasser sollte aufgenommen bzw. verkocht sein.",
     "Eventuell die Kochzeit verlängern und etwas Wasser zugeben oder überschüssiges Wasser abgießen."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Cooking Rice",
+      "serving_unit": "servings",
+      "ingredients": [
+        "brown rice"
+      ],
+      "instructions": [
+        "Put the {{2 cups}} water in a pot and bring to a boil with {{0.25 tsp}} salt.",
+        "Add the rice.",
+        "Reduce the heat so that the water keeps simmering gently with the lid closed.",
+        "Cook the rice according to the package instructions (usually 30-40 minutes).",
+        "Taste the rice – the water should be absorbed or boiled off.",
+        "If needed, extend the cooking time and add a little water, or drain off excess water."
+      ]
+    }
+  }
 }

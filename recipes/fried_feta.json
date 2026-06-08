@@ -8,7 +8,7 @@
     "vegetarian"
   ],
   "serve_with": [
-    "reis"
+    "rice"
   ],
   "version": 1,
   "ingredients": [
@@ -26,7 +26,7 @@
       "name": "Semmelbrösel (oder Paniermehl)",
       "amount": 3,
       "unit": "tbsp"
-    },
+    }
   ],
   "instructions": [
     "Den Schafskäse in 4 Stücke schneiden.",
@@ -34,5 +34,23 @@
     "Die Semmelbrösel auf einen flachen Teller geben und die Schafskäsestücke darin wenden, sodass alle Seiten bedeckt sind.",
     "Öl in die vorgeheizte Pfanne geben und die panierten Stücke bei starker Hitze von jeder Seite nur 1 Minute anbraten.",
     "Vorsichtig wenden, da sich die Panade leicht vom Käse löst."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Fried Feta",
+      "serving_unit": "servings",
+      "ingredients": [
+        "feta",
+        "egg",
+        "breadcrumbs (or coating flour)"
+      ],
+      "instructions": [
+        "Cut the feta into 4 pieces.",
+        "Whisk the egg and turn each piece in it on all sides.",
+        "Put the breadcrumbs on a flat plate and turn the feta pieces in them so that all sides are coated.",
+        "Add oil to the preheated pan and fry the breaded pieces over high heat for only 1 minute per side.",
+        "Turn carefully, as the coating comes off the cheese easily."
+      ]
+    }
+  }
 }
