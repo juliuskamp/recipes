@@ -1,0 +1,35 @@
+{
+  "language": "de",
+  "title": "Dumpling-Dip",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "meal_type": "basic",
+  "tags": [
+    "vegan",
+    "vegetarian"
+  ],
+  "related_recipes": [
+    "dumplings"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Sojasauce",
+      "amount": 4,
+      "unit": "tbsp"
+    },
+    {
+      "name": "klarer Essig",
+      "amount": 4,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Sesam- oder Chiliöl",
+      "amount": 1,
+      "unit": "tsp"
+    }
+  ],
+  "instructions": [
+    "Alle Zutaten verrühren."
+  ]
+}

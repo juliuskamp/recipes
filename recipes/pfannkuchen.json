@@ -1,0 +1,35 @@
+{
+  "language": "de",
+  "title": "Pfannkuchen",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "cook_time_minutes": 20,
+  "meal_type": "main",
+  "tags": [
+    "vegetarian"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Milch",
+      "amount": 500,
+      "unit": "ml"
+    },
+    {
+      "name": "Eier",
+      "amount": 3,
+      "unit": "whole"
+    },
+    {
+      "name": "Mehl",
+      "amount": 200,
+      "unit": "g"
+    }
+  ],
+  "instructions": [
+    "Milch, Mehl und Eier in eine Rührschüssel geben und mit einem Rührbesen kräftig vermischen.",
+    "Den Teig nach Belieben mit Salz und Pfeffer (für pikante Pfannkuchen) oder Zucker (für süße Pfannkuchen) würzen.",
+    "Etwas Öl in der Pfanne erhitzen, etwa ca. {{!8 tbsp}} - {{!10 tbsp}} Teig hinzugben und auf beiden Seiten braten. Reicht für ca. {{5 round 1}} bis {{6 round 1}} Pfannkuchen, je nach Größe der Pfanne.",
+    "Wenn der Pfannkuchen auf der zweiten Seite brät, kann er mit Käse oder Gemüse belegt und dann zusammengeklappt werden."
+  ]
+}

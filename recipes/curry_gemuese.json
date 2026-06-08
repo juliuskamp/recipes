@@ -1,0 +1,75 @@
+{
+  "language": "de",
+  "title": "Curry-Gemüse",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian"
+  ],
+  "serve_with": [
+    "reis"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Lauch",
+      "amount": 1,
+      "unit": "stick"
+    },
+    {
+      "name": "Zucchini",
+      "amount": 1,
+      "unit": "whole"
+    },
+    {
+      "name": "Mais",
+      "amount": 1,
+      "unit": "can"
+    },
+    {
+      "name": "Sellerie",
+      "amount": 5,
+      "unit": "sticks"
+    },
+    {
+      "name": "Möhren",
+      "amount": 5,
+      "unit": "whole"
+    },
+    {
+      "name": "Mehl",
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Sahne",
+      "amount": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Gemüsebrühe",
+      "amount": 500,
+      "unit": "ml"
+    },
+    {
+      "name": "Curry"
+    },
+    {
+      "name": "Zitronensaft"
+    },
+    {
+      "name": "Worcester-Sauce zum Würzen"
+    }
+  ],
+  "instructions": [
+    "Das Grün vom Lauch abschneiden, die Stange waschen und in Scheiben schneiden.",
+    "Zucchini und Sellerie waschen und ebenfalls in Scheiben schneiden.",
+    "Die Möhren schälen und in Scheiben schneiden.",
+    "Öl in einer Pfanne erhitzen und den Lauch anbraten.",
+    "Curry und Mehl hinzugeben und kurz mitbraten.",
+    "Mit der Gemüsebrühe ablöschen. Sellerie- und Möhrenscheiben sowie die Sahne hinzugeben und 10 Minuten köcheln lassen.",
+    "Den Mais und die Zucchini zugeben und weitere 10 Minuten köcheln lassen.",
+    "Mit Salz, Pfeffer und Zitronensaft abschmecken, nach Belieben noch etwas Sahne, Milch oder Zucker zugeben."
+  ]
+}

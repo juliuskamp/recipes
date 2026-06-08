@@ -1,0 +1,43 @@
+{
+  "language": "de",
+  "title": "Müsli",
+  "default_servings": 10,
+  "serving_unit": "Portionen",
+  "meal_type": "breakfast",
+  "tags": [
+    "vegetarian",
+    "vegan"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Haferflocken",
+      "amount": 1000,
+      "unit": "g"
+    },
+    {
+      "name": "Pekanüsse",
+      "amount": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Sultaninen",
+      "amount": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Cashewkerne",
+      "amount": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Walnüsse",
+      "amount": 50,
+      "unit": "g"
+    }
+  ],
+  "instructions": [
+    "Die Nüsse klein brechen.",
+    "Alles vermischen."
+  ]
+}

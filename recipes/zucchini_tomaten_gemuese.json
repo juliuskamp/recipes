@@ -1,0 +1,64 @@
+{
+  "language": "de",
+  "title": "Zucchini-Tomaten-Gemüse",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian"
+  ],
+  "serve_with": [
+    "reis"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Zucchini",
+      "amount": 500,
+      "unit": "g"
+    },
+    {
+      "name": "Tomatenmark",
+      "amount": 200,
+      "unit": "g"
+    },
+    {
+      "name": "Sahne",
+      "amount": 100,
+      "unit": "ml"
+    },
+    {
+      "name": "Milch",
+      "amount": 100,
+      "unit": "ml"
+    },
+    {
+      "name": "Zwiebel",
+      "amount": 1,
+      "unit": "whole"
+    },
+    {
+      "name": "Gemüsebrühe",
+      "amount": 100,
+      "unit": "ml"
+    },
+    {
+      "name": "geriebener Käse"
+    },
+    {
+      "name": "Paprikagewürz"
+    },
+    {
+      "name": "Agavensirup"
+    }
+  ],
+  "instructions": [
+    "Die Zucchini waschen und grob reiben.",
+    "Die Zwiebel schälen, hacken und anbraten.",
+    "Die geriebene Zucchini dazugeben und 5 Minuten anbraten.",
+    "Das Tomatenmark zugeben und 1-2 Minuten mitbraten.",
+    "Die Gemüsebrühe, Sahne und Milch zugeben und mit einem Schneebesen glatt rühren.",
+    "Mit Salz, Pfeffer, Paprika und Agavensirup abschmecken.",
+    "Nach Belieben noch Sahne und Milch zugeben, bis die Soße die gewünschte Konsistenz hat."
+  ]
+}

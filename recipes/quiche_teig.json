@@ -1,0 +1,19 @@
+{
+  "language": "de",
+  "title": "Quiche-Teig",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "meal_type": "basic",
+  "tags": ["vegetarian"],
+  "related_recipes": ["quiche"],
+  "version": 1,
+  "ingredients": [
+    { "name": "Mehl", "amount": 250, "unit": "g" },
+    { "name": "Butter", "amount": 100, "unit": "g" },
+    { "name": "Ei", "amount": 1, "unit": "whole" },
+    { "name": "Wasser", "amount": 2, "unit": "tbsp" }
+  ],
+  "instructions": [
+    "Aus Mehl, Butter, Ei und Wasser einen Teig kneten und ausrollen, dann in die Backform legen."
+  ]
+}

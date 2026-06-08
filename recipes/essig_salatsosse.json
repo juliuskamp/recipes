@@ -1,0 +1,21 @@
+{
+  "language": "de",
+  "title": "Essig-Salatsoße",
+  "default_servings": 1,
+  "serving_unit": "Portionen",
+  "meal_type": "basic",
+  "tags": ["vegetarian"],
+  "version": 1,
+  "ingredients": [
+    { "name": "Milch (3 Teile)" },
+    { "name": "heller Balsamico-Essig (1 Teil)" },
+    { "name": "Öl (2 Teile)" },
+    { "name": "Saft oder Smoothie (2 Teile)" },
+    { "name": "Agavendicksaft" },
+    { "name": "Salz" }
+  ],
+  "instructions": [
+    "Alle Zutaten im angegebenen Verhältnis vermischen und gut schütteln.",
+    "Mit Agavendicksaft und Salz abschmecken."
+  ]
+}
