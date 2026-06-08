@@ -42,5 +42,27 @@
     "Die Quesadilla wenden und auch die andere Seite goldbraun braten.",
     "Die zweite Quesadilla ebenso braten und in Viertel schneiden.",
     "Mit Schmand servieren."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Quesadillas",
+      "serving_unit": "servings",
+      "ingredients": [
+        "tortillas",
+        "corn",
+        "beans",
+        "grated cheese",
+        "salsa",
+        "sour cream"
+      ],
+      "instructions": [
+        "Warm one tortilla in a pan over medium heat.",
+        "Put salsa, corn, beans and plenty of cheese on top.",
+        "Place the second tortilla on top, press down and warm over medium heat until the cheese has melted and the corn and beans are warm (about 3 minutes).",
+        "Flip the quesadilla and fry the other side golden brown too.",
+        "Fry the second quesadilla the same way and cut into quarters.",
+        "Serve with sour cream."
+      ]
+    }
+  }
 }

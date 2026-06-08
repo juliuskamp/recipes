@@ -44,5 +44,26 @@
     "Die Toasties in einer flachen Schale mit der Eiermilch übergießen und nach 5 Minuten einmal wenden.",
     "Etwas Öl in der Pfanne erhitzen und die Toasties bei mittlerer Hitze braten und mehrfach wenden.",
     "Mit Apfelmus, Zimt & Zucker und nach Belieben mit Vanillesoße, servieren."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "French Toast",
+      "serving_unit": "servings",
+      "ingredients": [
+        "halved toast slices",
+        "milk",
+        "eggs",
+        "sugar",
+        "cinnamon and sugar",
+        "apple sauce",
+        "vanilla sauce"
+      ],
+      "instructions": [
+        "Whisk the eggs, sugar, milk and a pinch of salt in a bowl with a whisk.",
+        "Soak the toast in a shallow dish with the egg-milk mixture and turn once after 5 minutes.",
+        "Heat some oil in the pan and fry the toast over medium heat, turning several times.",
+        "Serve with apple sauce, cinnamon & sugar and, if desired, vanilla sauce."
+      ]
+    }
+  }
 }

@@ -8,7 +8,7 @@
     "vegetarian"
   ],
   "related_recipes": [
-    "quiche_teig"
+    "quiche_dough"
   ],
   "version": 1,
   "ingredients": [
@@ -47,5 +47,26 @@
     "Die Walnüsse grob hacken und den Gorgonzola in große Stücke schneiden.",
     "Den Schmand auf den Teig streichen, die Rote Bete darauf geben und Walnüsse und Gorgonzola darüber verteilen.",
     "20-25 Minuten bei {{!180 °C}} backen."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Beetroot Quiche",
+      "serving_unit": "servings",
+      "ingredients": [
+        "quiche dough",
+        "cooked, peeled beetroot",
+        "gorgonzola",
+        "walnuts",
+        "sour cream",
+        "olive oil"
+      ],
+      "instructions": [
+        "Roll out the dough and place it in the form (use baking paper).",
+        "Cut the beetroot into thin wedges and mix in a bowl with the olive oil and salt.",
+        "Roughly chop the walnuts and cut the gorgonzola into large pieces.",
+        "Spread the sour cream onto the dough, add the beetroot and distribute walnuts and gorgonzola on top.",
+        "Bake for 20-25 minutes at {{!180 °C}}."
+      ]
+    }
+  }
 }

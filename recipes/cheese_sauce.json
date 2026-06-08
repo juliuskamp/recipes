@@ -27,5 +27,20 @@
   "instructions": [
     "Schmelzkäse, Sahne und etwas Milch langsam erhitzen und verrühren.",
     "Wenn die Soße leicht kocht, andicken lassen. (Geduld – nicht zu viel Milch verwenden!)"
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Cheese Sauce",
+      "serving_unit": "servings",
+      "ingredients": [
+        "processed cheese",
+        "cream",
+        "milk"
+      ],
+      "instructions": [
+        "Slowly heat the processed cheese, cream and a little milk and stir.",
+        "Once the sauce simmers gently, let it thicken. (Be patient – don't use too much milk!)"
+      ]
+    }
+  }
 }

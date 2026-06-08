@@ -38,5 +38,24 @@
     "Den Topf vom Herd nehmen und die heiße Milch mit einem Schneebesen in den Mehlbrei rühren.",
     "Die Soße unter ständigem Rühren erhitzen, bis sie kocht, dann 5 Minuten köcheln lassen und dabei immer weiter rühren.",
     "Mit Salz, Pfeffer und Muskat abschmecken und die Sahne hinzugeben. Jetzt nicht mehr kochen lassen."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Béchamel Sauce",
+      "serving_unit": "servings",
+      "ingredients": [
+        "margarine",
+        "flour",
+        "hot milk",
+        "cream",
+        "nutmeg"
+      ],
+      "instructions": [
+        "Melt the margarine in a pot and add the flour. Fry for 2 minutes while stirring until pale yellow.",
+        "Take the pot off the heat and stir the hot milk into the roux with a whisk.",
+        "Heat the sauce while stirring constantly until it boils, then let it simmer for 5 minutes, stirring continuously.",
+        "Season with salt, pepper and nutmeg and add the cream. Do not let it boil anymore."
+      ]
+    }
+  }
 }

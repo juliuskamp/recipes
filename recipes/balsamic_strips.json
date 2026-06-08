@@ -49,5 +49,28 @@
     "Sahne und Milch zugeben und den Gemüsebrühwürfel zerbröseln und zugeben. Für 5 Minuten köcheln lassen.",
     "Eventuell {{!1 tbsp}} Kartoffelmehl mit etwas Wasser anrühren und zugeben, um die Soße zu anzudicken.",
     "Mit Zucker, Salz und Pfeffer abschmecken."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Meat Strips in Balsamic Sauce",
+      "serving_unit": "servings",
+      "ingredients": [
+        "meat strips",
+        "onions",
+        "cream",
+        "milk",
+        "balsamic vinegar (dark)",
+        "potato starch for thickening the sauce",
+        "vegetable broth cube"
+      ],
+      "instructions": [
+        "Finely chop the onion.",
+        "Sauté the meat strips and onion and season them.",
+        "When the meat is done, deglaze with {{3 tbsp}} balsamic vinegar.",
+        "Add cream and milk, crumble in the vegetable broth cube and add it. Let simmer for 5 minutes.",
+        "If needed, mix {{!1 tbsp}} potato starch with a little water and add it to thicken the sauce.",
+        "Season with sugar, salt and pepper."
+      ]
+    }
+  }
 }

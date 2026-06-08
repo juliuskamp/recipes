@@ -46,5 +46,28 @@
     "So lange braten, bis der Schmarrn goldbraun ist.",
     "Die zweite Portion ebenso braten.",
     "Alles auf einen Teller geben, mit Puderzucker bestreuen und mit Apfelmus servieren."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Kaiserschmarrn",
+      "serving_unit": "servings",
+      "ingredients": [
+        "eggs",
+        "milk",
+        "flour",
+        "salt",
+        "raisins",
+        "powdered sugar",
+        "apple sauce"
+      ],
+      "instructions": [
+        "Beat the eggs, flour, milk and a pinch of salt in a bowl with a whisk until the batter is foamy.",
+        "Heat oil in a pan, pour in half the batter and fry over medium heat. Scatter raisins onto the still-liquid batter.",
+        "Turn the batter, tear it into pieces with a spatula and sprinkle {{2 tbsp}} sugar over it.",
+        "Fry until the Schmarrn is golden brown.",
+        "Fry the second portion the same way.",
+        "Put everything on a plate, dust with powdered sugar and serve with apple sauce."
+      ]
+    }
+  }
 }

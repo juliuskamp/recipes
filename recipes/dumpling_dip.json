@@ -31,5 +31,19 @@
   ],
   "instructions": [
     "Alle Zutaten verrühren."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Dumpling Dip",
+      "serving_unit": "servings",
+      "ingredients": [
+        "soy sauce",
+        "clear vinegar",
+        "sesame or chili oil"
+      ],
+      "instructions": [
+        "Mix all ingredients together."
+      ]
+    }
+  }
 }

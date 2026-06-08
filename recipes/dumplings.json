@@ -79,5 +79,48 @@
         "Den Deckel abnehmen und das übrige Wasser verdampfen lassen."
       ]
     }
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Dumplings (Japanese Dumplings)",
+      "serving_unit": "servings",
+      "ingredients": [
+        "flour",
+        "ground meat",
+        "napa cabbage leaves",
+        "garlic",
+        "spring onions",
+        "soy sauce",
+        "sesame oil",
+        "salt for the filling",
+        "sugar"
+      ],
+      "instructions": [
+        {
+          "section": "Dough",
+          "steps": [
+            "Dissolve {{1 tsp}} salt in {{160 ml}} boiling water and add to the flour.",
+            "Knead by hand until the dough is smooth. Let rest in plastic wrap at room temperature for about 20 minutes."
+          ]
+        },
+        {
+          "section": "Filling",
+          "steps": [
+            "Finely chop the remaining filling ingredients and mix well."
+          ]
+        },
+        {
+          "section": "Shaping and Frying",
+          "steps": [
+            "Roll out the dough very thinly (it should be slightly translucent) and cut out circles 8 cm in diameter.",
+            "Place a spoonful of filling on each piece of dough and brush the inner edge with water.",
+            "Hold the dough piece like a taco, press together at the top and pinch several folds one after another until the dumpling is sealed.",
+            "Fry the dumplings standing upright in a hot pan until golden brown and crispy on the bottom.",
+            "Add 50 ml water and immediately put on the lid (it splatters!). Steam for 3 minutes.",
+            "Remove the lid and let the remaining water evaporate."
+          ]
+        }
+      ]
+    }
+  }
 }

@@ -31,5 +31,22 @@
     "Den Teig nach Belieben mit Salz und Pfeffer (für pikante Pfannkuchen) oder Zucker (für süße Pfannkuchen) würzen.",
     "Etwas Öl in der Pfanne erhitzen, etwa ca. {{!8 tbsp}} - {{!10 tbsp}} Teig hinzugben und auf beiden Seiten braten. Reicht für ca. {{5 round 1}} bis {{6 round 1}} Pfannkuchen, je nach Größe der Pfanne.",
     "Wenn der Pfannkuchen auf der zweiten Seite brät, kann er mit Käse oder Gemüse belegt und dann zusammengeklappt werden."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Thin Pancakes",
+      "serving_unit": "servings",
+      "ingredients": [
+        "milk",
+        "eggs",
+        "flour"
+      ],
+      "instructions": [
+        "Put milk, flour and eggs in a bowl and mix vigorously with a whisk.",
+        "Season the batter to taste with salt and pepper (for savory pancakes) or sugar (for sweet pancakes).",
+        "Heat some oil in the pan, add about {{!8 tbsp}} - {{!10 tbsp}} of batter and fry on both sides. Makes about {{5 round 1}} to {{6 round 1}} pancakes, depending on the size of the pan.",
+        "Once the pancake is frying on the second side, it can be topped with cheese or vegetables and then folded over."
+      ]
+    }
+  }
 }

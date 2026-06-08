@@ -15,5 +15,20 @@
   ],
   "instructions": [
     "Aus Mehl, Butter, Ei und Wasser einen Teig kneten und ausrollen, dann in die Backform legen."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Quiche Dough",
+      "serving_unit": "servings",
+      "ingredients": [
+        "flour",
+        "butter",
+        "egg",
+        "water"
+      ],
+      "instructions": [
+        "Knead a dough from flour, butter, egg and water, roll it out and place it in the baking form."
+      ]
+    }
+  }
 }

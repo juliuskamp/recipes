@@ -23,5 +23,22 @@
     "Die Kartoffeln 30 Minuten kochen.",
     "Eine Garprobe mit eine Gabelmachen und das Wasser abschütten.",
     "Die Kartoffeln noch heiß schälen, dabei auf eine Gabel aufspießen."
-  ]
+  ],
+  "translations": {
+    "en": {
+      "title": "Potatoes Boiled in Their Skins",
+      "serving_unit": "servings",
+      "ingredients": [
+        "potatoes"
+      ],
+      "instructions": [
+        "Wash the potatoes.",
+        "Place the potatoes whole with their skins in a pot and fill the pot with about 3 cm of water.",
+        "Bring the water to a boil over high heat, then reduce the heat so that it keeps simmering gently with the lid closed.",
+        "Cook the potatoes for 30 minutes.",
+        "Do a doneness test with a fork and drain off the water.",
+        "Peel the potatoes while still hot, spearing them on a fork."
+      ]
+    }
+  }
 }
