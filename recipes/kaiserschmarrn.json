@@ -1,0 +1,50 @@
+{
+  "language": "de",
+  "title": "Kaiserschmarrn",
+  "default_servings": 1,
+  "serving_unit": "Portionen",
+  "cook_time_minutes": 30,
+  "meal_type": "dessert",
+  "tags": [
+    "vegetarian"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Eier",
+      "amount": 3,
+      "unit": "whole"
+    },
+    {
+      "name": "Milch",
+      "amount": 225,
+      "unit": "ml"
+    },
+    {
+      "name": "Mehl",
+      "amount": 130,
+      "unit": "g"
+    },
+    {
+      "name": "Salz",
+      "unit": "pinch"
+    },
+    {
+      "name": "Rosinen"
+    },
+    {
+      "name": "Puderzucker"
+    },
+    {
+      "name": "Apfelmus"
+    }
+  ],
+  "instructions": [
+    "Die Eier, Mehl, Milch und eine Prise Salz in einer Schüssel mit dem Schneebesen schlagen, bis der Teig schäumt.",
+    "Öl in einer Pfanne erhitzen, die Hälfte des Teigs hineingießen und bei mittlerer Hitze anbraten. Rosinen auf den noch flüssigen Teig geben.",
+    "Den Teig wenden, mit dem Pfannenwender in Stücke zerreißen und {{2 tbsp}} Zucker darüber streuen.",
+    "So lange braten, bis der Schmarrn goldbraun ist.",
+    "Die zweite Portion ebenso braten.",
+    "Alles auf einen Teller geben, mit Puderzucker bestreuen und mit Apfelmus servieren."
+  ]
+}

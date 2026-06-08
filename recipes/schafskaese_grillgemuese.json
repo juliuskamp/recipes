@@ -1,0 +1,42 @@
+{
+  "language": "de",
+  "title": "Schafskäse in Tomatensoße mit Grillgemüse",
+  "default_servings": 1,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Schafskäse",
+      "amount": 1,
+      "unit": "package"
+    },
+    {
+      "name": "Tomatensoße",
+      "amount": 200,
+      "unit": "ml"
+    },
+    {
+      "name": "Zucchini"
+    },
+    {
+      "name": "Paprika"
+    },
+    {
+      "name": "Karotten"
+    },
+    {
+      "name": "Süßkartoffeln"
+    }
+  ],
+  "instructions": [
+    "Das Gemüse waschen, eventuell schälen und in Stücke schneiden.",
+    "In einer Schüssel mit Öl und Gewürzen mischen und auf ein Backblech geben.",
+    "Bei {{!200 °C}} 30 Minuten garen.",
+    "Den Schafskäse in 4 Stücke schneiden. Die Tomatensoße in eine Auflaufform geben und den Schafskäse hineinlegen.",
+    "Die Auflaufform nach 15 Minuten zum Grillgemüse in den Ofen schieben und zusammen noch 15 Minuten backen."
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "language": "de",
+  "title": "Quiche",
+  "default_servings": 3,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian"
+  ],
+  "related_recipes": [
+    "quiche_teig"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Quiche-Teig"
+    },
+    {
+      "name": "Eier",
+      "amount": 4,
+      "unit": "whole"
+    },
+    {
+      "name": "saure Sahne",
+      "amount": 1,
+      "unit": "cup"
+    },
+    {
+      "name": "Kräuter"
+    }
+  ],
+  "instructions": [
+    "Den Teig ausrollen und in die Form legen (Backpapier verwenden).",
+    "Die Eier, saure Sahne, Salz, Pfeffer und Kräuter mit dem Schneebesen zu einer Masse verquirlen und auf den Teig geben. Die Füllung ist sehr flüssig, wird im Ofen aber fest.",
+    "Die Quiche 20-30 Minuten bei {{!180 °C}} backen, bis Teig und Füllung leicht bräunen."
+  ]
+}

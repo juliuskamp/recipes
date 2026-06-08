@@ -1,0 +1,83 @@
+{
+  "language": "de",
+  "title": "Dumplings (Japanische Teigtaschen)",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [],
+  "related_recipes": ["dumpling_dip"],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Mehl",
+      "amount": 300,
+      "unit": "g"
+    },
+    {
+      "name": "Hackfleisch",
+      "amount": 300,
+      "unit": "g"
+    },
+    {
+      "name": "Chinakohlblätter",
+      "amount": 3,
+      "unit": "pieces"
+    },
+    {
+      "name": "Knoblauch",
+      "amount": 2,
+      "unit": "cloves"
+    },
+    {
+      "name": "Frühlingszwiebeln",
+      "amount": 3,
+      "unit": "whole"
+    },
+    {
+      "name": "Sojasauce",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Sesamöl",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Salz für die Füllung",
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "name": "Zucker",
+      "amount": 0.5,
+      "unit": "tsp"
+    }
+  ],
+  "instructions": [
+    {
+      "section": "Teig",
+      "steps": [
+        "{{1 tsp}} Salz in {{160 ml}} kochenden Wasser auflösen und zu dem Mehl geben.",
+        "Mit den Händen kneten, bis der Teig glatt ist. In Plastikfolie ca. 20 Minuten bei Zimmertemperatur ruhen lassen."
+      ]
+    },
+    {
+      "section": "Füllung",
+      "steps": [
+        "Die restlichen Zutaten für die Füllung fein hacken und gut vermischen."
+      ]
+    },
+    {
+      "section": "Formen und Braten",
+      "steps": [
+        "Den Teig sehr dünn ausrollen (er sollte leicht durchsichtig sein) und Kreise mit 8 cm Durchmesser ausstechen.",
+        "Auf jedes Teigstück einen Löffel Füllung geben und den Rand innen mit Wasser bestreichen.",
+        "Das Teigstück wie einen Taco halten, oben zusammendrücken und nacheinander mehrere Falten eindrücken, bis der Dumpling verschlossen ist.",
+        "In einer heißen Pfanne die Dumplings aufrecht stehend anbraten, bis sie unten goldbraun und knusprig sind.",
+        "50 ml Wasser dazugeben und sofort den Deckel aufsetzen (spritzt!). 3 Minuten dünsten.",
+        "Den Deckel abnehmen und das übrige Wasser verdampfen lassen."
+      ]
+    }
+  ]
+}

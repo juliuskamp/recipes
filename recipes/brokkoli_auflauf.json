@@ -1,0 +1,37 @@
+{
+  "language": "de",
+  "title": "Brokkoli-Auflauf",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian"
+  ],
+  "serve_with": [
+    "salzkartoffeln"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "frischer Brokkoli (mit Stiel)",
+      "amount": 1,
+      "unit": "kg"
+    },
+    {
+      "name": "Sauce Hollandaise",
+      "amount": 1,
+      "unit": "package"
+    },
+    {
+      "name": "Streukäse",
+      "amount": 200,
+      "unit": "g"
+    }
+  ],
+  "instructions": [
+    "Die Sauce Hollandaise in der Mikrowelle erhitzen und in eine Auflaufform geben.",
+    "Den Brokkoli kochen und in die Auflaufform geben.",
+    "Mit Streukäse bestreuen.",
+    "Bei {{!180 °C}} backen."
+  ]
+}

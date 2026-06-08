@@ -1,0 +1,65 @@
+{
+  "language": "de",
+  "title": "Curry-Bananen-\"Hähnchen\"",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian"
+  ],
+  "serve_with": [
+    "reis"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Veggie-Geschnetzeltes",
+      "amount": 1,
+      "unit": "package"
+    },
+    {
+      "name": "Milch",
+      "amount": 100,
+      "unit": "ml"
+    },
+    {
+      "name": "Sahne",
+      "amount": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Bananen",
+      "amount": 2,
+      "unit": "whole"
+    },
+    {
+      "name": "Zwiebel",
+      "amount": 0.5,
+      "unit": "whole"
+    },
+    {
+      "name": "Gemüsebrühwürfel",
+      "amount": 0.5,
+      "unit": "cube"
+    },
+    {
+      "name": "Currypulver",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Zitrone",
+      "amount": 1,
+      "unit": "whole"
+    }
+  ],
+  "instructions": [
+    "Die Zwiebel schälen und fein hacken.",
+    "Öl in einer Pfanne erhitzen und die Zwiebel zusammen mit dem Veggie-Geschnetzelten anbraten.",
+    "Das Currypulver hinzugeben und kurz mitbraten.",
+    "Mit der Sahne ablöschen.",
+    "Die Bananen in Scheiben schneiden und dazugeben.",
+    "Den Gemüsebrühwürfel sowie die Milch hinzugeben und 5 Minuten köcheln lassen.",
+    "Mit Salz, Pfeffer, Zucker und dem Saft vor der Zitrone abschmecken."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "language": "de",
+  "title": "Gebratener Schafskäse",
+  "default_servings": 1,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian"
+  ],
+  "serve_with": [
+    "reis"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Schafskäse",
+      "amount": 200,
+      "unit": "g"
+    },
+    {
+      "name": "Ei",
+      "amount": 1,
+      "unit": "whole"
+    },
+    {
+      "name": "Semmelbrösel (oder Paniermehl)",
+      "amount": 3,
+      "unit": "tbsp"
+    },
+  ],
+  "instructions": [
+    "Den Schafskäse in 4 Stücke schneiden.",
+    "Das Ei verquirlen und jedes Stück von allen Seiten darin wenden.",
+    "Die Semmelbrösel auf einen flachen Teller geben und die Schafskäsestücke darin wenden, sodass alle Seiten bedeckt sind.",
+    "Öl in die vorgeheizte Pfanne geben und die panierten Stücke bei starker Hitze von jeder Seite nur 1 Minute anbraten.",
+    "Vorsichtig wenden, da sich die Panade leicht vom Käse löst."
+  ]
+}

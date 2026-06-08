@@ -1,0 +1,58 @@
+{
+  "language": "de",
+  "title": "Tortilla",
+  "default_servings": 1,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "gekochte Kartoffeln",
+      "amount": 300,
+      "unit": "g"
+    },
+    {
+      "name": "Zwiebel",
+      "amount": 0.5,
+      "unit": "whole"
+    },
+    {
+      "name": "Eier",
+      "amount": 3,
+      "unit": "whole"
+    },
+    {
+      "name": "Milch",
+      "amount": 50,
+      "unit": "ml"
+    },
+    {
+      "name": "Mais",
+      "amount": 0.25,
+      "unit": "can"
+    },
+    {
+      "name": "Kidneybohnen",
+      "amount": 0.5,
+      "unit": "can"
+    },
+    {
+      "name": "Käse"
+    },
+    {
+      "name": "Paprikagewürz"
+    }
+  ],
+  "instructions": [
+    "Die gekochten Kartoffeln in Scheiben schneiden. Die Zwiebel in Scheiben schneiden.",
+    "Die Eier mit etwas Milch verquirlen und mit Salz, Pfeffer und Paprika würzen.",
+    "Öl in einer Pfanne erhitzen und Kartoffeln und Zwiebeln darin anbraten.",
+    "Mais, Kidneybohnen oder anderes Gemüse zugeben und erhitzen.",
+    "Die Eiermasse darüber geben und die Hitze stark reduzieren.",
+    "Einen Deckel auflegen und die Eiermasse langsam stocken lassen (ca. 10 Minuten).",
+    "Nach Belieben Käse darauf geben und schmelzen lassen."
+  ]
+}

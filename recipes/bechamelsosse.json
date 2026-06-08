@@ -1,0 +1,42 @@
+{
+  "language": "de",
+  "title": "Béchamelsoße",
+  "default_servings": 1,
+  "serving_unit": "Portionen",
+  "meal_type": "basic",
+  "tags": [
+    "vegetarian"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Margarine",
+      "amount": 3,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Mehl",
+      "amount": 3,
+      "unit": "tbsp"
+    },
+    {
+      "name": "heiße Milch",
+      "amount": 250,
+      "unit": "ml"
+    },
+    {
+      "name": "Sahne",
+      "amount": 125,
+      "unit": "ml"
+    },
+    {
+      "name": "Muskatnuss"
+    }
+  ],
+  "instructions": [
+    "Die Margarine in einem Topf schmelzen und das Mehl dazugeben. 2 Minuten unter Rühren hellgelb anbraten.",
+    "Den Topf vom Herd nehmen und die heiße Milch mit einem Schneebesen in den Mehlbrei rühren.",
+    "Die Soße unter ständigem Rühren erhitzen, bis sie kocht, dann 5 Minuten köcheln lassen und dabei immer weiter rühren.",
+    "Mit Salz, Pfeffer und Muskat abschmecken und die Sahne hinzugeben. Jetzt nicht mehr kochen lassen."
+  ]
+}

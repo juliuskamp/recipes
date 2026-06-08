@@ -1,0 +1,31 @@
+{
+  "language": "de",
+  "title": "Käsesoße",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "meal_type": "basic",
+  "tags": [
+    "vegetarian",
+    "quick"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Schmelzkäse",
+      "amount": 1,
+      "unit": "package"
+    },
+    {
+      "name": "Sahne",
+      "amount": 200,
+      "unit": "ml"
+    },
+    {
+      "name": "Milch"
+    }
+  ],
+  "instructions": [
+    "Schmelzkäse, Sahne und etwas Milch langsam erhitzen und verrühren.",
+    "Wenn die Soße leicht kocht, andicken lassen. (Geduld – nicht zu viel Milch verwenden!)"
+  ]
+}

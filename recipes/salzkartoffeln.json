@@ -1,0 +1,27 @@
+{
+  "language": "de",
+  "title": "Salzkartoffeln",
+  "default_servings": 1,
+  "serving_unit": "Portionen",
+  "meal_type": "basic",
+  "tags": [
+    "vegetarian",
+    "vegan"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Kartoffeln",
+      "amount": 500,
+      "unit": "g"
+    }
+  ],
+  "instructions": [
+    "Die Kartoffeln schälen und dunkle Stellen abschneiden.",
+    "Die Kartoffeln halbieren.",
+    "Einen Topf ca. 3 cm hoch mit Wasser füllen, {{0.5 tsp}} Salz und die Kartoffeln hinzugeben.",
+    "Das Wasser bei starker Hitze zum Kochen bringen, dann die Hitze reduzieren, sodass es bei geschlossenem Deckel leicht weiterkocht.",
+    "Die Kartoffeln 30 Minuten kochen.",
+    "Garprobe: Mit einem Küchenmesser in eine Kartoffel stechen – wenn sie gar ist, geht das ganz leicht."
+  ]
+}

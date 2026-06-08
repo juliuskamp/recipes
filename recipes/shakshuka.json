@@ -1,0 +1,56 @@
+{
+  "language": "de",
+  "title": "Shakshuka",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian",
+    "quick",
+    "leftovers"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "gehackte Tomaten",
+      "amount": 2,
+      "unit": "packages"
+    },
+    {
+      "name": "Paprika"
+    },
+    {
+      "name": "Lauch"
+    },
+    {
+      "name": "Zwiebeln"
+    },
+    {
+      "name": "Kichererbsen"
+    },
+    {
+      "name": "anderes Gemüse"
+    },
+    {
+      "name": "Eier",
+      "amount": 4,
+      "unit": "whole"
+    },
+    {
+      "name": "Feta",
+      "amount": 0.5,
+      "unit": "piece"
+    },
+    {
+      "name": "Kräuter"
+    }
+  ],
+  "instructions": [
+    "Die gehackten Tomaten pürieren.",
+    "Das Gemüse grob hacken und anbraten.",
+    "Die pürierten Tomaten dazugeben und ein paar Minuten köcheln lassen.",
+    "Die Hitze reduzieren, kleine Mulden in die Tomaten formen und die Eier hineinschlagen.",
+    "Den Deckel aufsetzen und ca. 3 Minuten köcheln lassen – idealerweise bleibt das Eigelb flüssig.",
+    "Feta und Kräuter darüber verteilen und direkt aus der Pfanne essen."
+  ]
+}

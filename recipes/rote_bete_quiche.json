@@ -1,0 +1,51 @@
+{
+  "language": "de",
+  "title": "Rote-Bete-Quiche",
+  "default_servings": 2,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian"
+  ],
+  "related_recipes": [
+    "quiche_teig"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Quiche-Teig"
+    },
+    {
+      "name": "gekochte, geschälte Rote Bete",
+      "amount": 500,
+      "unit": "g"
+    },
+    {
+      "name": "Gorgonzola",
+      "amount": 150,
+      "unit": "g"
+    },
+    {
+      "name": "Walnusskerne",
+      "amount": 5,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Schmand",
+      "amount": 6,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Olivenöl",
+      "amount": 2,
+      "unit": "tbsp"
+    }
+  ],
+  "instructions": [
+    "Den Teig ausrollen und in die Form legen (Backpapier verwenden).",
+    "Die Rote Bete in schmale Spalten schneiden und in einer Schüssel mit dem Olivenöl und Salz mischen.",
+    "Die Walnüsse grob hacken und den Gorgonzola in große Stücke schneiden.",
+    "Den Schmand auf den Teig streichen, die Rote Bete darauf geben und Walnüsse und Gorgonzola darüber verteilen.",
+    "20-25 Minuten bei {{!180 °C}} backen."
+  ]
+}

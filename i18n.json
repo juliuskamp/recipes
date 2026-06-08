@@ -17,7 +17,8 @@
       "comfort-food": "Comfort Food",
       "healthy": "Healthy",
       "low-carb": "Low Carb",
-      "high-protein": "High Protein"
+      "high-protein": "High Protein",
+      "leftovers": "Leftovers"
     },
     "ui": {
       "ingredients": "Ingredients",
@@ -55,7 +56,8 @@
       "comfort-food": "Hausmannskost",
       "healthy": "gesund",
       "low-carb": "kohlenhydratarm",
-      "high-protein": "proteinreich"
+      "high-protein": "proteinreich",
+      "leftovers": "Reste"
     },
     "units": {
       "cups": "Tassen",

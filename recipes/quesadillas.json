@@ -1,0 +1,46 @@
+{
+  "language": "de",
+  "title": "Quesadillas",
+  "default_servings": 1,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian",
+    "quick"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Tortillas",
+      "amount": 4,
+      "unit": "pieces"
+    },
+    {
+      "name": "Mais",
+      "amount": 1,
+      "unit": "can"
+    },
+    {
+      "name": "Bohnen",
+      "amount": 1,
+      "unit": "can"
+    },
+    {
+      "name": "geriebener Käse"
+    },
+    {
+      "name": "Salsa-Soße"
+    },
+    {
+      "name": "Schmand"
+    }
+  ],
+  "instructions": [
+    "Eine eine Tortilla in einer Pfanne bei mittlerer Hitze erwärmen.",
+    "Salsa-Soße, Mais, Bohnen und reichlich Käse darauf geben.",
+    "Die zweite Tortilla darauflegen, andrücken und bei mittlerer Hitze erwärmen, bis der Käse geschmolzen und Mais und Bohnen warm sind (ca. 3 Minuten).",
+    "Die Quesadilla wenden und auch die andere Seite goldbraun braten.",
+    "Die zweite Quesadilla ebenso braten und in Viertel schneiden.",
+    "Mit Schmand servieren."
+  ]
+}

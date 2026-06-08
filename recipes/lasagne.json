@@ -1,0 +1,49 @@
+{
+  "language": "de",
+  "title": "Lasagne",
+  "default_servings": 6,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian"
+  ],
+  "related_recipes": [
+    "bolognesesosse",
+    "bechamelsosse"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Lasagne-Platten",
+      "amount": 800,
+      "unit": "g"
+    },
+    {
+      "name": "Bolognesesoße",
+      "amount": 1000,
+      "unit": "ml"
+    },
+    {
+      "name": "Béchamelsoße",
+      "amount": 650,
+      "unit": "ml"
+    },
+    {
+      "name": "Schmand",
+      "amount": 0.5,
+      "unit": "Becher"
+    },
+    {
+      "name": "Streukäse",
+      "amount": 300,
+      "unit": "g"
+    }
+  ],
+  "instructions": [
+    "Abwechselnd Bolognese- und Béchamelsoße mit Lasagne-Platten schichten.",
+    "Im Kühlschrank ziehen lassen, am besten über Nacht.",
+    "Im vorgeheizten Backofen bei {{!160 °C}} Umluft ca. 45 Minuten backen.",
+    "Herausnehmen, mit Schmand bestreichen und Käse darauf verteilen.",
+    "Noch einmal 15 Minuten backen."
+  ]
+}

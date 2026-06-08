@@ -1,0 +1,48 @@
+{
+  "language": "de",
+  "title": "Arme Ritter",
+  "default_servings": 1,
+  "serving_unit": "Portionen",
+  "meal_type": "dessert",
+  "tags": [
+    "vegetarian"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "halbe Toasties",
+      "amount": 8,
+      "unit": "whole"
+    },
+    {
+      "name": "Milch",
+      "amount": 250,
+      "unit": "ml"
+    },
+    {
+      "name": "Eier",
+      "amount": 2,
+      "unit": "whole"
+    },
+    {
+      "name": "Zucker",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Zimt und Zucker"
+    },
+    {
+      "name": "Apfelmus"
+    },
+    {
+      "name": "Vanillesoße"
+    }
+  ],
+  "instructions": [
+    "Eier, Zucker, Milch und eine Prise Salz in einer Rührschüssel mit dem Schneebesen verquirlen.",
+    "Die Toasties in einer flachen Schale mit der Eiermilch übergießen und nach 5 Minuten einmal wenden.",
+    "Etwas Öl in der Pfanne erhitzen und die Toasties bei mittlerer Hitze braten und mehrfach wenden.",
+    "Mit Apfelmus, Zimt & Zucker und nach Belieben mit Vanillesoße, servieren."
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "language": "de",
+  "title": "Bolognesesoße",
+  "default_servings": 4,
+  "serving_unit": "Portionen",
+  "meal_type": "basic",
+  "tags": [
+    "vegetarian"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Zwiebel",
+      "amount": 1,
+      "unit": "whole"
+    },
+    {
+      "name": "Veggiehack",
+      "amount": 1,
+      "unit": "package"
+    },
+    {
+      "name": "Tomatenmark",
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "name": "passierte Tomaten",
+      "amount": 500,
+      "unit": "g"
+    },
+    {
+      "name": "Gemüsebrühe",
+      "amount": 0.5,
+      "unit": "cube"
+    },
+    {
+      "name": "Paprikagewürz"
+    },
+    {
+      "name": "Chilipulver"
+    }
+  ],
+  "instructions": [
+    "Die Zwiebel schälen und fein hacken.",
+    "Zwiebel und Veggiehack zusammen in Öl anbraten.",
+    "Das Tomatenmark zugeben und 1 Minute mitbraten.",
+    "Die passierten Tomaten und Gewürze nach Geschmack zugeben und die Soße 5 Minuten köcheln lassen."
+  ]
+}

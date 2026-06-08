@@ -1,0 +1,39 @@
+{
+  "language": "de",
+  "title": "Lauch-Fladenbrot",
+  "default_servings": 4,
+  "serving_unit": "Fladen",
+  "meal_type": "snack",
+  "tags": [
+    "vegetarian",
+    "vegan"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Mehl",
+      "amount": 240,
+      "unit": "g"
+    },
+    {
+      "name": "Frühlingszwiebeln",
+      "amount": 6,
+      "unit": "whole"
+    },
+    {
+      "name": "Sesamöl"
+    },
+    {
+      "name": "Sojasoße"
+    }
+  ],
+  "instructions": [
+    "Das {{100 ml}} kochende Wasser langsam unter das Mehl rühren, eventuell etwas mehr hinzugeben. Eine Prise Salz zugeben.",
+    "Den Teig mit den Händen oder dem Rührgerät kneten und in Plastikfolie mindestens 30 Minuten bei Raumtemperatur ruhen lassen.",
+    "Den Teig in 4 Stücke teilen und jedes Stück so dünn wie möglich ausrollen.",
+    "Mit etwas Sesamöl bestreichen und fein gehackte Frühlingszwiebeln darauf verteilen.",
+    "Zu einer engen Rolle aufrollen, dann aus der Rolle eine Spirale formen (wie eine Zimtschnecke). Die Spirale flach drücken und zu einer ca. 20 cm großen Scheibe ausrollen.",
+    "Einen Fladen in einer Pfanne mit etwas Öl goldbraun anbraten (ein paar dunkle Stellen sind ok), dann wenden und die andere Seite braten. Nicht zu viel Öl verwenden.",
+    "Mit z.B. Sojasoße servieren. Der Teig kann auch über Nacht im Kühlschrank gelagert werden."
+  ]
+}
