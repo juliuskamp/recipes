@@ -32,11 +32,11 @@
     "Die Sauce Hollandaise in der Mikrowelle erhitzen und in eine Auflaufform geben.",
     "Den Brokkoli kochen und in die Auflaufform geben.",
     "Mit Streukäse bestreuen.",
-    "Bei {{!180 °C}} backen."
+    "Bei {{180 °C}} backen."
   ],
   "translations": {
     "en": {
-      "title": "Broccoli Bake",
+      "title": "Broccoli Casserole",
       "serving_unit": "servings",
       "ingredients": [
         "fresh broccoli (with stalk)",
@@ -47,7 +47,7 @@
         "Heat the sauce hollandaise in the microwave and pour into a baking dish.",
         "Cook the broccoli and add it to the baking dish.",
         "Sprinkle with grated cheese.",
-        "Bake at {{!180 °C}}."
+        "Bake at {{180 °C}}."
       ]
     }
   }

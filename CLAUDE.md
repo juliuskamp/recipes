@@ -37,7 +37,8 @@ Instructions embed scalable measurements using `{{...}}`. `Parser.parseToken` ha
 
 - `{{2 cups}}` — scale with servings, convert between metric/imperial, translate unit
 - `{{4}}` — scale a bare number (e.g. "{{4}} eggs")
-- `{{!180 °C}}` — **fixed**: does NOT scale, but still converts and translates (leading `!`)
+- `{{!12 tsp}}` — **fixed**: does NOT scale, but still converts and translates (leading `!`)
+- `{{180 °C}}` — temperatures never scale (leading `!` has no effect), but still convert
 - `{{6 round 1}}` — scale, then round to nearest step (e.g. whole patties)
 - `{{5 g round 0.5}}` — combine unit, conversion, and rounding
 

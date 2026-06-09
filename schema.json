@@ -77,7 +77,8 @@
               "cube", "cubes",
               "slice", "slices", "can", "cans",
               "package", "packages", "stick", "sticks",
-              "head", "heads", "sprig", "sprigs"
+              "head", "heads", "sprig", "sprigs",
+              "°C", "°F"
             ]
           }
         },

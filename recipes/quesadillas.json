@@ -21,7 +21,7 @@
       "unit": "can"
     },
     {
-      "name": "Bohnen",
+      "name": "Kidneybohnen",
       "amount": 1,
       "unit": "can"
     },
@@ -50,7 +50,7 @@
       "ingredients": [
         "tortillas",
         "corn",
-        "beans",
+        "kidney beans",
         "grated cheese",
         "salsa",
         "sour cream"

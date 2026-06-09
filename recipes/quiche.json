@@ -32,7 +32,7 @@
   "instructions": [
     "Den Teig ausrollen und in die Form legen (Backpapier verwenden).",
     "Die Eier, saure Sahne, Salz, Pfeffer und Kräuter mit dem Schneebesen zu einer Masse verquirlen und auf den Teig geben. Die Füllung ist sehr flüssig, wird im Ofen aber fest.",
-    "Die Quiche 20-30 Minuten bei {{!180 °C}} backen, bis Teig und Füllung leicht bräunen."
+    "Die Quiche 20-30 Minuten bei {{180 °C}} backen, bis Teig und Füllung leicht bräunen."
   ],
   "translations": {
     "en": {
@@ -47,7 +47,7 @@
       "instructions": [
         "Roll out the dough and place it in the form (use baking paper).",
         "Whisk the eggs, sour cream, salt, pepper and herbs with a whisk into a mixture and pour onto the dough. The filling is very liquid but sets in the oven.",
-        "Bake the quiche for 20-30 minutes at {{!180 °C}} until the dough and filling brown slightly."
+        "Bake the quiche for 20-30 minutes at {{180 °C}} until the dough and filling brown slightly."
       ]
     }
   }

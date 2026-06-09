@@ -60,6 +60,8 @@
       "leftovers": "Reste"
     },
     "units": {
+      "°C": "°C",
+      "°F": "°F",
       "cups": "Tassen",
       "cup": "Tasse",
       "tbsp": "EL",

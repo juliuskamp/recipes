@@ -38,12 +38,29 @@ const Converter = (() => {
     return unit in toMetric;
   }
 
+  // Temperature units convert via a formula, not a multiplicative factor,
+  // and never scale with serving size (handled in the parser).
+  function isTemperature(unit) {
+    const u = unit.toLowerCase();
+    return u === "°c" || u === "°f";
+  }
+
   /**
    * Convert an amount from one system to the other.
    * Returns { amount, unit } or null if no conversion applies.
    */
   function convert(amount, unit, targetSystem) {
     const lowerUnit = unit.toLowerCase();
+
+    // Temperature: Celsius <-> Fahrenheit (non-linear, no scaling)
+    if (lowerUnit === "°c") {
+      if (targetSystem === "imperial") return { amount: amount * 9 / 5 + 32, unit: "°F" };
+      return null;
+    }
+    if (lowerUnit === "°f") {
+      if (targetSystem === "metric") return { amount: (amount - 32) * 5 / 9, unit: "°C" };
+      return null;
+    }
 
     if (noConvert.has(lowerUnit)) return null;
 
@@ -130,5 +147,5 @@ const Converter = (() => {
     return parseFloat(str).toString();
   }
 
-  return { convert, formatAmount, isMetricUnit, isImperialUnit, noConvert };
+  return { convert, formatAmount, isMetricUnit, isImperialUnit, isTemperature, noConvert };
 })();
