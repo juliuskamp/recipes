@@ -42,7 +42,7 @@
   "instructions": [
     "Abwechselnd Bolognese- und Béchamelsoße mit Lasagne-Platten schichten.",
     "Im Kühlschrank ziehen lassen, am besten über Nacht.",
-    "Im vorgeheizten Backofen bei {{!160 °C}} Umluft ca. 45 Minuten backen.",
+    "Im vorgeheizten Backofen bei {{160 °C}} Umluft ca. 45 Minuten backen.",
     "Herausnehmen, mit Schmand bestreichen und Käse darauf verteilen.",
     "Noch einmal 15 Minuten backen."
   ],
@@ -60,7 +60,7 @@
       "instructions": [
         "Layer bolognese and béchamel sauce alternately with lasagna sheets.",
         "Let it rest in the fridge, ideally overnight.",
-        "Bake in a preheated oven at {{!160 °C}} fan for about 45 minutes.",
+        "Bake in a preheated oven at {{160 °C}} fan for about 45 minutes.",
         "Take out, spread with sour cream and distribute cheese on top.",
         "Bake for another 15 minutes."
       ]

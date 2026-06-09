@@ -46,7 +46,7 @@
     "Die Rote Bete in schmale Spalten schneiden und in einer Schüssel mit dem Olivenöl und Salz mischen.",
     "Die Walnüsse grob hacken und den Gorgonzola in große Stücke schneiden.",
     "Den Schmand auf den Teig streichen, die Rote Bete darauf geben und Walnüsse und Gorgonzola darüber verteilen.",
-    "20-25 Minuten bei {{!180 °C}} backen."
+    "20-25 Minuten bei {{180 °C}} backen."
   ],
   "translations": {
     "en": {
@@ -65,7 +65,7 @@
         "Cut the beetroot into thin wedges and mix in a bowl with the olive oil and salt.",
         "Roughly chop the walnuts and cut the gorgonzola into large pieces.",
         "Spread the sour cream onto the dough, add the beetroot and distribute walnuts and gorgonzola on top.",
-        "Bake for 20-25 minutes at {{!180 °C}}."
+        "Bake for 20-25 minutes at {{180 °C}}."
       ]
     }
   }

@@ -35,7 +35,7 @@
   "instructions": [
     "Das Gemüse waschen, eventuell schälen und in Stücke schneiden.",
     "In einer Schüssel mit Öl und Gewürzen mischen und auf ein Backblech geben.",
-    "Bei {{!200 °C}} 30 Minuten garen.",
+    "Bei {{200 °C}} 30 Minuten garen.",
     "Den Schafskäse in 4 Stücke schneiden. Die Tomatensoße in eine Auflaufform geben und den Schafskäse hineinlegen.",
     "Die Auflaufform nach 15 Minuten zum Grillgemüse in den Ofen schieben und zusammen noch 15 Minuten backen."
   ],
@@ -54,7 +54,7 @@
       "instructions": [
         "Wash the vegetables, peel if necessary and cut into pieces.",
         "Mix in a bowl with oil and spices and spread on a baking tray.",
-        "Roast at {{!200 °C}} for 30 minutes.",
+        "Roast at {{200 °C}} for 30 minutes.",
         "Cut the feta into 4 pieces. Pour the tomato sauce into a baking dish and place the feta in it.",
         "After 15 minutes, slide the baking dish into the oven next to the grilled vegetables and bake together for another 15 minutes."
       ]

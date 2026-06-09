@@ -52,8 +52,9 @@ const Parser = (() => {
 
       let { amount, unit } = parsed;
 
-      // Scale (unless fixed)
-      if (!parsed.fixed) amount = Scaler.scaleAmount(amount, ratio);
+      // Scale (unless fixed, or a temperature which never scales)
+      const isTemp = unit && Converter.isTemperature(unit);
+      if (!parsed.fixed && !isTemp) amount = Scaler.scaleAmount(amount, ratio);
 
       // Convert units if requested
       if (unit && unitSystem) {
