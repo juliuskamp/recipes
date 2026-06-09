@@ -1,0 +1,62 @@
+{
+  "language": "de",
+  "title": "Enchiladas",
+  "default_servings": 3,
+  "serving_unit": "Portionen",
+  "meal_type": "main",
+  "tags": [
+    "vegetarian"
+  ],
+  "related_recipes": [
+    "bolognese_sauce"
+  ],
+  "version": 1,
+  "ingredients": [
+    {
+      "name": "Tortillas",
+      "amount": 6,
+      "unit": "whole"
+    },
+    {
+      "name": "Bolognesesoße",
+      "amount": 350,
+      "unit": "ml"
+    },
+    {
+      "name": "Passierte Tomaten",
+      "amount": 500,
+      "unit": "g"
+    },
+    {
+      "name": "Mais",
+      "amount": 0.5,
+      "unit": "can"
+    },
+    {
+      "name": "Kidneybohnen",
+      "amount": 0.5,
+      "unit": "can"
+    },
+    {
+      "name": "Zwiebel",
+      "amount": 0.5,
+      "unit": "whole"
+    },
+    {
+      "name": "geriebener Käse",
+      "amount": 200,
+      "unit": "g"
+    },
+    {
+      "name": "Paprikapulver edelsüß"
+    }
+  ],
+  "instructions": [
+    "Zwiebel hacken und mit Bolognesesoße, Mais und Kidneybohnen vermischen.",
+    "Tortillas mit der Soße füllen, aufrollen und eng nebeneinander in eine Auflaufform legen (Enden nicht umfalten).",
+    "Passierte Tomaten mit reichlich Paprikapulver, etwas Salz, Pfeffer und Zucker würzen.",
+    "Die Tomatensoße um und über die Tortillas gießen, so dass sie gut bedeckt sind.",
+    "Mit geriebenem Käse bestreuen.",
+    "Bei {{180 °C}} Umluft ca. 20 Minuten backen"
+  ]
+}
