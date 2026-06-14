@@ -21,6 +21,7 @@
       "leftovers": "Leftovers"
     },
     "ui": {
+      "site_title": "Julius' Recipes",
       "ingredients": "Ingredients",
       "instructions": "Instructions",
       "related": "Related",
@@ -28,6 +29,7 @@
       "no_recipes": "No recipes found.",
       "prep": "Prep Time",
       "cook": "Cook Time",
+      "mins": "mins",
       "no_translation_de": "Only available in German",
       "no_translation_en": "Only available in English",
       "cook_mode": "Cook",
@@ -35,7 +37,9 @@
       "imperial": "Imperial",
       "serve_with": "Serve with",
       "tag_variant_suffix": "(variant)",
-      "variant_default": "Default"
+      "variant_default": "Default",
+      "download_pdf": "Download PDF",
+      "download_all": "Download all as PDF"
     }
   },
   "de": {
@@ -99,6 +103,7 @@
       "sprigs": "Zweige"
     },
     "ui": {
+      "site_title": "Julius Rezepte",
       "servings": "Portionen",
       "ingredients": "Zutaten",
       "instructions": "Zubereitung",
@@ -107,6 +112,7 @@
       "no_recipes": "Keine Rezepte gefunden.",
       "prep": "Vorbereitungszeit",
       "cook": "Kochzeit",
+      "mins": "Min.",
       "no_translation_en": "Nur auf Englisch verfügbar",
       "no_translation_de": "Nur auf Deutsch verfügbar",
       "cook_mode": "Kochen",
@@ -114,7 +120,9 @@
       "imperial": "Imperial",
       "serve_with": "Dazu passt",
       "tag_variant_suffix": "(Variante)",
-      "variant_default": "Standard"
+      "variant_default": "Standard",
+      "download_pdf": "PDF herunterladen",
+      "download_all": "Alle als PDF herunterladen"
     }
   }
 }
