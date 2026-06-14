@@ -328,12 +328,87 @@ a.badge.meal-type:hover {
 }
 
 .recipe-header {
+  position: relative;
   margin-bottom: 1.5rem;
 }
 
 .recipe-header h2 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
+  padding-right: 7rem;
+}
+
+.download-pdf-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--color-tag-text);
+  transition: background 0.15s;
+}
+
+.download-pdf-btn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+
+.index-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.download-all-btn {
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--color-tag-text);
+  transition: background 0.15s;
+}
+
+.download-all-btn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+
+/* Off-screen container for the combined "download all" PDF. */
+#print-all {
+  display: none;
+}
+
+/* Static servings panel: print only (editable .servings-control covers screen).
+   Mirrors .servings-control so the PDF looks like the on-screen control. */
+.servings-print {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem;
+  background: var(--color-bg);
+  border-radius: var(--radius);
+}
+
+.servings-print .servings-print-num {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  font-size: 0.95rem;
+}
+
+.servings-print .serving-unit {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
 }
 
 .recipe-meta {
@@ -514,14 +589,50 @@ a.badge.meal-type:hover {
   color: var(--color-accent-hover);
 }
 
-/* Print styles */
+/* Print styles — also used for the "Download PDF" button (window.print → Save as PDF).
+   Mirrors the Puppeteer release output: A4, 1cm/1.5cm margins. */
 @media print {
+  @page {
+    size: A4;
+    margin: 1cm 1.5cm;
+  }
+
   header { display: none; }
   .servings-control { display: none; }
-  .recipe-view {
-    border: none;
-    box-shadow: none;
-    padding: 0;
+  .servings-print { display: flex; }
+  .download-pdf-btn { display: none; }
+  .related-section { display: none; }
+  .index-view, .search-view { display: none; }
+  .download-all-btn { display: none; }
+  /* Variant chrome is interactive-only — not meaningful in a static PDF. */
+  .variant-selector { display: none; }
+  .tag-ghost { display: none; }
+
+  /* White everywhere (no surface tint / page fill that printBackground would
+     paint). Card keeps its on-screen border + shadow. */
+  body, main, .recipe-view { background: #fff; }
+
+  main { padding: 0; }
+
+  .recipe-header h2 { padding-right: 0; }
+
+  /* Avoid awkward breaks mid-item */
+  .ingredient-list li,
+  .instructions-section li {
+    break-inside: avoid;
+  }
+
+  /* "Download all": render the off-screen container, hide the live app, and
+     put each recipe on its own page. */
+  body.printing-all main { display: none; }
+  body.printing-all #print-all { display: block; }
+
+  #print-all .print-recipe {
+    break-before: page;
+    margin: 0;
+  }
+  #print-all .print-recipe:first-child {
+    break-before: auto;
   }
 }
 
@@ -554,6 +665,8 @@ a.badge.meal-type:hover {
 @media (max-width: 480px) {
   header { padding: 0.75rem; }
   .header-top { flex-wrap: wrap; gap: 0.5rem; }
+  .header-controls { width: 100%; }
+  .header-controls .cook-btn { order: 1; margin-left: auto; }
   main { padding: 0.75rem; }
   .recipe-view { padding: 1rem; }
   .recipe-header h2 { font-size: 1.3rem; }

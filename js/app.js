@@ -243,6 +243,7 @@ const App = (() => {
     bindEvents();
     await loadI18n();
     updateButtonLabels();
+    updateSiteTitle();
     await loadIndex();
     handleRoute();
   }
@@ -300,6 +301,7 @@ const App = (() => {
     });
     homeLink.addEventListener("click", (e) => { e.preventDefault(); navigateTo(""); });
     window.addEventListener("hashchange", handleRoute);
+    window.addEventListener("resize", updateFilterDivider);
   }
 
   // --- Routing ---
@@ -400,6 +402,7 @@ const App = (() => {
     updateLangButtons();
     updateSearchPlaceholder();
     updateButtonLabels();
+    updateSiteTitle();
     // Re-render current view
     if (currentView === "index") renderIndexView();
     else if (currentView === "search") renderSearchView();
@@ -414,6 +417,12 @@ const App = (() => {
 
   function updateSearchPlaceholder() {
     searchInput.placeholder = tUI("search_placeholder");
+  }
+
+  function updateSiteTitle() {
+    const title = tUI("site_title");
+    homeLink.textContent = title;
+    document.title = title;
   }
 
   function updateButtonLabels() {
@@ -499,8 +508,8 @@ const App = (() => {
 
   function timeMeta(recipe) {
     const parts = [];
-    if (recipe.prep_time_minutes) parts.push(`${recipe.prep_time_minutes} mins ${tUI("prep")}`);
-    if (recipe.cook_time_minutes) parts.push(`${recipe.cook_time_minutes} mins ${tUI("cook")}`);
+    if (recipe.prep_time_minutes) parts.push(`${recipe.prep_time_minutes} ${tUI("mins")} ${tUI("prep")}`);
+    if (recipe.cook_time_minutes) parts.push(`${recipe.cook_time_minutes} ${tUI("mins")} ${tUI("cook")}`);
     return parts.map(p => `<span>${p}</span>`).join("");
   }
 
@@ -607,6 +616,38 @@ const App = (() => {
         }
       });
     });
+
+    updateFilterDivider();
+  }
+
+  /** Hide the divider when the meal-type and tag groups wrap onto separate lines. */
+  function updateFilterDivider() {
+    const divider = filterBar.querySelector(".filter-divider");
+    if (!divider) return;
+    requestAnimationFrame(() => {
+      const sameLine = mealTypeFilters.offsetTop === tagFilters.offsetTop;
+      divider.classList.toggle("hidden", !sameLine);
+    });
+  }
+
+  /**
+   * Fold a string for fuzzy matching: lowercase, strip diacritics (é→e),
+   * and expand German ligatures/umlauts (ß→ss, ä→ae...) so "Becha" and
+   * "Soße" both match "Béchamelsoße".
+   */
+  function foldText(s) {
+    return s
+      .toLowerCase()
+      .replace(/ß/g, "ss")
+      .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue")
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function matchesQuery(text, query) {
+    const hay = foldText(text);
+    const needle = foldText(query);
+    if (!needle) return true;
+    return hay.includes(needle);
   }
 
   function filterEntries() {
@@ -615,8 +656,7 @@ const App = (() => {
       if (!r) return false;
       const res = resolveVariant(r, entry.variantIdx);
       if (searchQuery) {
-        const title = resolvedTitle(res).toLowerCase();
-        if (!title.includes(searchQuery)) return false;
+        if (!matchesQuery(resolvedTitle(res), searchQuery)) return false;
       }
       if (activeMealType && r.meal_type !== activeMealType) return false;
       if (activeTags.size > 0) {
@@ -673,7 +713,12 @@ const App = (() => {
       return;
     }
 
-    indexView.innerHTML = Object.entries(groups).map(([meal, entries]) => `
+    const toolbar = `
+      <div class="index-toolbar">
+        <button id="download-all" class="download-all-btn">${tUI("download_all")}</button>
+      </div>`;
+
+    indexView.innerHTML = toolbar + Object.entries(groups).map(([meal, entries]) => `
       <div class="meal-group">
         <h2 class="meal-group-title">${t("meal_types", meal)}</h2>
         <div class="recipe-list">
@@ -683,6 +728,32 @@ const App = (() => {
     `).join("");
 
     bindCardClicks(indexView);
+
+    const downloadAllBtn = document.getElementById("download-all");
+    if (downloadAllBtn) downloadAllBtn.addEventListener("click", downloadAllRecipes);
+  }
+
+  // Build a single combined PDF of every recipe via the browser print engine.
+  // Each recipe is rendered into an off-screen container (shown only for print)
+  // and forced onto its own page.
+  function downloadAllRecipes() {
+    const container = document.createElement("div");
+    container.id = "print-all";
+    container.innerHTML = recipes.map(r =>
+      `<div class="recipe-view print-recipe">${buildRecipeHtml(r, r.default_servings, 0, { forPrint: true })}</div>`
+    ).join("");
+    document.body.appendChild(container);
+    document.body.classList.add("printing-all");
+
+    const cleanup = () => {
+      container.remove();
+      document.body.classList.remove("printing-all");
+      window.removeEventListener("afterprint", cleanup);
+    };
+    window.addEventListener("afterprint", cleanup);
+    window.print();
+    // Fallback in case afterprint never fires (container is hidden on screen anyway).
+    setTimeout(cleanup, 1000);
   }
 
   // --- Search view ---
@@ -748,17 +819,21 @@ const App = (() => {
     return t("units", unit);
   }
 
-  function renderRecipe() {
-    const r = currentRecipe;
-    const res = resolveVariant(r, currentVariantIdx);
-    const ratio = Scaler.getRatio(r.default_servings, currentServings);
+  // Build a recipe's inner HTML as a string. Pure: no module-state reads except
+  // unitSystem/translation tables. Used for the single recipe view and for the
+  // combined "download all" print container.
+  //   forPrint: omit interactive chrome (download button, servings input) so the
+  //   markup has no duplicate ids when many recipes are stacked.
+  function buildRecipeHtml(r, servings, variantIdx, { cook = false, forPrint = false } = {}) {
+    const res = resolveVariant(r, variantIdx);
+    const ratio = Scaler.getRatio(r.default_servings, servings);
 
     const scaled = Scaler.scaleIngredients(res.ingredients, ratio);
     const instructions = resolvedInstructions(res);
     const sections = Parser.processInstructions(instructions, ratio, unitSystem, translateUnit);
 
-    const cb = cookingMode ? `<input type="checkbox" class="cook-check">` : "";
-    const cookClass = cookingMode ? " cookable" : "";
+    const cb = cook ? `<input type="checkbox" class="cook-check">` : "";
+    const cookClass = cook ? " cookable" : "";
 
     const ingredientsHtml = scaled.map((ing, i) => {
       const name = resolvedIngredientName(res, i);
@@ -843,9 +918,28 @@ const App = (() => {
       serveWithHtml = `<div class="serve-with"><strong>${tUI("serve_with")}:</strong> ${links}</div>`;
     }
 
-    recipeView.innerHTML = `
+    const downloadBtn = forPrint
+      ? ""
+      : `<button id="download-pdf" class="download-pdf-btn" aria-label="${tUI("download_pdf")}">${tUI("download_pdf")}</button>`;
+
+    const servingsControl = forPrint
+      ? ""
+      : `<div class="servings-control">
+          <input type="number" id="servings-input" value="${servings}" min="1" max="100">
+          <span class="serving-unit">${getServingUnit(r)}</span>
+        </div>`;
+
+    // Static servings panel for the PDF (mirrors the on-screen control; the
+    // editable input is hidden in print).
+    const servingsPrint = `<div class="servings-print">
+      <span class="servings-print-num">${servings}</span>
+      <span class="serving-unit">${getServingUnit(r)}</span>
+    </div>`;
+
+    return `
       <div class="recipe-header">
         <h2>${resolvedTitle(res)}${translationBadge(r)}</h2>
+        ${downloadBtn}
         <div class="recipe-meta">
           ${mealLink}
           ${timeMeta(r)}
@@ -857,10 +951,8 @@ const App = (() => {
         ${serveWithHtml}
       </div>
 
-      <div class="servings-control">
-        <input type="number" id="servings-input" value="${currentServings}" min="1" max="100">
-        <span class="serving-unit">${getServingUnit(r)}</span>
-      </div>
+      ${servingsControl}
+      ${servingsPrint}
 
       <div class="ingredients-section">
         <h3>${tUI("ingredients")}</h3>
@@ -874,6 +966,11 @@ const App = (() => {
 
       ${relatedHtml}
     `;
+  }
+
+  function renderRecipe() {
+    const r = currentRecipe;
+    recipeView.innerHTML = buildRecipeHtml(r, currentServings, currentVariantIdx, { cook: cookingMode });
 
     // Bind servings input
     const servingsInput = document.getElementById("servings-input");
@@ -903,6 +1000,10 @@ const App = (() => {
     });
 
     bindCookingCheckboxes();
+
+    // Bind PDF download (browser print → Save as PDF)
+    const downloadBtn = document.getElementById("download-pdf");
+    if (downloadBtn) downloadBtn.addEventListener("click", () => window.print());
   }
 
   // --- Start ---
