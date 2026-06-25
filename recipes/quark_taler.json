@@ -11,7 +11,7 @@
     "quick"
   ],
   "related_recipes": [],
-  "version": 1,
+  "version": 2,
   "ingredients": [
     {
       "name": "Magerquark",
@@ -40,11 +40,11 @@
     }
   ],
   "instructions": [
-    "Alle Zutaten in eine Schüssel geben und gut mischen.",
+    "Alle Zutaten in eine Schüssel geben, gut mischen und mit Salz und Pfeffer würzen.",
     "Den Teig 5 Stunden stehen lassen.",
     "Aus dem Teig mit 2 feuchten Löffeln {{6 round 1}} bis {{7 round 1}} Taler formen.",
     "In Öl in einer Pfanne von jeder Seite ca. 2 Minuten braun braten.",
-    "Dazu passen Erbsen, Tomatensoße, Salat oder Kräutersoße."
+    "Dazu passen Erbsen oder Tomatensoße."
   ],
   "translations": {
     "en": {
@@ -58,11 +58,11 @@
         "herbs"
       ],
       "instructions": [
-        "Combine all ingredients in a bowl and mix well.",
+        "Combine all ingredients in a bowl, mix well, and season with salt and pepper.",
         "Let the dough rest for 5 hours.",
         "Using 2 wet spoons, shape the dough into {{6 round 1}} to {{7 round 1}} patties.",
         "Fry in oil in a pan for about 2 minutes on each side until golden brown.",
-        "Serve with peas, tomato sauce, salad, or herb sauce."
+        "Serve with peas or tomato sauce."
       ]
     }
   }
