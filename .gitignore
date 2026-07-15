@@ -1,0 +1,9 @@
+# Generated PDFs (local/generate-pdf.js default output)
+pdfs/
+
+# Local-only dev tooling (puppeteer-based PDF generator etc.) — not part of the repo
+local/
+node_modules/
+
+# Generated site (node build.js)
+_site/
