@@ -74,7 +74,16 @@ const Parser = (() => {
       const displayUnit = unit && translateUnit ? translateUnit(unit) : unit;
       const display = displayUnit ? `${formatted} ${displayUnit}` : formatted;
 
-      return `<span class="measurement">${display}</span>`;
+      // Data attributes carry the ORIGINAL (unscaled, unconverted) values so
+      // the static-site runtime can re-render the span for any servings count
+      // or unit system without re-parsing the instruction text.
+      const attrs =
+        ` data-amount="${parsed.amount}"` +
+        (parsed.unit ? ` data-unit="${parsed.unit}"` : "") +
+        (parsed.fixed ? ` data-fixed="1"` : "") +
+        (parsed.round ? ` data-round="${parsed.round}"` : "");
+
+      return `<span class="measurement"${attrs}>${display}</span>`;
     });
   }
 

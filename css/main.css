@@ -661,6 +661,27 @@ a.badge.meal-type:hover {
   text-decoration: underline;
 }
 
+/* Static-site link variants of formerly-scripted elements */
+a.recipe-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.group-btn {
+  text-decoration: none;
+  line-height: normal;
+  display: inline-block;
+}
+
+a.group-btn.active {
+  color: white;
+}
+
+a.filter-btn {
+  text-decoration: none;
+}
+
 /* Mobile */
 @media (max-width: 480px) {
   header { padding: 0.75rem; }
