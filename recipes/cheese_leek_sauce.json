@@ -6,39 +6,63 @@
   "prep_time_minutes": 10,
   "cook_time_minutes": 20,
   "meal_type": "main",
-  "tags": ["vegetarian", "comfort-food"],
+  "tags": [
+    "vegetarian",
+    "comfort-food"
+  ],
   "serve_with": [],
-  "version": 1,
+  "version": 2,
   "ingredients": [
-    { "name": "Butter", "amount": 50, "unit": "g" },
-    { "name": "Mehl", "amount": 2, "unit": "tbsp" },
-    { "name": "Lauch", "amount": 2, "unit": "whole" },
-    { "name": "Schmelzkäse", "amount": 200, "unit": "g" },
-    { "name": "Gemüsebrühe", "amount": 500, "unit": "ml" },
-    { "name": "Salz", "unit": "pinch" },
-    { "name": "Pfeffer", "unit": "pinch" }
+    {
+      "name": "Lauch",
+      "amount": 2,
+      "unit": "whole"
+    },
+    {
+      "name": "Frischkäse",
+      "amount": 200,
+      "unit": "g"
+    },
+    {
+      "name": "Sahne",
+      "amount": 200,
+      "unit": "ml"
+    },
+    {
+      "name": "Streukäse",
+      "amount": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Muskatnuss"
+    }
   ],
   "instructions": [
     "Lauch putzen und in Ringe schneiden.",
-    "Butter in einem Topf schmelzen, Mehl einrühren.",
-    "Mit Brühe ablöschen und Lauch hinzufügen.",
-    "Ca. 10 Minuten köcheln lassen, bis der Lauch weich ist.",
-    "Schmelzkäse einrühren, mit Salz und Pfeffer abschmecken."
+    "In einer Pfanne mit etwas Öl anbraten, bis er weich ist.",
+    "Frischkäse und Sahne einrühren, Streukäse unterheben.",
+    "Mit Muskatnuss, Salz, Pfeffer und Zucker abschmecken."
   ],
   "variants": [
     {
       "variant_name": "Zucchini",
       "name": "Käse-Zucchini-Soße",
-      "tags": ["vegetarian", "low-carb"],
+      "tags": [
+        "vegetarian",
+        "low-carb"
+      ],
       "ingredients": {
-        "2": { "name": "Zucchini", "amount": 1, "unit": "whole" }
+        "0": {
+          "name": "Zucchini",
+          "amount": 1,
+          "unit": "whole"
+        }
       },
       "instructions": [
-        "Zucchini waschen und in kleine Würfel schneiden.",
-        "Butter in einem Topf schmelzen, Mehl einrühren.",
-        "Mit Brühe ablöschen und Zucchini hinzufügen.",
-        "Ca. 8 Minuten köcheln lassen, bis die Zucchini weich ist.",
-        "Schmelzkäse einrühren, mit Salz und Pfeffer abschmecken."
+        "Zucchini waschen und reiben.",
+        "In einer Pfanne mit etwas Öl anbraten, bis sie weich ist.",
+        "Frischkäse und Sahne einrühren, Streukäse unterheben.",
+        "Mit Muskatnuss, Salz, Pfeffer und Zucker abschmecken."
       ]
     }
   ],
@@ -47,32 +71,30 @@
       "title": "Cheese-Leek Sauce",
       "serving_unit": "servings",
       "ingredients": [
-        "butter",
-        "flour",
         "leek",
-        "processed cheese",
-        "vegetable broth",
-        "salt",
-        "pepper"
+        "cream cheese",
+        "cream",
+        "shredded cheese",
+        "nutmeg"
       ],
       "instructions": [
         "Clean the leek and cut into rings.",
-        "Melt butter in a pot and stir in the flour.",
-        "Deglaze with broth and add the leek.",
-        "Simmer for about 10 minutes until the leek is soft.",
-        "Stir in the processed cheese and season with salt and pepper."
+        "Sauté in a pan with a little oil until soft.",
+        "Stir in the cream cheese and cream, then fold in the shredded cheese.",
+        "Season to taste with nutmeg, salt, pepper, and sugar."
       ],
       "variants": [
         {
           "variant_name": "Zucchini",
           "name": "Cheese-Zucchini Sauce",
-          "ingredients": { "2": "zucchini" },
+          "ingredients": {
+            "0": "zucchini"
+          },
           "instructions": [
-            "Wash the zucchini and cut into small cubes.",
-            "Melt butter in a pot and stir in the flour.",
-            "Deglaze with broth and add the zucchini.",
-            "Simmer for about 8 minutes until the zucchini is soft.",
-            "Stir in the processed cheese and season with salt and pepper."
+            "Wash the zucchini and grate it.",
+            "Sauté in a pan with a little oil until soft.",
+            "Stir in the cream cheese and cream, then fold in the shredded cheese.",
+            "Season to taste with nutmeg, salt, pepper, and sugar."
           ]
         }
       ]
