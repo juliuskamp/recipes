@@ -30,9 +30,9 @@
             "unit": "whole"
         },
         {
-            "name": "Gemüsebrühe",
+            "name": "Gemüsebrühwürfel",
             "amount": 0.5,
-            "unit": "cubes"
+            "unit": "whole"
         },
         {
             "name": "Cumin"
@@ -46,7 +46,7 @@
         "Zwiebel schälen und hacken.",
         "In einer Pfanne Zwiebel anbraten, bis sie glasig ist.",
         "Linsen abgießen und zu den Zwiebeln geben.",
-        "Sahne, Schmand und Gemüsebrühe hinzugeben, und eventuell etwas Milch.",
+        "Sahne, Schmand und Gemüsebrühwürfel hinzugeben, und eventuell etwas Milch.",
         "Mit Süßem Paprikagewürz, Salz und Pfeffer abschmecken."
     ],
     "translations": {
