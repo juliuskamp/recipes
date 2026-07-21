@@ -24,11 +24,18 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const sharp = require("sharp");
 const { validateRecipe, loadSchema } = require("./validate.js");
 
 const ROOT = __dirname;
 const OUT = path.join(ROOT, "_site");
 const LANGS = ["en", "de"];
+
+// Public base URL of the deployed site (no trailing slash). Used for absolute
+// og:image / og:url, which social scrapers (WhatsApp, Facebook…) require.
+const SITE_URL = JSON.parse(
+  fs.readFileSync(path.join(ROOT, "site.json"), "utf8")
+).url.replace(/\/$/, "");
 
 // --- Shared browser modules, loaded once ---
 
@@ -64,6 +71,50 @@ function writeFile(relPath, content) {
 
 function copyDir(src, dest) {
   fs.cpSync(src, dest, { recursive: true });
+}
+
+// --- Social-card preview images ---
+// Scrapers (WhatsApp, Facebook…) want an absolute-URL JPEG under ~300 KB at
+// ~1.91:1. We generate a 1200x630 JPEG per source image (any input format) for
+// og:image, cached by source mtime so --watch rebuilds stay fast. The original
+// image is still what the page itself displays.
+
+const PREVIEW_CACHE = path.join(ROOT, ".preview-cache");
+const PREVIEW_W = 1200;
+const PREVIEW_H = 630;
+
+/** og:image filename for a source image filename (foo.webp -> foo_preview.jpg). */
+function previewName(file) {
+  return file.replace(/\.[^.]+$/, "") + "_preview.jpg";
+}
+
+/**
+ * Build a 1200x630 JPEG preview for every source image (cached by mtime) and
+ * copy them into _site/assets/recipe_images/. Returns the number regenerated.
+ */
+async function generatePreviews(images) {
+  fs.mkdirSync(PREVIEW_CACHE, { recursive: true });
+  const srcDir = path.join(ROOT, "assets", "recipe_images");
+  const outDir = path.join(OUT, "assets", "recipe_images");
+  let regenerated = 0;
+  for (const file of Object.values(images)) {
+    const src = path.join(srcDir, file);
+    const cached = path.join(PREVIEW_CACHE, previewName(file));
+    const fresh =
+      fs.existsSync(cached) &&
+      fs.statSync(cached).mtimeMs >= fs.statSync(src).mtimeMs;
+    if (!fresh) {
+      await sharp(src)
+        // "cover" scales to fill 1200x630, then crops the overflow; "centre"
+        // trims equally from both sides (top/bottom or left/right).
+        .resize(PREVIEW_W, PREVIEW_H, { fit: "cover", position: "centre" })
+        .jpeg({ quality: 80, mozjpeg: true })
+        .toFile(cached);
+      regenerated++;
+    }
+    fs.copyFileSync(cached, path.join(outDir, previewName(file)));
+  }
+  return regenerated;
 }
 
 // --- Data loading ---
@@ -550,7 +601,10 @@ function pageShell(L, { depth, page, title, description, ogImageFile, counterpar
 
   const metaDesc = description ? `\n  <meta name="description" content="${esc(description)}">` : "";
   const ogImage = ogImageFile
-    ? `\n  <meta property="og:image" content="${rel}assets/recipe_images/${esc(ogImageFile)}">`
+    ? `\n  <meta property="og:image" content="${SITE_URL}/assets/recipe_images/${esc(previewName(ogImageFile))}">` +
+      `\n  <meta property="og:image:type" content="image/jpeg">` +
+      `\n  <meta property="og:image:width" content="${PREVIEW_W}">` +
+      `\n  <meta property="og:image:height" content="${PREVIEW_H}">`
     : "";
   const og = `
   <meta property="og:title" content="${esc(title)}">
@@ -769,7 +823,7 @@ function buildRootRedirect() {
 
 // --- Build ---
 
-function build() {
+async function build() {
   const started = Date.now();
   const { recipes, i18n, images } = loadData();
   const entries = buildVirtualEntries(recipes);
@@ -780,6 +834,7 @@ function build() {
   // Static assets + the shared modules the runtime needs
   copyDir(path.join(ROOT, "css"), path.join(OUT, "css"));
   copyDir(path.join(ROOT, "assets"), path.join(OUT, "assets"));
+  await generatePreviews(images);
   fs.mkdirSync(path.join(OUT, "js"), { recursive: true });
   for (const f of ["converter.js", "scaler.js", "runtime.js"]) {
     fs.copyFileSync(path.join(ROOT, "js", f), path.join(OUT, "js", f));
@@ -813,16 +868,12 @@ function build() {
 }
 
 function watch() {
-  const IGNORE = /^(_site|node_modules|pdfs|\.git)(\/|$)/;
+  const IGNORE = /^(_site|node_modules|pdfs|\.git|\.preview-cache)(\/|$)/;
   let timer = null;
   const rebuild = (reason) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      try {
-        build();
-      } catch (e) {
-        console.error(e.message);
-      }
+      build().catch((e) => console.error(e.message));
     }, 100);
   };
   fs.watch(ROOT, { recursive: true }, (event, filename) => {
@@ -835,11 +886,12 @@ function watch() {
 module.exports = { build };
 
 if (require.main === module) {
-  try {
-    build();
-  } catch (e) {
-    console.error(e.message);
-    process.exit(1);
-  }
-  if (process.argv.includes("--watch")) watch();
+  build()
+    .then(() => {
+      if (process.argv.includes("--watch")) watch();
+    })
+    .catch((e) => {
+      console.error(e.message);
+      process.exit(1);
+    });
 }
