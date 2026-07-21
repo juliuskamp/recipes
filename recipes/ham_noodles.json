@@ -1,0 +1,97 @@
+{
+    "language": "de",
+    "title": "\"Schinken\"-Nudeln",
+    "default_servings": 4,
+    "serving_unit": "Portionen",
+    "prep_time_minutes": 70,
+    "cook_time_minutes": 45,
+    "meal_type": "main",
+    "tags": [
+        "vegetarian",
+        "german cuisine"
+    ],
+    "serve_with": [],
+    "version": 2,
+    "translations": {
+        "en": {
+            "title": "\"Ham\" Noodles",
+            "serving_unit": "servings",
+            "ingredients": [
+                "Spätzle (dry)",
+                "Vegetarian ham",
+                "Cream",
+                "Grated cheese",
+                "Apple",
+                "Onion",
+                "Vegetable broth",
+                "Milk",
+                "Margarine"
+            ],
+            "instructions": [
+                "Chop the onion and sauté it in a large pot.",
+                "Deglaze the onion with vegetable broth and add the cream.",
+                "Add the Spätzle to the liquid and turn off the heat. Let it soak for 60 minutes, stirring several times in the meantime.",
+                "Season the noodles with salt and pepper. If no liquid is left, add {{50 ml}} milk.",
+                "Cut the ham into pieces and mix it with the noodles.",
+                "Peel and core the apple and cut it into wedges.",
+                "Put the apple pieces into a greased baking dish and spread the noodles over them.",
+                "Bake for 30 minutes at {{180 °C}} fan.",
+                "Spread the cheese over the noodles and bake for another 15 minutes."
+            ]
+        }
+    },
+    "ingredients": [
+        {
+            "name": "Spätzle (trocken)",
+            "amount": 500,
+            "unit": "g"
+        },
+        {
+            "name": "vegetarischer Schinken",
+            "amount": 200,
+            "unit": "g"
+        },
+        {
+            "name": "Sahne",
+            "amount": 400,
+            "unit": "ml"
+        },
+        {
+            "name": "Streukäse",
+            "amount": 200,
+            "unit": "g"
+        },
+        {
+            "name": "Apfel",
+            "amount": 2,
+            "unit": "whole"
+        },
+        {
+            "name": "Zwiebel",
+            "amount": 0.5,
+            "unit": "whole"
+        },
+        {
+            "name": "Gemüsebrühe",
+            "amount": 350,
+            "unit": "ml"
+        },
+        {
+            "name": "Milch"
+        },
+        {
+            "name": "Magarine"
+        }
+    ],
+    "instructions": [
+        "Zwiebel hacken und in einem großen Topf anbraten.",
+        "Zwiebel mit Gemüsebrühe ablöschen und die Sahne hinzugeben.",
+        "Die Spätzle in die Flüssigkeit geben und hitze abschalten. Für 60 Minuten ziehen lassen und währdenddessen mehrmals umrühren.",
+        "Nudeln mit Salz und Pfeffer würzen. Wenn kein Flüssigkeit mehr vorhanden ist, {{50 ml}} Milch hinzugeben.",
+        "Schinken in Stücke schneiden und mit den Nudeln vermischen.",
+        "Apfel schälen, entkernen und in Schnitzen schneiden.",
+        "Apfelstücke in eine eingefettete Auflaufform geben und die Nudeln darüber verteilen.",
+        "Für 30 Minuten bei {{180 °C}} Umluft backen.",
+        "Käse über die Nudeln verteilen und weitere 15 Minuten backen."
+    ]
+}
