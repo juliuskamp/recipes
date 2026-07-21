@@ -595,10 +595,12 @@ function headerHtml(L, { rel, langPrefix, page, counterpartPath, filterBarHtml }
         // reliably on a fresh load. Written via document.write so the attribute
         // is present when the parser sees the element. Plain home visits (no
         // query) and other pages get a normal, unfocused input.
+        // autocomplete/spellcheck off so the browser's own suggestion dropdown
+        // (past searches) doesn't swallow the ArrowDown card-navigation key.
         page === "index"
-          ? `<script>document.write('<input type="text" id="search-input" placeholder="${esc(L.tUI("search_placeholder")).replace(/'/g, "\\'")}"' + (location.search ? ' autofocus' : '') + '>');</script>` +
-            `<noscript><input type="text" id="search-input" placeholder="${esc(L.tUI("search_placeholder"))}"></noscript>`
-          : `<input type="text" id="search-input" placeholder="${esc(L.tUI("search_placeholder"))}">`
+          ? `<script>document.write('<input type="text" id="search-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${esc(L.tUI("search_placeholder")).replace(/'/g, "\\'")}"' + (location.search ? ' autofocus' : '') + '>');</script>` +
+            `<noscript><input type="text" id="search-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${esc(L.tUI("search_placeholder"))}"></noscript>`
+          : `<input type="text" id="search-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${esc(L.tUI("search_placeholder"))}">`
       }
     </div>
     ${filterBarHtml || ""}
