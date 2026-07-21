@@ -386,18 +386,17 @@ function entryCardHtml(entry, L, relLang) {
     .join("");
 
   const imgHtml = L.recipeImageHtml(res, relLang, "recipe-card-img");
+  const timeHtml = timeMeta(r, L);
 
   return `
       <a class="recipe-card${imgHtml ? " has-img" : ""}" href="${recipeUrl(relLang, r.id, entry.variantIdx)}">
         <div class="recipe-card-body">
           <h2>${esc(title)}${L.translationBadge(r)}</h2>
-          <div class="recipe-card-meta">
-            <span class="badge meal-type">${esc(L.t("meal_types", r.meal_type || ""))}</span>
-            ${timeMeta(r, L)}
-          </div>
           <div class="recipe-card-tags">
+            <span class="badge meal-type">${esc(L.t("meal_types", r.meal_type || ""))}</span>
             ${tagsHtml}
           </div>
+          ${timeHtml ? `<div class="recipe-card-meta">${timeHtml}</div>` : ""}
         </div>
         ${imgHtml}
       </a>

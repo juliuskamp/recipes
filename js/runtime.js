@@ -381,11 +381,50 @@
       sync("history");
     });
 
-    // Arrow-key focus nav between the search bar and the result cards.
-    const cards = () => [...searchView.querySelectorAll(".recipe-card")];
+    // Arrow-key focus nav between the search bar and the recipe cards. Works on
+    // whichever list is showing (grouped index view or flat search view).
+    const ARROWS = new Set(["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight"]);
+    const visibleRoot = () =>
+      indexView && !indexView.classList.contains("hidden") ? indexView : searchView;
+    const cards = () => [...visibleRoot().querySelectorAll(".recipe-card")];
+
+    // Geometry-based move: Left/Right step within a row, Up/Down stay in the
+    // same column (so a two-column grid navigates as a grid, a single column as
+    // a list). Returns the best neighbouring card, or null at an edge.
+    function navFrom(card, key) {
+      const r = card.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      let best = null;
+      let bestScore = Infinity;
+      for (const c of cards()) {
+        if (c === card) continue;
+        const b = c.getBoundingClientRect();
+        const bx = b.left + b.width / 2;
+        const by = b.top + b.height / 2;
+        const dx = bx - cx;
+        const dy = by - cy;
+        let ok = false;
+        let score = 0;
+        if (key === "ArrowRight" || key === "ArrowLeft") {
+          const sameRow = Math.abs(dy) < (r.height + b.height) / 2;
+          ok = sameRow && (key === "ArrowRight" ? dx > 1 : dx < -1);
+          score = Math.abs(dx) + Math.abs(dy) * 0.5;
+        } else {
+          const sameCol = Math.abs(dx) < Math.min(r.width, b.width) / 2;
+          ok = sameCol && (key === "ArrowDown" ? dy > 1 : dy < -1);
+          score = Math.abs(dy) + Math.abs(dx) * 3;
+        }
+        if (ok && score < bestScore) {
+          bestScore = score;
+          best = c;
+        }
+      }
+      return best;
+    }
 
     input.addEventListener("keydown", (e) => {
-      if (e.key !== "ArrowDown" || !searching) return;
+      if (e.key !== "ArrowDown") return;
       const cs = cards();
       if (cs.length) {
         e.preventDefault();
@@ -393,20 +432,14 @@
       }
     });
 
-    searchView.addEventListener("keydown", (e) => {
-      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
-      const card = e.target.closest(".recipe-card");
+    document.addEventListener("keydown", (e) => {
+      if (!ARROWS.has(e.key)) return;
+      const card = e.target.closest && e.target.closest(".recipe-card");
       if (!card) return;
       e.preventDefault();
-      const cs = cards();
-      const i = cs.indexOf(card);
-      if (e.key === "ArrowDown") {
-        if (i < cs.length - 1) cs[i + 1].focus();
-      } else if (i > 0) {
-        cs[i - 1].focus();
-      } else {
-        input.focus();
-      }
+      const next = navFrom(card, e.key);
+      if (next) next.focus();
+      else if (e.key === "ArrowUp") input.focus();
     });
 
     document.querySelectorAll("#meal-type-filters .filter-btn").forEach((el) => {
