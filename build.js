@@ -588,7 +588,18 @@ function headerHtml(L, { rel, langPrefix, page, counterpartPath, filterBarHtml }
       </div>
     </div>
     <div class="search-bar">
-      <input type="text" id="search-input" placeholder="${esc(L.tUI("search_placeholder"))}">
+      ${
+        // On the index page, when the URL already carries a search query (e.g.
+        // arriving from a recipe page's search bar), emit the input WITH the
+        // native `autofocus` attribute at parse time — the only way to focus
+        // reliably on a fresh load. Written via document.write so the attribute
+        // is present when the parser sees the element. Plain home visits (no
+        // query) and other pages get a normal, unfocused input.
+        page === "index"
+          ? `<script>document.write('<input type="text" id="search-input" placeholder="${esc(L.tUI("search_placeholder")).replace(/'/g, "\\'")}"' + (location.search ? ' autofocus' : '') + '>');</script>` +
+            `<noscript><input type="text" id="search-input" placeholder="${esc(L.tUI("search_placeholder"))}"></noscript>`
+          : `<input type="text" id="search-input" placeholder="${esc(L.tUI("search_placeholder"))}">`
+      }
     </div>
     ${filterBarHtml || ""}
   </header>`;
@@ -597,7 +608,7 @@ function headerHtml(L, { rel, langPrefix, page, counterpartPath, filterBarHtml }
 function pageShell(L, { depth, page, title, description, ogImageFile, counterpartPath, filterBarHtml, mainHtml, pageData }) {
   const rel = "../".repeat(depth); // prefix up to the site root
   const langPrefix = "../".repeat(depth - 1); // prefix up to the language dir
-  const data = { lang: L.lang, page, rel, searchPath: `${langPrefix}search/`, ...pageData };
+  const data = { lang: L.lang, page, rel, searchPath: `${langPrefix}`, ...pageData };
 
   const metaDesc = description ? `\n  <meta name="description" content="${esc(description)}">` : "";
   const ogImage = ogImageFile
@@ -700,20 +711,11 @@ function buildIndexPage(L, entries, filters, i18n) {
         .join("");
   }
 
-  return pageShell(L, {
-    depth: 1,
-    page: "index",
-    title: L.tUI("site_title"),
-    description: null,
-    counterpartPath: "",
-    filterBarHtml: filterBar(L, filters.allMealTypes, filters.allTags, { asLinks: true, relLang }),
-    mainHtml: `    <div id="index-view" class="index-view">${body}</div>`,
-    pageData: { units: i18n[L.lang].units || {}, printFragment: "print.html" },
-  });
-}
-
-function buildSearchPage(L, entries, filters, i18n) {
-  const relLang = "../"; // page lives in <lang>/search/
+  // Search data lives on the index page too, so the index ↔ search transition
+  // is an in-place view swap (no reload): the grouped `#index-view` and the
+  // flat `#search-view` share this one page, and runtime.js toggles between
+  // them from the URL query. Card links use the index-depth prefix (relLang
+  // "") — searching only adds a query string, so the pathname never changes.
   const entryData = entries.map((e) => {
     const r = L.recipes.find((x) => x.id === e.recipeId);
     const res = L.resolveVariant(r, e.variantIdx);
@@ -726,15 +728,18 @@ function buildSearchPage(L, entries, filters, i18n) {
   });
 
   return pageShell(L, {
-    depth: 2,
-    page: "search",
+    depth: 1,
+    page: "index",
     title: L.tUI("site_title"),
     description: null,
-    counterpartPath: "search/",
+    counterpartPath: "",
     filterBarHtml: filterBar(L, filters.allMealTypes, filters.allTags, { asLinks: false, relLang }),
-    mainHtml: `    <div id="search-view" class="search-view"></div>`,
+    mainHtml:
+      `    <div id="index-view" class="index-view">${body}</div>\n` +
+      `    <div id="search-view" class="search-view hidden"></div>`,
     pageData: {
       units: i18n[L.lang].units || {},
+      printFragment: "print.html",
       entries: entryData,
       noRecipes: L.tUI("no_recipes"),
     },
@@ -821,6 +826,31 @@ function buildRootRedirect() {
 </html>`;
 }
 
+// <lang>/search/ is now just the language index page with a query string.
+// This tiny page forwards there, preserving the query and hash.
+function buildSearchRedirect() {
+  return `<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search</title>
+  <link rel="icon" href="../../assets/favicons/favicon-utensils.svg" type="image/svg+xml">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    window.location.replace("../" + window.location.search + window.location.hash);
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=../"></noscript>
+</head>
+
+<body>
+  <noscript><p><a href="../">Continue</a></p></noscript>
+</body>
+
+</html>`;
+}
+
 // --- Build ---
 
 async function build() {
@@ -849,7 +879,10 @@ async function build() {
     const filters = collectFilters(recipes, L);
 
     writeFile(`${lang}/index.html`, buildIndexPage(L, entries, filters, i18n));
-    writeFile(`${lang}/search/index.html`, buildSearchPage(L, entries, filters, i18n));
+    // Search now lives on the language index page (query params, in-place view
+    // swap). Keep the old /search/ URL working by redirecting to it, carrying
+    // any query string / hash across.
+    writeFile(`${lang}/search/index.html`, buildSearchRedirect());
     writeFile(`${lang}/print.html`, buildPrintFragment(L));
     pages += 3;
 

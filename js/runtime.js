@@ -133,8 +133,8 @@
       if (!el || el.tagName !== "A") continue;
       el.addEventListener("click", () => {
         localStorage.setItem("recipe-lang", lang);
-        // On the search page, carry the active query over to the other language
-        if (PAGE.page === "search" && window.location.search) {
+        // Carry the active search query over to the other language's index page
+        if (window.location.search) {
           el.href = el.getAttribute("href").split("?")[0] + window.location.search;
         }
       });
@@ -144,11 +144,9 @@
   function initSearchInput() {
     const input = document.getElementById("search-input");
     if (!input) return;
-    if (PAGE.page === "index") {
-      input.addEventListener("focus", () => {
-        window.location.href = PAGE.searchPath;
-      });
-    } else if (PAGE.page === "recipe") {
+    // The index page hosts search in-place (see initIndexPage). Elsewhere
+    // (recipe pages) the search bar navigates to the index page with a query.
+    if (PAGE.page === "recipe") {
       input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           const q = input.value.trim().toLowerCase();
@@ -283,9 +281,14 @@
       .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
-  function initSearchPage() {
-    const view = document.getElementById("search-view");
+  // Search lives on the index page. Typing / filtering swaps the grouped
+  // `#index-view` for the flat `#search-view` in place — no page load — and
+  // reflects the state in the URL query so it stays shareable and bookmarkable.
+  function initSearch() {
+    const indexView = document.getElementById("index-view");
+    const searchView = document.getElementById("search-view");
     const input = document.getElementById("search-input");
+    if (!searchView || !input) return;
     const entries = PAGE.entries || [];
 
     const params = new URLSearchParams(window.location.search);
@@ -293,6 +296,11 @@
     let activeMealType = params.get("meal") || null;
     let activeTags = new Set((params.get("tags") || "").split(",").filter(Boolean));
     input.value = query;
+    let searching = false; // which view is currently shown
+
+    function hasCriteria() {
+      return !!query || !!activeMealType || activeTags.size > 0;
+    }
 
     function buildUrl() {
       const p = new URLSearchParams();
@@ -314,9 +322,9 @@
       return true;
     }
 
-    function render() {
+    function renderResults() {
       const filtered = entries.filter(matches);
-      view.innerHTML =
+      searchView.innerHTML =
         filtered.length === 0
           ? `<p>${PAGE.noRecipes}</p>`
           : `<div class="recipe-list">${filtered.map((e) => e.html).join("")}</div>`;
@@ -332,18 +340,32 @@
       updateFilterDivider();
     }
 
+    // Show the view matching the current criteria and update the URL.
+    // mode: "history" pushes a new entry when the view flips (so Back returns
+    // to where you were) and replaces otherwise; null leaves the URL alone
+    // (used when popstate already changed it).
+    function sync(mode) {
+      const active = hasCriteria();
+      if (active) renderResults();
+      searchView.classList.toggle("hidden", !active);
+      if (indexView) indexView.classList.toggle("hidden", active);
+      updateChips();
+      if (mode === "history") {
+        if (active !== searching) history.pushState(null, "", buildUrl());
+        else history.replaceState(null, "", buildUrl());
+      }
+      searching = active;
+    }
+
     input.addEventListener("input", () => {
       query = input.value.trim().toLowerCase();
-      history.replaceState(null, "", buildUrl());
-      render();
+      sync("history");
     });
 
     document.querySelectorAll("#meal-type-filters .filter-btn").forEach((el) => {
       el.addEventListener("click", () => {
         activeMealType = activeMealType === el.dataset.meal ? null : el.dataset.meal;
-        history.replaceState(null, "", buildUrl());
-        updateChips();
-        render();
+        sync("history");
       });
     });
 
@@ -351,15 +373,32 @@
       el.addEventListener("click", () => {
         if (activeTags.has(el.dataset.tag)) activeTags.delete(el.dataset.tag);
         else activeTags.add(el.dataset.tag);
-        history.replaceState(null, "", buildUrl());
-        updateChips();
-        render();
+        sync("history");
       });
     });
 
-    updateChips();
-    render();
-    if (!window.location.search) input.focus();
+    // Back/forward: re-derive state from the URL, don't touch history.
+    window.addEventListener("popstate", () => {
+      const p = new URLSearchParams(window.location.search);
+      query = (p.get("q") || "").trim().toLowerCase();
+      activeMealType = p.get("meal") || null;
+      activeTags = new Set((p.get("tags") || "").split(",").filter(Boolean));
+      input.value = query;
+      sync(null);
+    });
+
+    sync(null); // set the initial view from the landing URL
+
+    // Landed already in search mode (e.g. arrived from a recipe page's search
+    // bar, or a bookmarked query): focus the input, cursor at the end. Plain
+    // index visits are left unfocused so we don't pop the mobile keyboard.
+    if (searching) {
+      requestAnimationFrame(() => {
+        input.focus();
+        const end = input.value.length;
+        input.setSelectionRange(end, end);
+      });
+    }
   }
 
   // --- Init ---
@@ -372,6 +411,8 @@
   window.addEventListener("resize", updateFilterDivider);
 
   if (PAGE.page === "recipe") initRecipePage();
-  else if (PAGE.page === "index") initIndexPage();
-  else if (PAGE.page === "search") initSearchPage();
+  else if (PAGE.page === "index") {
+    initIndexPage();
+    initSearch();
+  }
 })();
