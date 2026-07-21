@@ -10,7 +10,31 @@
   "related_recipes": [
     "bolognese_sauce"
   ],
-  "version": 1,
+  "version": 2,
+  "translations": {
+    "en": {
+      "title": "Enchiladas",
+      "serving_unit": "servings",
+      "ingredients": [
+        "Tortillas",
+        "Bolognese sauce",
+        "Passata",
+        "Corn",
+        "Kidney beans",
+        "Onion",
+        "Grated cheese",
+        "Sweet paprika powder"
+      ],
+      "instructions": [
+        "Chop the onion and mix it with the bolognese sauce, corn and kidney beans.",
+        "Fill the tortillas with the sauce, roll them up and place them tightly next to each other in a baking dish (do not fold the ends).",
+        "Season the passata with plenty of paprika powder, a little salt, pepper and sugar.",
+        "Pour the tomato sauce around and over the tortillas so they are well covered.",
+        "Sprinkle with grated cheese.",
+        "Bake at {{180 °C}} fan for about 20 minutes."
+      ]
+    }
+  },
   "ingredients": [
     {
       "name": "Tortillas",
