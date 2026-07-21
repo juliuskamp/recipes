@@ -156,6 +156,25 @@
     }
   }
 
+  function isTypingTarget(el) {
+    if (!el) return false;
+    const t = el.tagName;
+    return t === "INPUT" || t === "TEXTAREA" || t === "SELECT" || el.isContentEditable;
+  }
+
+  /** "/" focuses the search bar from anywhere (unless already typing in a field). */
+  function initSlashFocus() {
+    const input = document.getElementById("search-input");
+    if (!input) return;
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey) return;
+      if (isTypingTarget(e.target)) return;
+      e.preventDefault();
+      input.focus();
+      input.select();
+    });
+  }
+
   /** Hide the divider when the meal-type and tag groups wrap onto separate lines. */
   function updateFilterDivider() {
     const filterBarEl = document.getElementById("filter-bar");
@@ -362,6 +381,34 @@
       sync("history");
     });
 
+    // Arrow-key focus nav between the search bar and the result cards.
+    const cards = () => [...searchView.querySelectorAll(".recipe-card")];
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowDown" || !searching) return;
+      const cs = cards();
+      if (cs.length) {
+        e.preventDefault();
+        cs[0].focus();
+      }
+    });
+
+    searchView.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+      const card = e.target.closest(".recipe-card");
+      if (!card) return;
+      e.preventDefault();
+      const cs = cards();
+      const i = cs.indexOf(card);
+      if (e.key === "ArrowDown") {
+        if (i < cs.length - 1) cs[i + 1].focus();
+      } else if (i > 0) {
+        cs[i - 1].focus();
+      } else {
+        input.focus();
+      }
+    });
+
     document.querySelectorAll("#meal-type-filters .filter-btn").forEach((el) => {
       el.addEventListener("click", () => {
         activeMealType = activeMealType === el.dataset.meal ? null : el.dataset.meal;
@@ -407,6 +454,7 @@
   initUnits();
   initLangLinks();
   initSearchInput();
+  initSlashFocus();
   updateFilterDivider();
   window.addEventListener("resize", updateFilterDivider);
 
