@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -15,7 +17,7 @@
   --color-tag-bg: #f0ece4;
   --color-tag-text: #5a5347;
   --radius: 6px;
-  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   --max-width: 720px;
   --color-badge-no-trans: #9a3030;
   --color-badge-no-trans-bg: #f5d0d0;
@@ -31,7 +33,7 @@
   --color-border: #3a3a3a;
   --color-tag-bg: #2e2e2e;
   --color-tag-text: #b0a898;
-  --shadow: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   --color-badge-no-trans: #d48080;
   --color-badge-no-trans-bg: #3a2020;
 }
@@ -82,6 +84,7 @@ header h1 a {
 
 .header-controls {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
 }
@@ -120,7 +123,7 @@ header h1 a {
   border-color: var(--color-accent);
 }
 
-.group-btn.active + .group-btn {
+.group-btn.active+.group-btn {
   border-left-color: var(--color-accent);
 }
 
@@ -234,17 +237,18 @@ main {
 /* Recipe list */
 .recipe-list {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 1024px) {
   .recipe-list {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-auto-rows: 1fr;
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   body.page-index main {
     max-width: 1000px;
   }
@@ -261,16 +265,18 @@ main {
 }
 
 .recipe-card:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .recipe-card h2 {
   font-size: 1.1rem;
   margin-bottom: 0.3rem;
+  overflow-wrap: break-word;
 }
 
 .recipe-card.has-img {
   display: flex;
+  flex-direction: row;
   gap: 1rem;
   align-items: stretch;
 }
@@ -278,13 +284,17 @@ main {
 .recipe-card-body {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .recipe-card-img {
   flex: none;
-  align-self: stretch;
-  width: 90px;
+  align-self: center;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
+  object-position: center;
   border-radius: var(--radius);
   background: var(--color-border);
 }
@@ -322,13 +332,21 @@ a.badge.meal-type:hover {
   font-size: 0.8rem;
   color: var(--color-text-light);
   display: flex;
-  gap: 1rem;
-  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.2rem 1rem;
+  margin-top: auto;
+  padding-top: 0.4rem;
+}
+
+.recipe-card-meta>span {
+  white-space: nowrap;
 }
 
 .recipe-card-tags {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.3rem;
 }
 
@@ -648,24 +666,59 @@ a.badge.meal-type:hover {
     margin: 1cm 1.5cm;
   }
 
-  header { display: none; }
-  .servings-control { display: none; }
-  .servings-print { display: flex; }
-  .download-pdf-btn { display: none; }
-  .related-section { display: none; }
-  .index-view, .search-view { display: none; }
-  .download-all-btn { display: none; }
+  header {
+    display: none;
+  }
+
+  .servings-control {
+    display: none;
+  }
+
+  .servings-print {
+    display: flex;
+  }
+
+  .download-pdf-btn {
+    display: none;
+  }
+
+  .related-section {
+    display: none;
+  }
+
+  .index-view,
+  .search-view {
+    display: none;
+  }
+
+  .download-all-btn {
+    display: none;
+  }
+
   /* Variant chrome is interactive-only — not meaningful in a static PDF. */
-  .variant-selector { display: none; }
-  .tag-ghost { display: none; }
+  .variant-selector {
+    display: none;
+  }
+
+  .tag-ghost {
+    display: none;
+  }
 
   /* White everywhere (no surface tint / page fill that printBackground would
      paint). Card keeps its on-screen border + shadow. */
-  body, main, .recipe-view { background: #fff; }
+  body,
+  main,
+  .recipe-view {
+    background: #fff;
+  }
 
-  main { padding: 0; }
+  main {
+    padding: 0;
+  }
 
-  .recipe-header h2 { padding-right: 0; }
+  .recipe-header h2 {
+    padding-right: 0;
+  }
 
   /* Keep the hero small so the recipe still fits on one page.
      Shrink the whole image (no crop): natural aspect, capped height. */
@@ -687,13 +740,19 @@ a.badge.meal-type:hover {
 
   /* "Download all": render the off-screen container, hide the live app, and
      put each recipe on its own page. */
-  body.printing-all main { display: none; }
-  body.printing-all #print-all { display: block; }
+  body.printing-all main {
+    display: none;
+  }
+
+  body.printing-all #print-all {
+    display: block;
+  }
 
   #print-all .print-recipe {
     break-before: page;
     margin: 0;
   }
+
   #print-all .print-recipe:first-child {
     break-before: auto;
   }
@@ -726,7 +785,8 @@ a.badge.meal-type:hover {
 
 /* Static-site link variants of formerly-scripted elements */
 a.recipe-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   color: inherit;
   text-decoration: none;
 }
@@ -747,11 +807,33 @@ a.filter-btn {
 
 /* Mobile */
 @media (max-width: 480px) {
-  header { padding: 0.75rem; }
-  .header-top { flex-wrap: wrap; gap: 0.5rem; }
-  .header-controls { width: 100%; }
-  .header-controls .cook-btn { order: 1; margin-left: auto; }
-  main { padding: 0.75rem; }
-  .recipe-view { padding: 1rem; }
-  .recipe-header h2 { font-size: 1.3rem; }
+  header {
+    padding: 0.75rem;
+  }
+
+  .header-top {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .header-controls {
+    width: 100%;
+  }
+
+  .header-controls .cook-btn {
+    order: 1;
+    margin-left: auto;
+  }
+
+  main {
+    padding: 0.75rem;
+  }
+
+  .recipe-view {
+    padding: 1rem;
+  }
+
+  .recipe-header h2 {
+    font-size: 1.3rem;
+  }
 }
