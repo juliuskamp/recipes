@@ -333,7 +333,13 @@ function collectFilters(recipes, L) {
     if (r.meal_type) mealSet.add(r.meal_type);
     for (const tag of L.getAllTagsForRecipe(r)) tagSet.add(tag);
   }
-  return { allTags: [...tagSet].sort(), allMealTypes: [...mealSet].sort() };
+  const mealOrder = ["breakfast", "main", "dessert", "snack", "basic"];
+  const rank = (m) => {
+    const i = mealOrder.indexOf(m);
+    return i === -1 ? mealOrder.length : i;
+  };
+  const allMealTypes = [...mealSet].sort((a, b) => rank(a) - rank(b));
+  return { allTags: [...tagSet].sort(), allMealTypes };
 }
 
 // --- HTML building blocks ---
@@ -638,7 +644,7 @@ function pageShell(L, { depth, page, title, description, ogImageFile, counterpar
   <link rel="stylesheet" href="${rel}css/main.css">
 </head>
 
-<body>
+<body class="page-${page}">
   ${headerHtml(L, { rel, langPrefix, page, counterpartPath, filterBarHtml })}
 
   <main>
@@ -680,6 +686,17 @@ function filterBar(L, allMealTypes, allTags, { asLinks, relLang }) {
 
 function buildIndexPage(L, entries, filters, i18n) {
   const relLang = ""; // page lives directly in the language dir
+
+  // Order entries by resolved display title in the current language (umlaut-
+  // aware). Both the grouped index and the flat search list derive from this
+  // order, so sorting here fixes both.
+  const titleOf = (e) =>
+    L.resolvedTitle(L.resolveVariant(L.recipes.find((x) => x.id === e.recipeId), e.variantIdx));
+  const sortKey = (e) => titleOf(e).replace(/^[^\p{L}\p{N}]+/u, ""); // drop leading punctuation
+  entries = [...entries].sort((a, b) =>
+    sortKey(a).localeCompare(sortKey(b), L.lang, { sensitivity: "base" })
+  );
+
   const groups = {};
   for (const meal of filters.allMealTypes) {
     const inGroup = entries.filter((e) => {
