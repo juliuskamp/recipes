@@ -253,6 +253,26 @@ main {
   margin-bottom: 0.3rem;
 }
 
+.recipe-card.has-img {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.recipe-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.recipe-card-img {
+  flex: none;
+  align-self: stretch;
+  width: 90px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--color-border);
+}
+
 .no-translation {
   font-size: 0.8rem;
   font-weight: 500;
@@ -332,16 +352,31 @@ a.badge.meal-type:hover {
   margin-bottom: 1.5rem;
 }
 
+.recipe-hero-img {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  background: var(--color-border);
+}
+
+.recipe-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
 .recipe-header h2 {
   font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  padding-right: 7rem;
 }
 
 .download-pdf-btn {
-  position: absolute;
-  top: 0;
-  right: 0;
+  flex: none;
   background: var(--color-tag-bg);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
@@ -615,6 +650,18 @@ a.badge.meal-type:hover {
   main { padding: 0; }
 
   .recipe-header h2 { padding-right: 0; }
+
+  /* Keep the hero small so the recipe still fits on one page.
+     Shrink the whole image (no crop): natural aspect, capped height. */
+  .recipe-hero-img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 5cm;
+    aspect-ratio: auto;
+    object-fit: contain;
+    break-inside: avoid;
+  }
 
   /* Avoid awkward breaks mid-item */
   .ingredient-list li,

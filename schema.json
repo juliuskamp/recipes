@@ -221,6 +221,11 @@
             "minLength": 1,
             "description": "Recipe title when this variant is active"
           },
+          "image_file_name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Basename (no extension) of this variant's image in assets/recipe_images/. Base recipes need no field — their image is matched by recipe id."
+          },
           "tags": {
             "type": "array",
             "items": { "type": "string" }

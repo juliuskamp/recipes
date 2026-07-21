@@ -39,7 +39,8 @@
       "tag_variant_suffix": "(variant)",
       "variant_default": "Default",
       "download_pdf": "Download PDF",
-      "download_all": "Download all as PDF"
+      "download_all": "Download all as PDF",
+      "photo_alt": "A photo of {name}."
     }
   },
   "de": {
@@ -122,7 +123,8 @@
       "tag_variant_suffix": "(Variante)",
       "variant_default": "Standard",
       "download_pdf": "PDF herunterladen",
-      "download_all": "Alle als PDF herunterladen"
+      "download_all": "Alle als PDF herunterladen",
+      "photo_alt": "Ein Foto von {name}."
     }
   }
 }

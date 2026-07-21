@@ -68,9 +68,23 @@ function copyDir(src, dest) {
 
 // --- Data loading ---
 
+/** Map image basename (no extension) -> filename, from assets/recipe_images/. */
+function loadImages() {
+  const dir = path.join(ROOT, "assets", "recipe_images");
+  const map = {};
+  if (!fs.existsSync(dir)) return map;
+  for (const f of fs.readdirSync(dir)) {
+    const ext = path.extname(f);
+    if (!/\.(webp|png|jpe?g|avif|gif)$/i.test(ext)) continue;
+    map[f.slice(0, -ext.length)] = f;
+  }
+  return map;
+}
+
 function loadData() {
   const schema = loadSchema();
   const i18n = JSON.parse(fs.readFileSync(path.join(ROOT, "i18n.json"), "utf8"));
+  const images = loadImages();
 
   const files = fs
     .readdirSync(path.join(ROOT, "recipes"))
@@ -102,12 +116,12 @@ function loadData() {
     throw new Error(`${problems.length} validation error(s) — build aborted.`);
   }
 
-  return { recipes, i18n };
+  return { recipes, i18n, images };
 }
 
 // --- Per-language rendering context (ports of js/app.js helpers) ---
 
-function makeLang(lang, recipes, i18n) {
+function makeLang(lang, recipes, i18n, images) {
   function t(category, key) {
     const l = i18n[lang];
     if (l && l[category] && l[category][key]) return l[category][key];
@@ -211,10 +225,37 @@ function makeLang(lang, recipes, i18n) {
     return [...all];
   }
 
+  /**
+   * Resolve the image file for a recipe/variant, or null if none exists.
+   * Base variant matches by recipe id; other variants use their explicit
+   * `image_file_name` (basename, no extension). A missing file yields null.
+   */
+  function imageFileFor(recipe, variantIdx) {
+    let key;
+    if (!variantIdx) {
+      key = recipe.id;
+    } else {
+      const v = (recipe.variants || [])[variantIdx - 1];
+      key = v && v.image_file_name;
+    }
+    if (!key) return null;
+    return images[key] || null;
+  }
+
+  /** <img> for a resolved variant, or "" if it has no image. relLang = prefix up to the language dir. */
+  function recipeImageHtml(res, relLang, className) {
+    const file = imageFileFor(res.recipe, res.variantIdx);
+    if (!file) return "";
+    const src = `${relLang}../assets/recipe_images/${esc(file)}`;
+    const alt = esc(tUI("photo_alt").replace("{name}", resolvedTitle(res)));
+    return `<img class="${className}" src="${src}" alt="${alt}" loading="lazy">`;
+  }
+
   return {
     lang, recipes, t, tUI, translateUnit, needsTranslation, hasTranslation, getTranslation,
     translationBadge, getTitle, getServingUnit, resolveVariant, resolvedTitle,
     resolvedVariantName, resolvedIngredientName, resolvedInstructions, getAllTagsForRecipe,
+    imageFileFor, recipeImageHtml,
   };
 }
 
@@ -287,16 +328,21 @@ function entryCardHtml(entry, L, relLang) {
     })
     .join("");
 
+  const imgHtml = L.recipeImageHtml(res, relLang, "recipe-card-img");
+
   return `
-      <a class="recipe-card" href="${recipeUrl(relLang, r.id, entry.variantIdx)}">
-        <h2>${esc(title)}${L.translationBadge(r)}</h2>
-        <div class="recipe-card-meta">
-          <span class="badge meal-type">${esc(L.t("meal_types", r.meal_type || ""))}</span>
-          ${timeMeta(r, L)}
+      <a class="recipe-card${imgHtml ? " has-img" : ""}" href="${recipeUrl(relLang, r.id, entry.variantIdx)}">
+        <div class="recipe-card-body">
+          <h2>${esc(title)}${L.translationBadge(r)}</h2>
+          <div class="recipe-card-meta">
+            <span class="badge meal-type">${esc(L.t("meal_types", r.meal_type || ""))}</span>
+            ${timeMeta(r, L)}
+          </div>
+          <div class="recipe-card-tags">
+            ${tagsHtml}
+          </div>
         </div>
-        <div class="recipe-card-tags">
-          ${tagsHtml}
-        </div>
+        ${imgHtml}
       </a>
     `;
 }
@@ -422,10 +468,15 @@ function buildRecipeHtml(r, L, relLang, variantIdx, { forPrint = false } = {}) {
       <span class="serving-unit">${esc(L.getServingUnit(r))}</span>
     </div>`;
 
+  const heroImg = forPrint ? "" : L.recipeImageHtml(res, relLang, "recipe-hero-img");
+
   return `
       <div class="recipe-header">
-        <h2>${esc(L.resolvedTitle(res))}${L.translationBadge(r)}</h2>
-        ${downloadBtn}
+        ${heroImg}
+        <div class="recipe-title-row">
+          <h2>${esc(L.resolvedTitle(res))}${L.translationBadge(r)}</h2>
+          ${downloadBtn}
+        </div>
         <div class="recipe-meta">
           ${mealLink}
           ${timeMeta(r, L)}
@@ -492,17 +543,20 @@ function headerHtml(L, { rel, langPrefix, page, counterpartPath, filterBarHtml }
   </header>`;
 }
 
-function pageShell(L, { depth, page, title, description, counterpartPath, filterBarHtml, mainHtml, pageData }) {
+function pageShell(L, { depth, page, title, description, ogImageFile, counterpartPath, filterBarHtml, mainHtml, pageData }) {
   const rel = "../".repeat(depth); // prefix up to the site root
   const langPrefix = "../".repeat(depth - 1); // prefix up to the language dir
   const data = { lang: L.lang, page, rel, searchPath: `${langPrefix}search/`, ...pageData };
 
   const metaDesc = description ? `\n  <meta name="description" content="${esc(description)}">` : "";
+  const ogImage = ogImageFile
+    ? `\n  <meta property="og:image" content="${rel}assets/recipe_images/${esc(ogImageFile)}">`
+    : "";
   const og = `
   <meta property="og:title" content="${esc(title)}">
   ${description ? `<meta property="og:description" content="${esc(description)}">` : ""}
   <meta property="og:type" content="${page === "recipe" ? "article" : "website"}">
-  <meta property="og:locale" content="${L.lang === "de" ? "de_DE" : "en_US"}">`;
+  <meta property="og:locale" content="${L.lang === "de" ? "de_DE" : "en_US"}">${ogImage}`;
 
   return `<!DOCTYPE html>
 <html lang="${L.lang}">
@@ -654,6 +708,7 @@ function buildRecipePage(L, r, variantIdx, i18n) {
     page: "recipe",
     title: `${L.resolvedTitle(res)} – ${L.tUI("site_title")}`,
     description: ogDescription(r, L),
+    ogImageFile: L.imageFileFor(r, variantIdx),
     counterpartPath,
     filterBarHtml: "",
     mainHtml: `    <div id="recipe-view" class="recipe-view">${inner}</div>`,
@@ -716,7 +771,7 @@ function buildRootRedirect() {
 
 function build() {
   const started = Date.now();
-  const { recipes, i18n } = loadData();
+  const { recipes, i18n, images } = loadData();
   const entries = buildVirtualEntries(recipes);
 
   fs.rmSync(OUT, { recursive: true, force: true });
@@ -735,7 +790,7 @@ function build() {
 
   let pages = 1;
   for (const lang of LANGS) {
-    const L = makeLang(lang, recipes, i18n);
+    const L = makeLang(lang, recipes, i18n, images);
     const filters = collectFilters(recipes, L);
 
     writeFile(`${lang}/index.html`, buildIndexPage(L, entries, filters, i18n));
