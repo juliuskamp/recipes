@@ -1,0 +1,60 @@
+{
+    "language": "de",
+    "title": "Spitzkohl in Blauschimmelrahm mit Walnüssen",
+    "default_servings": 4,
+    "serving_unit": "Portionen",
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 20,
+    "meal_type": "main",
+    "tags": [
+        "vegetarian"
+    ],
+    "serve_with": [],
+    "version": 2,
+    "translations": {
+        "en": {
+            "title": "Pointed Cabbage in Blue Cheese Cream with Walnuts",
+            "serving_unit": "servings",
+            "ingredients": [
+                "Pointed cabbage",
+                "Blue cheese",
+                "Walnuts",
+                "Milk"
+            ],
+            "instructions": [
+                "Wash the pointed cabbage, halve it and cut into thin strips.",
+                "Roughly chop the walnuts and toast them in a non-stick pan without oil until golden brown and fragrant.",
+                "Fry the pointed cabbage in two batches in a pan with a little oil until soft.",
+                "Cut the blue cheese into small pieces and add it together with the milk to the cabbage. Stir well and let it simmer over low heat."
+            ]
+        }
+    },
+    "ingredients": [
+        {
+            "name": "Spitzkohl",
+            "amount": 1,
+            "unit": "whole"
+        },
+        {
+            "name": "Blauschimmelkäse",
+            "amount": 150,
+            "unit": "g"
+        },
+        {
+            "name": "Walnüsse",
+            "amount": 100,
+            "unit": "g"
+        },
+        {
+            "name": "Milch",
+            "amount": 200,
+            "unit": "ml"
+        }
+    ],
+    "instructions": [
+        "Spitzkohl waschen, halbieren und in dünne Streifen schneiden.",
+        "Walnüsse grob hacken und in einer beschichteten Pfanne ohne Öl anbraten bis sie goldbraun und duftend sind.",
+        "Spitzkohl in zwei Portionen in einer Pfanne mit etwas Öl anbraten, bis er weich ist.",
+        "Blauschimmelkäse in kleine Stücke schneiden und zusammen mit der Milch zum Spitzkohl geben. Alles gut verrühren und bei niedriger Hitze köcheln lassen."
+    ]
+}
