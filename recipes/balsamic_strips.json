@@ -39,7 +39,7 @@
     {
       "name": "Gemüsebrühwürfel",
       "amount": 0.5,
-      "unit": "cube"
+      "unit": "whole"
     }
   ],
   "instructions": [
