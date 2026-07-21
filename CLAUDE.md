@@ -4,11 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Self-hosted bilingual (EN/DE) recipe site, statically generated and deployed to GitHub Pages. Recipes are JSON files in `recipes/`; `build.js` renders them into full HTML pages in `_site/`. **Everything is plain Node stdlib + vanilla JS — zero npm dependencies, no package.json.** Keep it that way: do not introduce bundlers, frameworks, template engines, npm packages, or runtime dependencies. (The gitignored `local/` folder may hold puppeteer-based dev tools on the user's machine; it is not part of the repo.)
+Self-hosted bilingual (EN/DE) recipe site, statically generated and deployed to GitHub Pages. Recipes are JSON files in `recipes/`; `build.js` renders them into full HTML pages in `_site/`. **The build and client are plain Node stdlib + vanilla JS. The one exception is [`sharp`](https://sharp.pixelplumbing.com/) — the single npm dependency, used only at build time to generate social-card preview images.** Keep it minimal: do not add bundlers, frameworks, template engines, or client-side/runtime npm packages. New build-time deps need a real justification (sharp earned its place because pure JS cannot decode/encode images). (The gitignored `local/` folder may hold puppeteer-based dev tools on the user's machine; it is not part of the repo.)
 
 ## Commands
 
-- **Build the site**: `node build.js` (fast, ~25ms) — or `node build.js --watch` to rebuild on change.
+- **Install deps** (one-time): `npm ci` (or `npm install`) — pulls `sharp`. Required before the first build.
+- **Build the site**: `node build.js` — or `node build.js --watch` to rebuild on change. First build regenerates all preview images (~1.5s); subsequent builds reuse the mtime-cached previews and are fast.
 - **Run locally**: build (or watch), then serve `_site/` — the user tests via the VSCode **Five Server** extension pointed at `_site/`; do not suggest CLI commands for serving.
 - **Validate recipes**: `node validate.js recipes/*.json`
 - **Install git hooks** (one-time): `git config core.hooksPath .githooks`
@@ -18,7 +19,7 @@ Self-hosted bilingual (EN/DE) recipe site, statically generated and deployed to 
 ## Architecture
 
 ### Static site generation (build.js)
-`build.js` (zero-dependency Node) emits into `_site/` (gitignored):
+`build.js` emits into `_site/` (gitignored):
 
 - `index.html` — redirects to the preferred language (`localStorage` → `navigator.language`); also maps legacy SPA hash URLs (`#recipe/<id>[/<n>]`, `#search?...`) to the new pages.
 - `<lang>/index.html` — index view, recipe cards grouped by meal type (cards are real `<a>` links).
@@ -59,6 +60,13 @@ Instructions embed scalable measurements using `{{...}}`. `Parser.parseToken` ha
 
 ### Display formatting
 `Converter.formatAmount` rounds the third significant digit to the nearest 0 or 5 (e.g. 104→105, 236→235, 3.5→3.5), then renders clean fractions (½, ¼, ⅓, ⅔, ⅛, ¾, …) as Unicode characters. `tbsp` and `tsp` are in `noConvert` — they get translated (EL/TL) but are never converted to ml.
+
+### Images & social-card previews
+Recipe photos live in `assets/recipe_images/<basename>.<ext>` (any of webp/png/jpg/avif/gif); the basename matches a recipe id, or a variant's `image_file_name`. The **page itself displays the original file** unchanged.
+
+For link previews, `build.js` uses `sharp` to generate a `<basename>_preview.jpg` per source image — **1200×630 JPEG, quality 80, center-cropped** (`fit: "cover", position: "centre"`, so equal trim on both sides), which stays well under WhatsApp's ~300 KB og:image limit. These feed the absolute `og:image` (+ `og:image:width/height`) tags. Previews are cached in the gitignored `.preview-cache/` and only regenerated when the source image's mtime is newer, so `--watch` stays fast; on each build the cached previews are copied into `_site/assets/recipe_images/`.
+
+Scrapers (WhatsApp/Facebook/…) require **absolute** URLs, so `og:image` (and the image path) are prefixed with the site's public URL. That base URL lives in **`site.json`** (`{ "url": "…" }`, no trailing slash) and is read once into `SITE_URL` at the top of `build.js`. Update `site.json` if the deploy domain changes. Note: WhatsApp caches previews hard — after deploying a change, test with a cache-busted URL (`?v=2`) or expect a delay.
 
 ### Theming
 Dark mode uses CSS custom properties under `:root[data-theme="dark"]`. The inline head script reads `prefers-color-scheme` as the default, the user choice is stored in localStorage, and `colorScheme` is set so native form controls match.
