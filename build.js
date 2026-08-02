@@ -183,6 +183,17 @@ function makeLang(lang, recipes, i18n, images) {
   const tUI = (key) => t("ui", key);
   const translateUnit = (unit) => t("units", unit);
 
+  // Canonical tag order: the key order of the English `tags` table in i18n.json.
+  // Display order must not depend on the order tags happen to appear in a
+  // recipe's JSON, and must be the same in every language. Unknown tags sort
+  // last, alphabetically.
+  const tagOrder = Object.keys((i18n["en"] && i18n["en"].tags) || {});
+  const tagRank = (tag) => {
+    const i = tagOrder.indexOf(tag);
+    return i === -1 ? tagOrder.length : i;
+  };
+  const sortTags = (tags) => [...tags].sort((a, b) => tagRank(a) - tagRank(b) || (a < b ? -1 : a > b ? 1 : 0));
+
   const needsTranslation = (r) => r.language !== lang;
   const hasTranslation = (r) => !needsTranslation(r) || (r.translations && r.translations[lang]);
   const getTranslation = (r) =>
@@ -201,7 +212,7 @@ function makeLang(lang, recipes, i18n, images) {
     const isBase = !variantIdx;
     const variant = isBase ? null : (recipe.variants || [])[variantIdx - 1];
 
-    const tags = (variant && variant.tags) || recipe.tags || [];
+    const tags = sortTags((variant && variant.tags) || recipe.tags || []);
     const ingredients = recipe.ingredients.map((ing, i) => {
       if (variant && variant.ingredients && variant.ingredients[String(i)]) {
         return variant.ingredients[String(i)];
@@ -273,7 +284,7 @@ function makeLang(lang, recipes, i18n, images) {
       const vTags = v.tags || recipe.tags || [];
       for (const tag of vTags) all.add(tag);
     }
-    return [...all];
+    return sortTags(all);
   }
 
   /**
@@ -306,7 +317,7 @@ function makeLang(lang, recipes, i18n, images) {
     lang, recipes, t, tUI, translateUnit, needsTranslation, hasTranslation, getTranslation,
     translationBadge, getTitle, getServingUnit, resolveVariant, resolvedTitle,
     resolvedVariantName, resolvedIngredientName, resolvedInstructions, getAllTagsForRecipe,
-    imageFileFor, recipeImageHtml,
+    sortTags, imageFileFor, recipeImageHtml,
   };
 }
 
@@ -339,7 +350,7 @@ function collectFilters(recipes, L) {
     return i === -1 ? mealOrder.length : i;
   };
   const allMealTypes = [...mealSet].sort((a, b) => rank(a) - rank(b));
-  return { allTags: [...tagSet].sort(), allMealTypes };
+  return { allTags: L.sortTags(tagSet), allMealTypes };
 }
 
 // --- HTML building blocks ---
