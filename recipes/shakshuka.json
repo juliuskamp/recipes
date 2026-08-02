@@ -7,9 +7,10 @@
   "tags": [
     "vegetarian",
     "quick",
-    "leftovers"
+    "leftovers",
+    "gluten-free"
   ],
-  "version": 1,
+  "version": 2,
   "ingredients": [
     {
       "name": "gehackte Tomaten",

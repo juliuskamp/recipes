@@ -5,9 +5,10 @@
   "serving_unit": "Portionen",
   "meal_type": "main",
   "tags": [
-    "vegetarian"
+    "vegetarian",
+    "gluten-free"
   ],
-  "version": 1,
+  "version": 2,
   "ingredients": [
     {
       "name": "Schafskäse",

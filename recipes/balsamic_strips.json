@@ -6,9 +6,11 @@
   "prep_time_minutes": 10,
   "cook_time_minutes": 20,
   "meal_type": "main",
-  "tags": [],
+  "tags": [
+    "gluten-free"
+  ],
   "related_recipes": [],
-  "version": 1,
+  "version": 2,
   "ingredients": [
     {
       "name": "Geschnetzeltes",

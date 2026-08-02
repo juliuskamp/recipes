@@ -7,10 +7,11 @@
     "cook_time_minutes": 20,
     "meal_type": "main",
     "tags": [
-        "vegetarian"
+        "vegetarian",
+        "gluten-free"
     ],
     "serve_with": [],
-    "version": 2,
+    "version": 3,
     "translations": {
         "en": {
             "title": "Pointed Cabbage in Blue Cheese Cream with Walnuts",

@@ -8,10 +8,11 @@
   "meal_type": "main",
   "tags": [
     "vegetarian",
-    "comfort-food"
+    "comfort-food",
+    "gluten-free"
   ],
   "serve_with": [],
-  "version": 2,
+  "version": 3,
   "ingredients": [
     {
       "name": "Lauch",
@@ -50,7 +51,8 @@
       "image_file_name": "cheese_zucchini_sauce",
       "tags": [
         "vegetarian",
-        "low-carb"
+        "low-carb",
+        "gluten-free"
       ],
       "ingredients": {
         "0": {
