@@ -8,10 +8,12 @@
     "meal_type": "main",
     "tags": [
         "vegetarian",
-        "german cuisine"
+        "german cuisine",
+        "easily-vegan",
+        "easily-gluten-free"
     ],
     "serve_with": [],
-    "version": 2,
+    "version": 3,
     "translations": {
         "en": {
             "title": "\"Ham\" Noodles",

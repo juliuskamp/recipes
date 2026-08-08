@@ -74,6 +74,16 @@ Dark mode uses CSS custom properties under `:root[data-theme="dark"]`. The inlin
 ### i18n
 `i18n.json` has `en` and `de` sections, each with `meal_types`, `tags`, `units`, and `ui` lookup tables. Lookup falls back to English, then to the raw key (the `en` section has no `units` table — English unit keys display as-is). When adding a new unit/tag/meal type, add it to both sections and to the enum in `schema.json`.
 
+### Tags
+Tag **display order is canonical**, not the order a recipe's JSON happens to list them: `build.js` sorts every tag list by the key order of `en.tags` in `i18n.json` (unknown tags last, alphabetically). To reorder tags site-wide, reorder that table.
+
+`INFO_TAGS` in `build.js` maps "info tags" — soft variants of a strict dietary tag (`easily-vegan` → `vegan`, `easily-gluten-free` → `gluten-free`) — to the tag they imply. An info tag:
+- renders as a normal tag plus an ⓘ whose tooltip (`ui.tag_info_<tag>` in `i18n.json`) explains the caveat; shown on hover/focus via CSS, on tap via `initInfoTags()` in `js/runtime.js`, which swallows the click so a tag inside a card link doesn't navigate,
+- is never a link and never gets its own filter chip,
+- still matches the implied tag when filtering (`expandTags` widens the search entries' tag lists).
+
+The tooltip is positioned against the tag *row* (`.recipe-card-tags` / `.recipe-tags` are the positioned ancestors), not the tag, so it can't overflow the viewport on narrow screens. Adding a new info tag means: an entry in `INFO_TAGS`, tag labels in both `tags` tables, and a `tag_info_<tag>` string in both `ui` tables.
+
 ## Authoring recipes
 
 When creating or editing a recipe:

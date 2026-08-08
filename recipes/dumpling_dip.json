@@ -6,12 +6,13 @@
   "meal_type": "basic",
   "tags": [
     "vegan",
-    "vegetarian"
+    "vegetarian",
+    "easily-gluten-free"
   ],
   "related_recipes": [
     "dumplings"
   ],
-  "version": 1,
+  "version": 2,
   "ingredients": [
     {
       "name": "Sojasauce",

@@ -6,9 +6,11 @@
   "meal_type": "main",
   "tags": [
     "vegetarian",
-    "quick"
+    "quick",
+    "easily-vegan",
+    "easily-gluten-free"
   ],
-  "version": 1,
+  "version": 2,
   "ingredients": [
     {
       "name": "Tortillas",

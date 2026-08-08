@@ -5,12 +5,14 @@
   "serving_unit": "Portionen",
   "meal_type": "main",
   "tags": [
-    "vegetarian"
+    "vegetarian",
+    "easily-vegan",
+    "easily-gluten-free"
   ],
   "serve_with": [
     "salted_potatoes"
   ],
-  "version": 1,
+  "version": 2,
   "ingredients": [
     {
       "name": "frischer Brokkoli (mit Stiel)",

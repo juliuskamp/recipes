@@ -5,9 +5,11 @@
   "serving_unit": "Portionen",
   "meal_type": "basic",
   "tags": [
-    "vegetarian"
+    "vegetarian",
+    "easily-vegan",
+    "easily-gluten-free"
   ],
-  "version": 1,
+  "version": 2,
   "ingredients": [
     {
       "name": "Zwiebel",

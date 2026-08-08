@@ -6,9 +6,10 @@
   "cook_time_minutes": 30,
   "meal_type": "dessert",
   "tags": [
-    "vegetarian"
+    "vegetarian",
+    "easily-gluten-free"
   ],
-  "version": 1,
+  "version": 2,
   "ingredients": [
     {
       "name": "Eier",

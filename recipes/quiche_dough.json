@@ -4,14 +4,35 @@
   "default_servings": 2,
   "serving_unit": "Portionen",
   "meal_type": "basic",
-  "tags": ["vegetarian"],
-  "related_recipes": ["quiche"],
-  "version": 1,
+  "tags": [
+    "vegetarian",
+    "easily-gluten-free"
+  ],
+  "related_recipes": [
+    "quiche"
+  ],
+  "version": 2,
   "ingredients": [
-    { "name": "Mehl", "amount": 250, "unit": "g" },
-    { "name": "Butter", "amount": 100, "unit": "g" },
-    { "name": "Ei", "amount": 1, "unit": "whole" },
-    { "name": "Wasser", "amount": 2, "unit": "tbsp" }
+    {
+      "name": "Mehl",
+      "amount": 250,
+      "unit": "g"
+    },
+    {
+      "name": "Butter",
+      "amount": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Ei",
+      "amount": 1,
+      "unit": "whole"
+    },
+    {
+      "name": "Wasser",
+      "amount": 2,
+      "unit": "tbsp"
+    }
   ],
   "instructions": [
     "Aus Mehl, Butter, Ei und Wasser einen Teig kneten und ausrollen, dann in die Backform legen."

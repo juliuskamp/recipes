@@ -9,10 +9,11 @@
   "tags": [
     "vegetarian",
     "comfort-food",
-    "gluten-free"
+    "gluten-free",
+    "easily-vegan"
   ],
   "serve_with": [],
-  "version": 3,
+  "version": 4,
   "ingredients": [
     {
       "name": "Lauch",
@@ -52,7 +53,8 @@
       "tags": [
         "vegetarian",
         "low-carb",
-        "gluten-free"
+        "gluten-free",
+        "easily-vegan"
       ],
       "ingredients": {
         "0": {

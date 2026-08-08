@@ -8,10 +8,11 @@
   "meal_type": "main",
   "tags": [
     "vegetarian",
-    "quick"
+    "quick",
+    "easily-gluten-free"
   ],
   "related_recipes": [],
-  "version": 2,
+  "version": 3,
   "ingredients": [
     {
       "name": "Magerquark",

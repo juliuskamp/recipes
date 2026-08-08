@@ -6,9 +6,10 @@
   "meal_type": "breakfast",
   "tags": [
     "vegetarian",
-    "vegan"
+    "vegan",
+    "easily-gluten-free"
   ],
-  "version": 1,
+  "version": 2,
   "ingredients": [
     {
       "name": "Haferflocken",

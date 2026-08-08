@@ -358,6 +358,60 @@ a.badge.meal-type:hover {
   font-size: 0.7rem;
 }
 
+/* Info tags ("easily vegan"…): a normal tag plus an ⓘ whose tooltip explains
+   the caveat. Shown on hover and keyboard focus; runtime.js adds .tip-open on
+   tap for touch. The tooltip is positioned against the tag ROW, not the tag
+   (the rows below are the only positioned ancestors), so it spans the row's
+   width and can never push past the viewport edge on a narrow screen. */
+.recipe-card-tags,
+.recipe-tags {
+  position: relative;
+}
+
+.tag-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2em;
+  cursor: help;
+}
+
+.tag-info-icon {
+  font-size: 0.9em;
+  line-height: 1;
+  opacity: 0.75;
+}
+
+.tag-info::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% + 0.35rem);
+  z-index: 20;
+  padding: 0.4rem 0.55rem;
+  border-radius: var(--radius);
+  background: var(--color-text);
+  color: var(--color-surface);
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: left;
+  white-space: normal;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.12s;
+  pointer-events: none;
+}
+
+.tag-info:hover::after,
+.tag-info:focus-visible::after,
+.tag-info.tip-open::after {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* Meal group (index view) */
 .meal-group {
   margin-bottom: 1.5rem;
@@ -701,6 +755,11 @@ a.badge.meal-type:hover {
   }
 
   .tag-ghost {
+    display: none;
+  }
+
+  /* The ⓘ affordance is meaningless on paper — the tag label stays. */
+  .tag-info-icon {
     display: none;
   }
 

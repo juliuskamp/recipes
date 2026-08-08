@@ -175,6 +175,31 @@
     });
   }
 
+  /**
+   * Info-tag tooltips ("easily vegan"…). Hover and keyboard focus are pure CSS;
+   * touch needs a tap, and on an index card the tag sits inside the card's <a>,
+   * so the tap has to be swallowed before it navigates. Delegated from the
+   * document so re-rendered search results keep working.
+   */
+  function initInfoTags() {
+    const closeOpen = (except) => {
+      for (const el of document.querySelectorAll(".tag-info.tip-open")) {
+        if (el !== except) el.classList.remove("tip-open");
+      }
+    };
+    document.addEventListener("click", (e) => {
+      const tag = e.target.closest && e.target.closest(".tag-info");
+      closeOpen(tag);
+      if (!tag) return;
+      e.preventDefault();
+      e.stopPropagation();
+      tag.classList.toggle("tip-open");
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeOpen(null);
+    });
+  }
+
   /** Hide the divider when the meal-type and tag groups wrap onto separate lines. */
   function updateFilterDivider() {
     const filterBarEl = document.getElementById("filter-bar");
@@ -488,6 +513,7 @@
   initLangLinks();
   initSearchInput();
   initSlashFocus();
+  initInfoTags();
   updateFilterDivider();
   window.addEventListener("resize", updateFilterDivider);
 

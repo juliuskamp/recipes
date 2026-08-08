@@ -37,6 +37,22 @@ const SITE_URL = JSON.parse(
   fs.readFileSync(path.join(ROOT, "site.json"), "utf8")
 ).url.replace(/\/$/, "");
 
+// "Info tags" — soft variants of a strict dietary tag. They render as a normal
+// tag plus an ⓘ affordance whose tooltip explains the caveat, they never get
+// their own filter chip, and filtering by the strict tag also matches them
+// (a recipe tagged `easily-vegan` shows up under the `vegan` filter).
+const INFO_TAGS = {
+  "easily-vegan": "vegan",
+  "easily-gluten-free": "gluten-free",
+};
+
+/** Tags as used for filtering: each info tag also counts as the tag it implies. */
+function expandTags(tags) {
+  const out = new Set(tags);
+  for (const tag of tags) if (INFO_TAGS[tag]) out.add(INFO_TAGS[tag]);
+  return [...out];
+}
+
 // --- Shared browser modules, loaded once ---
 
 const { Converter, Scaler, Parser } = (() => {
@@ -342,7 +358,11 @@ function collectFilters(recipes, L) {
   const mealSet = new Set();
   for (const r of recipes) {
     if (r.meal_type) mealSet.add(r.meal_type);
-    for (const tag of L.getAllTagsForRecipe(r)) tagSet.add(tag);
+    // Info tags get no chip of their own; they fold into the tag they imply,
+    // so `easily-vegan` still puts a recipe behind the `vegan` filter.
+    for (const tag of expandTags(L.getAllTagsForRecipe(r))) {
+      if (!INFO_TAGS[tag]) tagSet.add(tag);
+    }
   }
   const mealOrder = ["breakfast", "main", "dessert", "snack", "basic"];
   const rank = (m) => {
@@ -380,6 +400,25 @@ function recipeUrl(relLang, id, variantIdx) {
   return `${relLang}recipe/${id}/` + (variantIdx > 0 ? `${variantIdx}/` : "");
 }
 
+/**
+ * One rendered tag chip. Info tags are never links — a tap has to open their
+ * tooltip rather than navigate — and carry the explanation in `data-tip`;
+ * CSS shows it on hover/focus, runtime.js handles tap-to-toggle.
+ */
+function tagHtml(L, tag, { cls, href, ghost }) {
+  const label = esc(L.t("tags", tag)) + (ghost ? ` ${esc(L.tUI("tag_variant_suffix"))}` : "");
+  const className = cls + (ghost ? " tag-ghost" : "");
+  if (INFO_TAGS[tag]) {
+    const tip = esc(L.tUI("tag_info_" + tag));
+    return (
+      `<span class="${className} tag-info" tabindex="0" data-tip="${tip}" aria-label="${label}: ${tip}">` +
+      `${label}<span class="tag-info-icon" aria-hidden="true">ⓘ</span></span>`
+    );
+  }
+  if (!href) return `<span class="${className}">${label}</span>`;
+  return `<a class="${className}" href="${href}">${label}</a>`;
+}
+
 /** A recipe card as a real link. relLang = prefix up to the language dir. */
 function entryCardHtml(entry, L, relLang) {
   const r = L.recipes.find((x) => x.id === entry.recipeId);
@@ -390,10 +429,7 @@ function entryCardHtml(entry, L, relLang) {
   const allTags = L.getAllTagsForRecipe(r);
 
   const tagsHtml = allTags
-    .map((tag) => {
-      if (ownTags.has(tag)) return `<span class="tag">${esc(L.t("tags", tag))}</span>`;
-      return `<span class="tag tag-ghost">${esc(L.t("tags", tag))} ${esc(L.tUI("tag_variant_suffix"))}</span>`;
-    })
+    .map((tag) => tagHtml(L, tag, { cls: "tag", ghost: !ownTags.has(tag) }))
     .join("");
 
   const imgHtml = L.recipeImageHtml(res, relLang, "recipe-card-img");
@@ -487,12 +523,13 @@ function buildRecipeHtml(r, L, relLang, variantIdx, { forPrint = false } = {}) {
   const ownTags = new Set(res.tags);
   const unionTags = L.getAllTagsForRecipe(r);
   const tagLinks = unionTags
-    .map((tag) => {
-      const isOwn = ownTags.has(tag);
-      const cls = isOwn ? "recipe-meta-link tag" : "recipe-meta-link tag tag-ghost";
-      const suffix = isOwn ? "" : ` ${esc(L.tUI("tag_variant_suffix"))}`;
-      return `<a class="${cls}" href="${relLang}search/?tags=${tag}">${esc(L.t("tags", tag))}${suffix}</a>`;
-    })
+    .map((tag) =>
+      tagHtml(L, tag, {
+        cls: "recipe-meta-link tag",
+        href: `${relLang}search/?tags=${tag}`,
+        ghost: !ownTags.has(tag),
+      })
+    )
     .join("");
 
   let variantSelectorHtml = "";
@@ -751,7 +788,8 @@ function buildIndexPage(L, entries, filters, i18n) {
     return {
       title: L.resolvedTitle(res),
       mealType: r.meal_type || null,
-      tags: res.tags,
+      // Filter-only: expanded so a `vegan` filter also matches `easily-vegan`.
+      tags: expandTags(res.tags),
       html: entryCardHtml(e, L, relLang),
     };
   });

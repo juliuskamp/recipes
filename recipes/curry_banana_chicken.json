@@ -5,12 +5,14 @@
   "serving_unit": "Portionen",
   "meal_type": "main",
   "tags": [
-    "vegetarian"
+    "vegetarian",
+    "gluten-free",
+    "easily-vegan"
   ],
   "serve_with": [
     "rice"
   ],
-  "version": 1,
+  "version": 2,
   "ingredients": [
     {
       "name": "Veggie-Geschnetzeltes",

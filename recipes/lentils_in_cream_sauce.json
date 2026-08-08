@@ -6,9 +6,10 @@
     "meal_type": "main",
     "tags": [
         "vegetarian",
-        "gluten-free"
+        "gluten-free",
+        "easily-vegan"
     ],
-    "version": 2,
+    "version": 3,
     "ingredients": [
         {
             "name": "rote Linsen",
