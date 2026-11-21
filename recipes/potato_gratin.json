@@ -1,0 +1,79 @@
+{
+    "language": "de",
+    "title": "Kartoffelgratin",
+    "default_servings": 4,
+    "serving_unit": "Portionen",
+    "meal_type": "main",
+    "tags": [
+        "vegetarian",
+        "easily-vegan",
+        "gluten-free"
+    ],
+    "version": 1,
+    "ingredients": [
+        {
+            "name": "Kartoffeln (festkochend)",
+            "amount": 1500,
+            "unit": "g"
+        },
+        {
+            "name": "Sahne",
+            "amount": 400,
+            "unit": "g"
+        },
+        {
+            "name": "Milch",
+            "amount": 100,
+            "unit": "ml"
+        },
+        {
+            "name": "geriebener Käse",
+            "amount": 200,
+            "unit": "g"
+        },
+        {
+            "name": "Knoblauch",
+            "amount": 2,
+            "unit": "cloves"
+        },
+        {
+            "name": "Margarine",
+            "amount": 50,
+            "unit": "g"
+        },
+        {
+            "name": "Muskatnuss"
+        }
+    ],
+    "instructions": [
+        "Kartoffeln schälen und in dünne Scheiben (ca. {{!2-3 mm}}) schneiden.",
+        "Sahne und Milch verrühren und kräftig mit Salz, Pfeffer und Muskatnuss würzen.",
+        "Eine Auflaufform mit etwas Margarine einfetten und die Kartoffelscheiben darin schichten. Dabei ein- bis zweimal zwischendurch mit Salz, Pfeffer und Muskatnuss würzen, jeweils eine gepresste Knoblauchzehe darauf verteilen und etwas von der Flüssigkeit darübergießen.",
+        "Die restliche Flüssigkeit darübergießen und die übrige Margarine in kleinen Stücken darauf verteilen.",
+        "Im vorgeheizten Backofen bei {{180 °C}} Umluft ca. 60 Minuten backen.",
+        "Aus dem Ofen nehmen, mit dem geriebenen Käse bestreuen und weitere ca. 15 Minuten backen, bis der Käse goldbraun ist."
+    ],
+    "translations": {
+        "en": {
+            "title": "Potato Gratin",
+            "serving_unit": "servings",
+            "ingredients": [
+                "waxy potatoes",
+                "cream",
+                "milk",
+                "shredded cheese",
+                "garlic",
+                "margarine",
+                "nutmeg"
+            ],
+            "instructions": [
+                "Peel the potatoes and cut them into thin slices (about {{!2-3 mm}}).",
+                "Mix the cream and milk and season generously with salt, pepper, and nutmeg.",
+                "Grease a baking dish with a little margarine and layer the potato slices in it. Once or twice along the way, season the layer with salt, pepper, and nutmeg, spread one pressed garlic clove over it, and pour on some of the liquid.",
+                "Pour the remaining liquid over the top and dot with the rest of the margarine in small pieces.",
+                "Bake in a preheated oven at {{180 °C}} (fan) for about 60 minutes.",
+                "Remove from the oven, sprinkle with the shredded cheese, and bake for about 15 more minutes until the cheese is golden brown."
+            ]
+        }
+    }
+}
