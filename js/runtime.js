@@ -30,26 +30,14 @@
   // apply round step → format → translate unit.
 
   function renderMeasurement(el, ratio) {
-    let amount = parseFloat(el.dataset.amount);
-    let unit = el.dataset.unit || null;
-    const fixed = el.dataset.fixed === "1";
-    const round = el.dataset.round ? parseFloat(el.dataset.round) : null;
-
-    const isTemp = unit && Converter.isTemperature(unit);
-    if (!fixed && !isTemp) amount = Scaler.scaleAmount(amount, ratio);
-
-    if (unit && unitSystem) {
-      const converted = Converter.convert(amount, unit, unitSystem);
-      if (converted) {
-        amount = converted.amount;
-        unit = converted.unit;
-      }
-    }
-
-    if (round) amount = Math.round(amount / round) * round;
-
-    const formatted = Converter.formatAmount(amount);
-    el.textContent = unit ? `${formatted} ${translateUnit(unit)}` : formatted;
+    const d = el.dataset;
+    el.textContent = Converter.formatMeasurement({
+      amount: parseFloat(d.amount),
+      amountTo: d.amountTo != null ? parseFloat(d.amountTo) : null,
+      unit: d.unit || null,
+      fixed: d.fixed === "1",
+      round: d.round ? parseFloat(d.round) : null,
+    }, ratio, unitSystem, translateUnit);
   }
 
   function renderIngredientAmount(el, ratio) {

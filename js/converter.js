@@ -13,6 +13,7 @@ const Converter = (() => {
     qt: { unit: "ml", factor: 946.353 },
     gal: { unit: "l", factor: 3.785 },
     pint: { unit: "ml", factor: 473.176 },
+    in: { unit: "cm", factor: 2.54 },
   };
 
   const toImperial = {
@@ -20,7 +21,14 @@ const Converter = (() => {
     l: { unit: "qt", factor: 1.05669 },
     g: { unit: "oz", factor: 1 / 28.3495 },
     kg: { unit: "lb", factor: 2.20462 },
+    mm: { unit: "in", factor: 1 / 25.4 },
+    cm: { unit: "in", factor: 1 / 2.54 },
   };
+
+  // Inches are given in eighths (as US recipes do), never less than ⅛.
+  function roundInches(amount) {
+    return Math.max(1 / 8, Math.round(amount * 8) / 8);
+  }
 
   // Units that don't convert (counts, pinches, etc.)
   const noConvert = new Set([
@@ -71,7 +79,8 @@ const Converter = (() => {
 
     if (targetSystem === "imperial" && toImperial[lowerUnit]) {
       const conv = toImperial[lowerUnit];
-      return { amount: amount * conv.factor, unit: conv.unit };
+      const converted = amount * conv.factor;
+      return { amount: conv.unit === "in" ? roundInches(converted) : converted, unit: conv.unit };
     }
 
     return null;
@@ -104,6 +113,9 @@ const Converter = (() => {
     0.5: "\u00BD",   // ½
     0.75: "\u00BE",   // ¾
     0.125: "\u215B",  // ⅛
+    0.375: "\u215C",  // ⅜
+    0.625: "\u215D",  // ⅝
+    0.875: "\u215E",  // ⅞
     [1 / 3]: "\u2153", // ⅓
     [2 / 3]: "\u2154", // ⅔
   };
@@ -112,13 +124,13 @@ const Converter = (() => {
    * Try to represent a number using Unicode fraction characters.
    * Returns the formatted string or null if no clean fraction applies.
    */
-  function asFraction(num) {
+  function asFraction(num, tolerance = 0.001) {
     const whole = Math.floor(num);
     const frac = num - whole;
 
     // Check if the fractional part matches a known fraction (within small tolerance)
     for (const [val, char] of Object.entries(FRACTIONS)) {
-      if (Math.abs(frac - parseFloat(val)) < 0.001) {
+      if (Math.abs(frac - parseFloat(val)) < tolerance) {
         return whole > 0 ? `${whole}${char}` : char;
       }
     }
@@ -131,6 +143,13 @@ const Converter = (() => {
    */
   function formatAmount(num) {
     if (num === 0) return "0";
+
+    // Small values that are already an exact clean fraction (e.g. 1⅛ in) are
+    // shown as-is; niceRound would otherwise turn 1.125 into 1.15.
+    if (Math.abs(num) < 10) {
+      const exact = asFraction(num, 1e-6);
+      if (exact) return exact;
+    }
 
     const rounded = niceRound(num);
 
@@ -147,5 +166,36 @@ const Converter = (() => {
     return parseFloat(str).toString();
   }
 
-  return { convert, formatAmount, isMetricUnit, isImperialUnit, isTemperature, noConvert };
+  /**
+   * Full display pipeline for one instruction measurement, shared by the build
+   * (parser.js) and client-side re-rendering (runtime.js) so they cannot drift:
+   * scale (unless fixed/temperature) → convert → round step → format → translate unit.
+   * `m` is { amount, amountTo, unit, fixed, round }; amountTo marks a range
+   * ("2-3 mm"), whose ends go through the pipeline independently.
+   */
+  function formatMeasurement(m, ratio, unitSystem, translateUnit) {
+    const scale = !m.fixed && !(m.unit && isTemperature(m.unit));
+    const values = m.amountTo != null ? [m.amount, m.amountTo] : [m.amount];
+    let unit = m.unit || null;
+
+    const formatted = values.map((value) => {
+      let amount = scale ? Scaler.scaleAmount(value, ratio) : value;
+      if (m.unit && unitSystem) {
+        const converted = convert(amount, m.unit, unitSystem);
+        if (converted) {
+          amount = converted.amount;
+          unit = converted.unit;
+        }
+      }
+      if (m.round) amount = Math.round(amount / m.round) * m.round;
+      return formatAmount(amount);
+    });
+
+    // A range whose ends round to the same value (2–3 mm → ⅛ in) shows once.
+    const text = formatted[0] === formatted[1] ? formatted[0] : formatted.join("\u2013");
+    const displayUnit = unit && translateUnit ? translateUnit(unit) : unit;
+    return displayUnit ? `${text} ${displayUnit}` : text;
+  }
+
+  return { convert, formatAmount, formatMeasurement, isMetricUnit, isImperialUnit, isTemperature, noConvert };
 })();

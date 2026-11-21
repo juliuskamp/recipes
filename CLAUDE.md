@@ -57,6 +57,9 @@ Instructions embed scalable measurements using `{{...}}`. `Parser.parseToken` ha
 - `{{180 °C}}` — temperatures never scale (leading `!` has no effect), but still convert
 - `{{6 round 1}}` — scale, then round to nearest step (e.g. whole patties)
 - `{{5 g round 0.5}}` — combine unit, conversion, and rounding
+- `{{!2-3 mm}}` — a **range** (`-` or `–`): both ends go through the same pipeline and render as `2–3 mm`; if they round to the same value (`⅛ in`), it shows once
+
+The whole display pipeline lives in `Converter.formatMeasurement`, called by both `parser.js` (build) and `runtime.js` (client). Lengths (`mm`, `cm` ↔ `in`) convert too; inches are rounded to the nearest ⅛ (minimum ⅛), like US recipes give them.
 
 ### Display formatting
 `Converter.formatAmount` rounds the third significant digit to the nearest 0 or 5 (e.g. 104→105, 236→235, 3.5→3.5), then renders clean fractions (½, ¼, ⅓, ⅔, ⅛, ¾, …) as Unicode characters. `tbsp` and `tsp` are in `noConvert` — they get translated (EL/TL) but are never converted to ml.

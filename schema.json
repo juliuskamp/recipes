@@ -72,6 +72,7 @@
             "enum": [
               "cups", "cup", "tbsp", "tsp", "ml", "l",
               "g", "kg", "oz", "lb", "floz", "qt", "gal", "pint",
+              "mm", "cm", "in",
               "whole", "piece", "pieces", "pinch",
               "bunch", "clove", "cloves",
               "cube", "cubes",

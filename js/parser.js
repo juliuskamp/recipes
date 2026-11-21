@@ -14,6 +14,7 @@ const Parser = (() => {
    *   "!2 tbsp"        -> { amount: 2, unit: "tbsp", fixed: true }
    *   "6 round 1"      -> { amount: 6, unit: null, round: 1 }
    *   "5 g round 0.5"  -> { amount: 5, unit: "g", round: 0.5 }
+   *   "!2-3 mm"        -> { amount: 2, amountTo: 3, unit: "mm", fixed: true }
    */
   function parseToken(token) {
     let trimmed = token.trim();
@@ -31,12 +32,20 @@ const Parser = (() => {
       trimmed = trimmed.slice(0, roundMatch.index);
     }
 
+    // Optional range "2-3" / "2 – 3" (hyphen or en dash)
+    let amountTo = null;
+    const rangeMatch = trimmed.match(/^([0-9.]+)\s*[-\u2013]\s*([0-9.]+)(?=\s|$)/);
+    if (rangeMatch) {
+      amountTo = parseFloat(rangeMatch[2]);
+      trimmed = rangeMatch[1] + trimmed.slice(rangeMatch[0].length);
+    }
+
     const parts = trimmed.split(/\s+/);
     const amount = parseFloat(parts[0]);
     if (isNaN(amount)) return null;
 
     const unit = parts.length > 1 ? parts.slice(1).join(" ") : null;
-    return { amount, unit, fixed, round };
+    return { amount, amountTo, unit, fixed, round };
   }
 
   /**
@@ -50,35 +59,14 @@ const Parser = (() => {
       const parsed = parseToken(token);
       if (!parsed) return match;
 
-      let { amount, unit } = parsed;
-
-      // Scale (unless fixed, or a temperature which never scales)
-      const isTemp = unit && Converter.isTemperature(unit);
-      if (!parsed.fixed && !isTemp) amount = Scaler.scaleAmount(amount, ratio);
-
-      // Convert units if requested
-      if (unit && unitSystem) {
-        const converted = Converter.convert(amount, unit, unitSystem);
-        if (converted) {
-          amount = converted.amount;
-          unit = converted.unit;
-        }
-      }
-
-      // Apply explicit rounding step if provided
-      if (parsed.round) {
-        amount = Math.round(amount / parsed.round) * parsed.round;
-      }
-
-      const formatted = Converter.formatAmount(amount);
-      const displayUnit = unit && translateUnit ? translateUnit(unit) : unit;
-      const display = displayUnit ? `${formatted} ${displayUnit}` : formatted;
+      const display = Converter.formatMeasurement(parsed, ratio, unitSystem, translateUnit);
 
       // Data attributes carry the ORIGINAL (unscaled, unconverted) values so
       // the static-site runtime can re-render the span for any servings count
       // or unit system without re-parsing the instruction text.
       const attrs =
         ` data-amount="${parsed.amount}"` +
+        (parsed.amountTo != null ? ` data-amount-to="${parsed.amountTo}"` : "") +
         (parsed.unit ? ` data-unit="${parsed.unit}"` : "") +
         (parsed.fixed ? ` data-fixed="1"` : "") +
         (parsed.round ? ` data-round="${parsed.round}"` : "");
